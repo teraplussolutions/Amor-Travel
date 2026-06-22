@@ -1,0 +1,67 @@
+{
+  "common": {
+    "companyName": "Amor Travel",
+    "home": "Home",
+    "trips": "Trips",
+    "contact": "Contact",
+    "login": "Login",
+    "language": "Language",
+    "macedonian": "Macedonian",
+    "english": "English",
+    "chooseLanguage": "Choose language",
+    "search": "Search",
+    "send": "Send",
+    "print": "Print",
+    "export": "Export",
+    "confirm": "Confirm",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "quotation": "Quotation",
+    "invoice": "Invoice",
+    "voucher": "Voucher",
+    "client": "Client"
+  },
+  "public": {
+    "heroTitle": "Your next journey starts here",
+    "heroSubtitle": "Organised trips, excursions, and custom travel across Europe and beyond.",
+    "ctaRequestQuote": "Request a quote",
+    "ctaViewTrips": "View trips",
+    "featuredTrips": "Featured trips",
+    "contactTitle": "Contact",
+    "contactIntro": "Call or write for a quote or travel information. We reply quickly.",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "tripsCatalogTitle": "Trips",
+    "tripsCatalogIntro": "Browse our organised trips and excursions.",
+    "tripsCatalogEmpty": "The catalog will be published soon.",
+    "tripDetails": "Details",
+    "messageLabel": "Message",
+    "tripsCatalogTitle": "Trips",
+    "tripsCatalogIntro": "Organised trips and excursions from Amor Travel. Prices shown in EUR and MKD.",
+    "tripsCatalogEmpty": "The catalog is being prepared. Please check back soon.",
+    "tripDetails": "View details"
+  },
+  "agent": {
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "quotes": "Quotations",
+    "sales": "Sales",
+    "expenses": "Expenses",
+    "vouchers": "Vouchers",
+    "searchFlights": "Search flights",
+    "welcome": "Welcome to the Amor Travel agent workspace"
+  },
+  "admin": {
+    "panel": "Admin panel",
+    "website": "Website",
+    "trips": "Trips",
+    "settings": "Settings",
+    "welcome": "Manage content for amortravel.net"
+  },
+  "superAdmin": {
+    "title": "Super Admin",
+    "welcome": "Platform owner — white-label settings"
+  }
+}

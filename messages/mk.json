@@ -1,0 +1,67 @@
+{
+  "common": {
+    "companyName": "Amor Travel",
+    "home": "Почетна",
+    "trips": "Патувања",
+    "contact": "Контакт",
+    "login": "Најава",
+    "language": "Јазик",
+    "macedonian": "Македонски",
+    "english": "English",
+    "chooseLanguage": "Изберете јазик",
+    "search": "Пребарај",
+    "send": "Испрати",
+    "print": "Печати",
+    "export": "Извоз",
+    "confirm": "Потврди",
+    "total": "Вкупно",
+    "subtotal": "Меѓузбир",
+    "quotation": "Понуда",
+    "invoice": "Фактура",
+    "voucher": "Ваучер",
+    "client": "Клиент"
+  },
+  "public": {
+    "heroTitle": "Вашето следно патување започнува тука",
+    "heroSubtitle": "Организирани патувања, екскурзии и индивидуални понуди низ Европа и пошироко.",
+    "ctaRequestQuote": "Побарај понуда",
+    "ctaViewTrips": "Види патувања",
+    "featuredTrips": "Актуелни патувања",
+    "contactTitle": "Контакт",
+    "contactIntro": "Јавете се за понуда или информации. Одговараме брзо.",
+    "addressLabel": "Адреса",
+    "phoneLabel": "Телефон",
+    "emailLabel": "Е-пошта",
+    "messageLabel": "Порака",
+    "tripsCatalogTitle": "Патувања",
+    "tripsCatalogIntro": "Прегледајте ги нашите организирани патувања и екскурзии.",
+    "tripsCatalogEmpty": "Каталогот ќе биде објавен наскоро.",
+    "tripDetails": "Детали",
+    "messageLabel": "Порака",
+    "tripsCatalogTitle": "Патувања",
+    "tripsCatalogIntro": "Организирани патувања и екскурзии од Amor Travel. Цените се прикажани во EUR и MKD.",
+    "tripsCatalogEmpty": "Каталогот се подготвува. Проверете повторно наскоро.",
+    "tripDetails": "Повеќе детали"
+  },
+  "agent": {
+    "dashboard": "Контролна табла",
+    "clients": "Клиенти",
+    "quotes": "Понуди",
+    "sales": "Продажби",
+    "expenses": "Трошоци",
+    "vouchers": "Ваучери",
+    "searchFlights": "Пребарај летови",
+    "welcome": "Добредојдовте во Amor Travel агентскиот панел"
+  },
+  "admin": {
+    "panel": "Админ панел",
+    "website": "Веб-страница",
+    "trips": "Патувања",
+    "settings": "Поставки",
+    "welcome": "Управување со содржина на amortravel.net"
+  },
+  "superAdmin": {
+    "title": "Super Admin",
+    "welcome": "Платформски сопственик — white-label поставки"
+  }
+}
