@@ -1,4 +1,4 @@
-import type { Metadata } from "sharp";
+import sharp, { type Metadata, type Sharp } from "sharp";
 import {
   isAcceptedImageMime as isAcceptedMime,
   SHARP_INPUT_MIMES,
@@ -25,15 +25,6 @@ export type CompressedImage = {
   jpegFallback?: CompressedImage;
 };
 
-let sharpModule: typeof import("sharp") | null = null;
-
-async function getSharp() {
-  if (!sharpModule) {
-    sharpModule = await import("sharp");
-  }
-  return sharpModule.default;
-}
-
 function isLikelyGraphic(inputMime: string, metadata: Metadata): boolean {
   const mime = inputMime.toLowerCase();
   if (mime === "image/png" || mime === "image/svg+xml") return true;
@@ -53,7 +44,7 @@ function resizeOptions(width: number, height: number) {
 }
 
 async function encodeWebpAndJpeg(
-  pipeline: import("sharp").Sharp,
+  pipeline: Sharp,
   graphic: boolean,
 ): Promise<
   Pick<CompressedImage, "buffer" | "contentType" | "extension"> & {
@@ -95,7 +86,6 @@ export async function compressImage(
   mimeType?: string | null,
 ): Promise<CompressedImage> {
   const normalizedMime = mimeType?.toLowerCase() ?? "";
-  const sharp = await getSharp();
 
   if (normalizedMime === "image/svg+xml") {
     try {
