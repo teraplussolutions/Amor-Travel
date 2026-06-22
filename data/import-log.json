@@ -1,10 +1,10 @@
 {
-  "imported": 134,
+  "imported": 163,
   "updated": 0,
   "skipped_duplicates": 0,
-  "merged": 29,
+  "merged": 0,
   "facebook_accessible": true,
   "facebook_note": "Partial HTML fetched from https://www.facebook.com/amortravelagency but public post parsing is limited without Graph API.",
   "unmatched_images": [],
-  "ran_at": "2026-06-22T23:37:04.490Z"
+  "ran_at": "2026-06-22T23:42:33.424Z"
 }

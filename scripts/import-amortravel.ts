@@ -170,7 +170,7 @@ async function crawlFacebook(): Promise<FacebookResult> {
 
 function dedupeAndMerge(trips: RawTrip[]): { trips: RawTrip[]; skipped: number; merged: number } {
   const bySlug = new Map<string, RawTrip>();
-  const byKey = new Map<string, string>();
+  const crossSourceKeys = new Map<string, string>();
   let skipped = 0;
   let merged = 0;
 
@@ -183,8 +183,13 @@ function dedupeAndMerge(trips: RawTrip[]): { trips: RawTrip[]; skipped: number; 
     }
 
     const dedupeKey = normalizeDedupeKey(trip.title_mk, trip.destination_mk, trip.departure_date);
-    const keySlug = byKey.get(dedupeKey);
-    if (keySlug) {
+    const keySlug = crossSourceKeys.get(dedupeKey);
+    const hasDifferentSource =
+      keySlug &&
+      bySlug.has(keySlug) &&
+      !trip.source.every((source) => bySlug.get(keySlug)!.source.includes(source));
+
+    if (hasDifferentSource) {
       const existing = bySlug.get(keySlug)!;
       bySlug.set(keySlug, mergeTrips(existing, trip, trip.source[0]));
       merged++;
@@ -192,7 +197,9 @@ function dedupeAndMerge(trips: RawTrip[]): { trips: RawTrip[]; skipped: number; 
     }
 
     bySlug.set(trip.slug, trip);
-    byKey.set(dedupeKey, trip.slug);
+    if (trip.departure_date) {
+      crossSourceKeys.set(dedupeKey, trip.slug);
+    }
   }
 
   skipped = trips.length - bySlug.size - merged;

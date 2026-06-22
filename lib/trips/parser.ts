@@ -43,6 +43,10 @@ export function stripHtml(value: string): string {
     .replace(/<[^>]+>/g, "")
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
+    .replace(/&ndash;/g, "–")
+    .replace(/&times;/g, "×")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
     .replace(/\r/g, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
