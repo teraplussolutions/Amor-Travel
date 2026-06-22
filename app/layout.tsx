@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { defaultSiteMetadata, SITE_URL } from "@/lib/site-metadata";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Amor Travel",
-  description: "Amor Travel — holidays, excursions, and custom trips.",
+  ...defaultSiteMetadata("mk"),
+  metadataBase: SITE_URL,
 };
 
 export const viewport: Viewport = {

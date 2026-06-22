@@ -1,13 +1,62 @@
+import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { convertEurMkd, formatDualCurrency } from "@/lib/currency";
+import { SITE } from "@/lib/site-defaults";
+import {
+  absoluteUrl,
+  buildOpenGraphImage,
+  localePath,
+  siteDescription,
+  tripOgImage,
+} from "@/lib/site-metadata";
 import { getTripBySlug } from "@/lib/trips/load-trips";
 
 type TripDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
+export async function generateMetadata({ params }: TripDetailPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const trip = getTripBySlug(slug);
+
+  if (!trip) {
+    return {};
+  }
+
+  const isEn = locale === "en";
+  const title = isEn ? trip.title_en : trip.title_mk;
+  const destination = isEn ? trip.destination_en : trip.destination_mk;
+  const description = destination || siteDescription(isEn ? "en" : "mk");
+  const pagePath = localePath(locale, `/trips/${slug}`);
+  const ogImagePath = trip.hero_image ?? "/og-default.png";
+  const ogImage = buildOpenGraphImage(ogImagePath, title);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: absoluteUrl(pagePath),
+    },
+    openGraph: {
+      type: "website",
+      locale: isEn ? "en_US" : "mk_MK",
+      url: absoluteUrl(pagePath),
+      siteName: SITE.companyName,
+      title,
+      description,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [tripOgImage(trip.hero_image)],
+    },
+  };
+}
 
 export default async function TripDetailPage({ params }: TripDetailPageProps) {
   const { locale, slug } = await params;
