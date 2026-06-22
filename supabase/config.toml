@@ -1,0 +1,17 @@
+# Amor Travel — Supabase project ekdeizmxgucpvcrmoftz
+# Link locally: supabase link --project-ref ekdeizmxgucpvcrmoftz
+# Apply migrations: supabase db push --linked
+
+project_id = "ekdeizmxgucpvcrmoftz"
+
+[db]
+major_version = 15
+
+[api]
+enabled = true
+schemas = ["public", "storage"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db.migrations]
+enabled = true
