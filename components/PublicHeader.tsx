@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguagePicker } from "@/components/LanguagePicker";
 import { MobileNav, MenuButton } from "@/components/MobileNav";
 import { SITE } from "@/lib/site-defaults";
+import { BRAND_LOGO } from "@/lib/site-images";
 
 const navLinks = [
   { href: "/", labelKey: "home" as const },
@@ -33,11 +35,21 @@ export function PublicHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-amor-soft bg-amor-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
-        <Link href="/" className="min-w-0 shrink">
-          <p className="truncate text-xl font-bold text-amor-red sm:text-2xl">
-            {SITE.companyName}
-          </p>
-          <p className="truncate text-sm text-amor-blue sm:text-base">{SITE.domain}</p>
+        <Link href="/" className="flex min-w-0 shrink items-center gap-3">
+          <Image
+            src={BRAND_LOGO.src}
+            alt={BRAND_LOGO.altEn}
+            width={56}
+            height={56}
+            priority
+            className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14"
+          />
+          <div className="min-w-0">
+            <p className="truncate text-xl font-bold text-amor-red sm:text-2xl">
+              {SITE.companyName}
+            </p>
+            <p className="truncate text-sm text-amor-blue sm:text-base">{SITE.domain}</p>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">

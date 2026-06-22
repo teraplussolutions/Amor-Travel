@@ -1,0 +1,26 @@
+﻿---
+description: Travel Agency — independent project; never mix with other workspaces
+alwaysApply: true
+---
+
+# Travel Agency — strict project separation (NEVER mix)
+
+This workspace is a **greenfield Travel Agency project**. It is completely independent from all other work. Treat every session here as Travel Agency only.
+
+## Boundaries
+
+| Travel Agency ONLY | NEVER use for Travel Agency |
+|--------------------|-----------------------------|
+| Folder: `C:\Users\ADMIN\Desktop\Travel Agency` | `C:\Flutter\123\unadostrez` (UnaDosTrez) |
+| GitHub: `teraplussolutions/Amor-Travel` | `Website/andon-kompani` (Andon Kompani) |
+| Supabase: `ekdeizmxgucpvcrmoftz` | Any other project's Supabase (e.g. Andon `vsrewgpbjamwcdiabney`) |
+| Vercel team: `tera-plus` · project: **`amor-travel`** | Other Vercel projects (e.g. `andon-kompani-website`) |
+| Production: **https://amortravel.net** (alias **https://amor-travel-phi.vercel.app**) | `andonkompani.com`, UnaDosTrez Firebase |
+| Public email target: `info@amortravel.net` → forward to `amor_agencija@yahoo.com` (DNS/email routing later) | |
+
+## Behavior
+
+- Do **not** copy deploy scripts, env vars, MCP Supabase targets, git remotes, or commit authors from UnaDosTrez or Andon unless the user provides them for this project.
+- Do **not** auto-commit or auto-deploy using rules written for other projects (e.g. UnaDosTrez Firebase deploy). Follow Travel Agency's own workflow once defined.
+- Global rules for other projects (UnaDosTrez deploy-after-every-task, Andon Kompani permissions) do **not** apply here unless the user explicitly requests them for Travel Agency.
+- Deploy Amor Travel only via **`tera-plus/amor-travel`** (Vercel CLI from a path **without spaces** if `npm install` fails under `Travel Agency`, e.g. `C:\Users\ADMIN\amor-travel-deploy` synced from `amor-travel-temp`).

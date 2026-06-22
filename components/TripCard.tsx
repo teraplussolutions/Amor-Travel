@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
 type TripCardProps = {
@@ -23,11 +24,12 @@ export function TripCard({
     <article className="card flex h-full flex-col overflow-hidden p-0">
       {imageSrc ? (
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-amor-sidebar">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={imageSrc}
             alt={imageAlt || title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
           />
         </div>
       ) : null}

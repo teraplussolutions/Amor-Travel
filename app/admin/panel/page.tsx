@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { HeroSlideshowUpload } from "@/components/admin/HeroSlideshowUpload";
 import { getStorageBackend } from "@/lib/site-storage";
+import { UNASSIGNED_DESTINATION_IMAGES } from "@/lib/site-images";
 
 export default function AdminPanelPage() {
   const storageBackend = getStorageBackend();
@@ -47,6 +49,38 @@ export default function AdminPanelPage() {
           </p>
         </div>
         <HeroSlideshowUpload />
+      </section>
+
+      <section className="card space-y-4">
+        <h2 className="text-amor-blue">Images awaiting trip assignment</h2>
+        <p className="text-base text-amor-text/80">
+          Available in <code className="text-amor-blue">public/images/destinations/</code>.
+          Assign when creating trips in the CMS.
+        </p>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {UNASSIGNED_DESTINATION_IMAGES.map((image) => (
+            <li
+              key={image.src}
+              className="flex gap-3 rounded-xl border border-amor-soft p-3"
+            >
+              <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg bg-amor-soft">
+                <Image
+                  src={image.src}
+                  alt={image.altEn}
+                  fill
+                  sizes="112px"
+                  className="object-cover"
+                />
+              </div>
+              <div className="min-w-0">
+                <p className="font-medium text-amor-blue">
+                  {image.destination ?? "Generic travel"}
+                </p>
+                <p className="truncate text-sm text-amor-text/80">{image.src}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );
