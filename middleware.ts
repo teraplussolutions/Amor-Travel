@@ -5,18 +5,22 @@ import { routing } from "./i18n/routing";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const ADMIN_PREFIXES   = ["/admin", "/super-admin"];
-const AGENT_PREFIXES   = ["/agent"];
-const SKIP_INTL        = ["/login", "/crm-login", "/setup", "/api"];
+const ADMIN_PREFIXES = ["/admin", "/super-admin"];
+const AGENT_PREFIXES = ["/agent"];
+const SKIP_ALL       = ["/login", "/crm-login", "/setup", "/api", "/reset-password"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Skip everything for login/setup/api pages
+  if (SKIP_ALL.some((p) => pathname.startsWith(p))) {
+    return NextResponse.next();
+  }
+
   const isAdminRoute = ADMIN_PREFIXES.some((p) => pathname.startsWith(p));
   const isAgentRoute = AGENT_PREFIXES.some((p) => pathname.startsWith(p));
-  const isProtected  = isAdminRoute || isAgentRoute;
 
-  if (isProtected) {
+  if (isAdminRoute || isAgentRoute) {
     let response = NextResponse.next({ request });
 
     const supabase = createServerClient(
@@ -40,7 +44,6 @@ export async function middleware(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-      // Admin routes → /login, Agent routes → /crm-login
       const loginPath = isAgentRoute ? "/crm-login" : "/login";
       const loginUrl  = new URL(loginPath, request.url);
       loginUrl.searchParams.set("redirect", pathname);
@@ -50,11 +53,7 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Skip intl for login pages and API
-  if (SKIP_INTL.some((p) => pathname.startsWith(p))) {
-    return NextResponse.next();
-  }
-
+  // Public pages — run intl routing
   return intlMiddleware(request);
 }
 
