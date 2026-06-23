@@ -249,6 +249,8 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
               trip.price_early_eur != null
                 ? formatDualCurrency(convertEurMkd(trip.price_early_eur, "EUR"), { locale })
                 : null;
+            const priceLabel = price ?? (isEn ? "Price on request" : "Цена по барање");
+            const priceIsReal = price != null;
             const title = (isEn ? (trip.title_en || trip.title_mk) : trip.title_mk) ?? trip.slug;
             const dest = (isEn ? (trip.destination_en || trip.destination_mk) : trip.destination_mk) ?? "";
 
@@ -268,14 +270,12 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
-                    {price && (
-                      <div
-                        className="absolute bottom-3 right-3 rounded-full px-3 py-1 text-sm font-bold text-white"
-                        style={{ background: "linear-gradient(135deg, var(--amor-gold), #a8883a)", boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
-                      >
-                        {price}
-                      </div>
-                    )}
+                    <div
+                      className="absolute bottom-3 right-3 rounded-full px-3 py-1 text-sm font-bold text-white"
+                      style={{ background: priceIsReal ? "linear-gradient(135deg, var(--amor-gold), #a8883a)" : "linear-gradient(135deg,#174698,#0f2d5e)", boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }}
+                    >
+                      {priceLabel}
+                    </div>
                   </Link>
                 ) : (
                   <div className="flex aspect-[4/3] items-center justify-center bg-amor-soft px-4 text-center text-base font-medium text-amor-blue">
@@ -302,8 +302,8 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                       {trip.departure_date}{trip.return_date ? ` — ${trip.return_date}` : ""}
                     </p>
                   )}
-                  {!trip.hero_image && price && (
-                    <p className="mt-3 text-lg font-bold" style={{ color: "var(--amor-gold)" }}>{price}</p>
+                  {!trip.hero_image && (
+                    <p className="mt-3 text-lg font-bold" style={{ color: priceIsReal ? "var(--amor-gold)" : "var(--amor-blue)" }}>{priceLabel}</p>
                   )}
                   <div className="my-4 h-px w-12" style={{ background: "linear-gradient(90deg, var(--amor-gold), transparent)" }} />
                   <Link

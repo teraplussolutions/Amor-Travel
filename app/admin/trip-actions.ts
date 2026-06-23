@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { revalidatePath } from "next/cache";
 import type { ImportedTrip } from "@/lib/trips/types";
+import { clearTripsCache } from "@/lib/trips/load-trips";
 
 const TRIPS_FILE = path.join(process.cwd(), "data", "imported-trips.json");
 const TRIPS_TMP = "/tmp/amor-trips.json";
@@ -96,6 +97,7 @@ export async function saveTrip(
       trips.unshift(trip);
     }
     writeTrips(trips);
+    clearTripsCache();
     revalidatePath("/");
     revalidatePath("/mk");
     revalidatePath("/en");
@@ -115,6 +117,7 @@ export async function deleteTrip(slug: string): Promise<{ error?: string }> {
     const trips = readTrips();
     const filtered = trips.filter((t) => t.slug !== slug);
     writeTrips(filtered);
+    clearTripsCache();
     revalidatePath("/admin/panel");
     revalidatePath("/mk/patuvanja");
     revalidatePath("/en/patuvanja");
@@ -134,6 +137,7 @@ export async function toggleTripPublished(
     if (idx < 0) return { error: "Trip not found." };
     trips[idx].published = published;
     writeTrips(trips);
+    clearTripsCache();
     revalidatePath("/admin/panel");
     revalidatePath("/mk/patuvanja");
     revalidatePath("/en/patuvanja");
@@ -153,6 +157,7 @@ export async function toggleTripHidden(
     if (idx < 0) return { error: "Trip not found." };
     trips[idx].hidden = hidden;
     writeTrips(trips);
+    clearTripsCache();
     revalidatePath("/admin/panel");
     revalidatePath("/mk/patuvanja");
     revalidatePath("/en/patuvanja");

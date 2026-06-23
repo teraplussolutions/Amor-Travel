@@ -128,20 +128,23 @@ export default async function TripDetailPage({ params }: TripDetailPageProps) {
           </dl>
         )}
 
-        {(earlyPrice || regularPrice) && (
-          <div className="mt-8 space-y-2">
-            {earlyPrice ? (
-              <p className="break-words text-xl font-semibold leading-snug text-amor-red sm:text-2xl">
-                {locale === "en" ? "Early price" : "Попустна цена"}: {earlyPrice}
-              </p>
-            ) : null}
-            {regularPrice ? (
-              <p className="break-words text-lg text-amor-blue sm:text-xl">
-                {locale === "en" ? "Regular price" : "Редовна цена"}: {regularPrice}
-              </p>
-            ) : null}
-          </div>
-        )}
+        <div className="mt-8 space-y-2">
+          {earlyPrice ? (
+            <p className="break-words text-xl font-semibold leading-snug text-amor-red sm:text-2xl">
+              {locale === "en" ? "Early price" : "Попустна цена"}: {earlyPrice}
+            </p>
+          ) : null}
+          {regularPrice ? (
+            <p className="break-words text-lg text-amor-blue sm:text-xl">
+              {locale === "en" ? "Regular price" : "Редовна цена"}: {regularPrice}
+            </p>
+          ) : null}
+          {!earlyPrice && !regularPrice && (
+            <p className="break-words text-xl font-semibold leading-snug text-amor-blue sm:text-2xl">
+              {locale === "en" ? "💬 Price on request — contact us" : "💬 Цена по барање — контактирајте нè"}
+            </p>
+          )}
+        </div>
 
         {trip.included_mk ? (
           <section className="mt-10">
