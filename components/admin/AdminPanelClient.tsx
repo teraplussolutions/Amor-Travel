@@ -655,6 +655,7 @@ function TripForm({
   onSaved: (trip: ImportedTrip) => void;
 }) {
   const isNew = !trip;
+  const { lang } = useStaffLang();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const [heroUrl, setHeroUrl] = useState(trip?.hero_image ?? "");
