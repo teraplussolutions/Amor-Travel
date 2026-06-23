@@ -6,15 +6,28 @@ import { revalidatePath } from "next/cache";
 import type { ImportedTrip } from "@/lib/trips/types";
 
 const TRIPS_FILE = path.join(process.cwd(), "data", "imported-trips.json");
+// Vercel filesystem is read-only; use /tmp for writes (persists within session)
+const TRIPS_TMP = "/tmp/amor-trips.json";
 
 function readTrips(): ImportedTrip[] {
-  if (!fs.existsSync(TRIPS_FILE)) return [];
-  return JSON.parse(fs.readFileSync(TRIPS_FILE, "utf8")) as ImportedTrip[];
+  // Prefer /tmp (has latest edits), fall back to bundled file
+  const file = fs.existsSync(TRIPS_TMP) ? TRIPS_TMP : TRIPS_FILE;
+  if (!fs.existsSync(file)) return [];
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8")) as ImportedTrip[];
+  } catch {
+    return [];
+  }
 }
 
 function writeTrips(trips: ImportedTrip[]) {
-  fs.mkdirSync(path.dirname(TRIPS_FILE), { recursive: true });
-  fs.writeFileSync(TRIPS_FILE, JSON.stringify(trips, null, 2), "utf8");
+  try {
+    fs.writeFileSync(TRIPS_TMP, JSON.stringify(trips, null, 2), "utf8");
+  } catch {
+    // Last resort: try original path (works in local dev)
+    fs.mkdirSync(path.dirname(TRIPS_FILE), { recursive: true });
+    fs.writeFileSync(TRIPS_FILE, JSON.stringify(trips, null, 2), "utf8");
+  }
 }
 
 function slugify(text: string): string {
@@ -43,6 +56,7 @@ export type TripFormData = {
   program_mk: string;
   hero_image: string | null;
   published: boolean;
+  hidden?: boolean;
 };
 
 export async function saveTrip(
@@ -79,6 +93,7 @@ export async function saveTrip(
       source: existingIndex >= 0 ? trips[existingIndex].source : [],
       source_urls: existingIndex >= 0 ? trips[existingIndex].source_urls : [],
       published: data.published,
+      hidden: data.hidden ?? (existingIndex >= 0 ? (trips[existingIndex].hidden ?? false) : false),
       imported_at: existingIndex >= 0 ? trips[existingIndex].imported_at : now,
       image_match: existingIndex >= 0 ? trips[existingIndex].image_match : "none",
     };
@@ -134,10 +149,4 @@ export async function toggleTripPublished(
     revalidatePath("/en/patuvanja");
     return {};
   } catch (err) {
-    return { error: err instanceof Error ? err.message : "Failed to update trip." };
-  }
-}
-
-export async function loadAllTrips(): Promise<ImportedTrip[]> {
-  return readTrips();
-}
+    return { error: err instanceof Error ? err.message : "Fa
