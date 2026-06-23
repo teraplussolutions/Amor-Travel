@@ -1,4 +1,6 @@
 "use client";
+import { exportPDF } from "@/lib/export-pdf";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 export const dynamic = "force-dynamic";
 
@@ -168,6 +170,9 @@ export default function VouchersPage() {
   const [printing, setPrinting] = useState<Voucher | null>(null);
   const [statusFilter, setStatusFilter] = useState("All");
   const [loading, setLoading] = useState(true);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [pdfLang, setPdfLang] = useState<"mk"|"en">("mk");
+  const { lang } = useStaffLang();
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -195,10 +200,45 @@ export default function VouchersPage() {
         <button onClick={() => { setEditing(null); setModalOpen(true); }} style={{ padding: "10px 20px", borderRadius: 12, border: "none", background: "linear-gradient(135deg,#174698,#0f2d5e)", color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>+ New Voucher</button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
-        {["All", "Active", "Used", "Expired"].map((s) => (
-          <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid", borderColor: statusFilter === s ? "#174698" : "#e2e8f0", background: statusFilter === s ? "#174698" : "#fff", color: statusFilter === s ? "#fff" : "#64748b", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>{s}</button>
+      <div style={{ background: "#f8fafc", borderRadius: 14, border: "1px solid #e2e8f0", marginBottom: 20, overflow: "hidden" }}>
+        <button type="button" onClick={() => setFiltersOpen(v => !v)} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "none", border: "none", cursor: "pointer" }}>
+          <span style={{ fontWeight: 700, fontSize: 13, color: "#174698", display: "flex", alignItems: "center", gap: 8 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            {lang === "mk" ? "Филтер" : "Filter"}
+            {statusFilter !== "All" && <span style={{ background: "#FF1D1D", color: "#fff", borderRadius: 20, padding: "1px 8px", fontSize: 11 }}>{lang === "mk" ? "активен" : "active"}</span>}
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#174698" strokeWidth="2" style={{ transform: filtersOpen ? "rotate(180deg)" : "none", transition: "0.2s" }}><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        {filtersOpen && (
+          <div style={{ padding: "0 16px 16px", display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {["All", "Active", "Used", "Expired"].map((s) => (
+              <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid", borderColor: statusFilter === s ? "#174698" : "#e2e8f0", background: statusFilter === s ? "#174698" : "#fff", color: statusFilter === s ? "#fff" : "#64748b", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>{s}</button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginBottom: 16, alignItems: "center" }}>
+        <span style={{ fontSize: 12, color: "#64748b", fontWeight: 600 }}>{lang === "mk" ? "Извоз:" : "Export:"}</span>
+        {(["mk","en"] as const).map(l => (
+          <button key={l} onClick={() => setPdfLang(l)} style={{ padding: "5px 12px", borderRadius: 8, border: "1px solid", borderColor: pdfLang === l ? "#174698" : "#e2e8f0", background: pdfLang === l ? "#174698" : "#fff", color: pdfLang === l ? "#fff" : "#64748b", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>{l.toUpperCase()}</button>
         ))}
+        <button onClick={() => exportPDF({
+          titleMk: "Ваучери", titleEn: "Vouchers",
+          columns: [
+            { mk: "Код", en: "Code" }, { mk: "Клиент", en: "Client" }, { mk: "Тип", en: "Type" },
+            { mk: "Вредност", en: "Value" }, { mk: "Важи до", en: "Expires" }, { mk: "Статус", en: "Status" }
+          ],
+          rows: filtered.map(v => {
+            const cl = v.clients as {first_name:string;last_name:string}|undefined;
+            const val = v.type === "percent" ? `${v.value}%` : v.type === "fixed" ? `€${v.value}` : "FREE";
+            return [v.code, cl ? `${cl.first_name} ${cl.last_name}` : "—", v.type, val, v.expiry_date ?? "—", v.status];
+          }),
+          lang: pdfLang,
+          subtitle: `${lang === "mk" ? "Вкупно" : "Total"}: ${filtered.length}`,
+        })} style={{ padding: "7px 16px", borderRadius: 10, border: "none", background: "linear-gradient(135deg,#FF1D1D,#c01515)", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF
+        </button>
       </div>
 
       {loading ? (

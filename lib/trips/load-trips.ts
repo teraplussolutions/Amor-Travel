@@ -7,7 +7,11 @@ let cache: ImportedTrip[] | null = null;
 export function loadImportedTrips(): ImportedTrip[] {
   if (cache) return cache;
 
-  const file = path.join(process.cwd(), "data", "imported-trips.json");
+  // On Vercel, admin writes to /tmp/amor-trips.json — prefer that over the bundled file
+  const tmpFile = "/tmp/amor-trips.json";
+  const dataFile = path.join(process.cwd(), "data", "imported-trips.json");
+  const file = fs.existsSync(tmpFile) ? tmpFile : dataFile;
+
   if (!fs.existsSync(file)) {
     cache = [];
     return cache;

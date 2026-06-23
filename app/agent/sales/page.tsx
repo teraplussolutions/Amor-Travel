@@ -1,4 +1,6 @@
 "use client";
+import { exportPDF } from "@/lib/export-pdf";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 export const dynamic = "force-dynamic";
 
@@ -190,6 +192,9 @@ export default function SalesPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Partial<Sale> | null>(null);
   const [loading, setLoading] = useState(true);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [pdfLang, setPdfLang] = useState<"mk"|"en">("mk");
+  const { lang } = useStaffLang();
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -241,11 +246,48 @@ export default function SalesPage() {
         ))}
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
-        <input placeholder="Пребарај код, дестинација, клиент..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 10, border: "1px solid #e2e8f0", fontSize: 14, background: "#f8fafc" }} />
-        {["All", "Pending", "Completed", "Cancelled", "Refunded"].map((s) => (
-          <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid", borderColor: statusFilter === s ? "#174698" : "#e2e8f0", background: statusFilter === s ? "#174698" : "#fff", color: statusFilter === s ? "#fff" : "#64748b", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>{s}</button>
+      <div style={{ background: "#f8fafc", borderRadius: 14, border: "1px solid #e2e8f0", marginBottom: 20, overflow: "hidden" }}>
+        <button type="button" onClick={() => setFiltersOpen(v => !v)} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "none", border: "none", cursor: "pointer" }}>
+          <span style={{ fontWeight: 700, fontSize: 13, color: "#174698", display: "flex", alignItems: "center", gap: 8 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            {lang === "mk" ? "Пребарај и Филтер" : "Search & Filter"}
+            {(search || statusFilter !== "All") && <span style={{ background: "#FF1D1D", color: "#fff", borderRadius: 20, padding: "1px 8px", fontSize: 11 }}>{lang === "mk" ? "активен" : "active"}</span>}
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#174698" strokeWidth="2" style={{ transform: filtersOpen ? "rotate(180deg)" : "none", transition: "0.2s" }}><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        {filtersOpen && (
+          <div style={{ padding: "0 16px 16px", display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <input placeholder={lang === "mk" ? "Пребарај код, дестинација, клиент..." : "Search code, destination, client..."} value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 10, border: "1px solid #e2e8f0", fontSize: 14, background: "#fff" }} />
+            {["All", "Pending", "Completed", "Cancelled", "Refunded"].map((s) => (
+              <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid", borderColor: statusFilter === s ? "#174698" : "#e2e8f0", background: statusFilter === s ? "#174698" : "#fff", color: statusFilter === s ? "#fff" : "#64748b", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>{s}</button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginBottom: 16, alignItems: "center" }}>
+        <span style={{ fontSize: 12, color: "#64748b", fontWeight: 600 }}>{lang === "mk" ? "Извоз:" : "Export:"}</span>
+        {(["mk","en"] as const).map(l => (
+          <button key={l} onClick={() => setPdfLang(l)} style={{ padding: "5px 12px", borderRadius: 8, border: "1px solid", borderColor: pdfLang === l ? "#174698" : "#e2e8f0", background: pdfLang === l ? "#174698" : "#fff", color: pdfLang === l ? "#fff" : "#64748b", fontWeight: 700, fontSize: 12, cursor: "pointer" }}>{l.toUpperCase()}</button>
         ))}
+        <button onClick={() => exportPDF({
+          titleMk: "Продажби", titleEn: "Sales",
+          columns: [
+            { mk: "Код", en: "Code" }, { mk: "Клиент", en: "Client" }, { mk: "Дестинација", en: "Destination" },
+            { mk: "Приход (€)", en: "Revenue (€)" }, { mk: "Трошок (€)", en: "Cost (€)" },
+            { mk: "Добивка (€)", en: "Profit (€)" }, { mk: "Плаќање", en: "Payment" }, { mk: "Статус", en: "Status" }
+          ],
+          rows: filtered.map(s => {
+            const cl = s.clients as {first_name:string;last_name:string}|undefined;
+            return [s.code, cl ? `${cl.first_name} ${cl.last_name}` : "—", s.destination ?? "—",
+              Number(s.revenue_eur).toFixed(2), Number(s.supplier_cost_eur).toFixed(2),
+              Number(s.profit_eur).toFixed(2), s.payment_type ?? "—", s.status];
+          }),
+          lang: pdfLang,
+          subtitle: `${lang === "mk" ? "Приход" : "Revenue"}: €${totals.revenue.toFixed(2)} | ${lang === "mk" ? "Добивка" : "Profit"}: €${totals.profit.toFixed(2)}`,
+        })} style={{ padding: "7px 16px", borderRadius: 10, border: "none", background: "linear-gradient(135deg,#FF1D1D,#c01515)", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF
+        </button>
       </div>
 
       {loading ? (

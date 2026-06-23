@@ -17,6 +17,7 @@ type SortOption = "newest" | "oldest" | "price_asc" | "price_desc";
 
 export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: TripsPageClientProps) {
   const isEn = locale === "en";
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const [search, setSearch] = useState("");
   const [dateFrom, setDateFrom] = useState("");
@@ -110,22 +111,42 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
         className="mb-10 rounded-2xl p-6"
         style={{ background: "var(--amor-soft)", boxShadow: "0 2px 16px rgba(23,70,152,0.06)" }}
       >
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <h2 className="text-base font-bold" style={{ color: "var(--amor-blue)" }}>
-            {isEn ? "Search & Filter" : "Пребарување и Филтер"}
-          </h2>
-          {hasFilters && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="text-sm font-medium text-amor-red underline underline-offset-2 hover:opacity-70"
-            >
-              {isEn ? "Clear all" : "Исчисти"}
-            </button>
-          )}
-        </div>
+        <button
+          type="button"
+          onClick={() => setFiltersOpen((v) => !v)}
+          className="mb-1 flex w-full items-center justify-between gap-3 text-left"
+        >
+          <div className="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--amor-blue)" }} aria-hidden>
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+            </svg>
+            <h2 className="text-base font-bold" style={{ color: "var(--amor-blue)" }}>
+              {isEn ? "Search & Filter" : "Пребарување и Филтер"}
+            </h2>
+            {hasFilters && !filtersOpen && (
+              <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: "var(--amor-red)", color: "#fff" }}>
+                {isEn ? "active" : "активен"}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            {hasFilters && (
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); clearFilters(); }}
+                className="text-sm font-medium text-amor-red underline underline-offset-2 hover:opacity-70"
+              >
+                {isEn ? "Clear" : "Исчисти"}
+              </button>
+            )}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--amor-blue)", transform: filtersOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} aria-hidden>
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </div>
+        </button>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {filtersOpen && (<>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 pt-4">
           {/* Search */}
           <div className="lg:col-span-1">
             <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
@@ -232,6 +253,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
             {filtered.length} {isEn ? "trips" : "патувања"}
           </span>
         </div>
+        </>)}
       </div>
 
       {/* Results */}
