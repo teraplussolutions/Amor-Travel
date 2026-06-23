@@ -36,9 +36,9 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
               <Image
                 src={BRAND_LOGO.src}
                 alt={logoAlt}
-                width={80}
-                height={80}
-                style={{ width: 80, height: 80, objectFit: "contain", flexShrink: 0 }}
+                width={130}
+                height={130}
+                style={{ width: 130, height: 130, objectFit: "contain", flexShrink: 0 }}
               />
               <span
                 style={{
