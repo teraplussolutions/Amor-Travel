@@ -1,4 +1,5 @@
 "use client";
+import { printQuote } from "@/lib/print-quote";
 import { exportPDF } from "@/lib/export-pdf";
 import { useStaffLang } from "@/components/StaffLangContext";
 
@@ -197,7 +198,10 @@ function PdfPreview({ quote, client, onClose }: { quote: Quote; client?: Client;
         <div style={{ display: "flex", justifyContent: "space-between", padding: "16px 24px", borderBottom: "1px solid #e2e8f0", background: "#f8fafc" }}>
           <span style={{ fontWeight: 700, color: "#174698" }}>PDF Preview — {quote.code}</span>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={print} style={{ padding: "6px 16px", borderRadius: 8, border: "none", background: "#174698", color: "#fff", fontWeight: 700, cursor: "pointer" }}>🖨️ Print / Save PDF</button>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={() => printQuote(quote, client, "mk")} style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: "#174698", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>🖨️ PDF МК</button>
+              <button onClick={() => printQuote(quote, client, "en")} style={{ padding: "6px 14px", borderRadius: 8, border: "none", background: "#C9A84C", color: "#fff", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>🖨️ PDF EN</button>
+            </div>
             <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#94a3b8" }}>✕</button>
           </div>
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import { printVoucher } from "@/lib/print-voucher";
 import { exportPDF } from "@/lib/export-pdf";
 import { useStaffLang } from "@/components/StaffLangContext";
 
@@ -115,7 +116,7 @@ function PrintVoucher({ voucher, client, onClose }: { voucher: Voucher; client?:
         <div style={{ display: "flex", justifyContent: "space-between", padding: "16px 24px", borderBottom: "1px solid #e2e8f0", background: "#f8fafc" }}>
           <span style={{ fontWeight: 700, color: "#174698" }}>Voucher — {voucher.code}</span>
           <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={() => window.print()} style={{ padding: "6px 16px", borderRadius: 8, border: "none", background: "#174698", color: "#fff", fontWeight: 700, cursor: "pointer" }}>🖨️ Print</button>
+<button onClick={() => printVoucher(voucher, client)} style={{ padding: "6px 16px", borderRadius: 8, border: "none", background: "linear-gradient(135deg,#C9A84C,#a8883a)", color: "#fff", fontWeight: 700, cursor: "pointer" }}>🖨️ Print / PDF</button>
             <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#94a3b8" }}>✕</button>
           </div>
         </div>
