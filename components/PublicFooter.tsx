@@ -11,9 +11,7 @@ import {
 import { SITE } from "@/lib/site-defaults";
 import { BRAND_LOGO } from "@/lib/site-images";
 
-type PublicFooterProps = {
-  locale: string;
-};
+type PublicFooterProps = { locale: string };
 
 const phoneHref = `tel:${SITE.phone.replace(/\s/g, "")}`;
 
@@ -24,87 +22,74 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
   const isEn = loc === "en";
 
   return (
-    <footer
-      style={{
-        background: "linear-gradient(160deg, #0f2d5e 0%, var(--amor-blue) 60%, #0a1f40 100%)",
-      }}
-    >
-      <div
-        className="h-1 w-full"
-        style={{
-          background: "linear-gradient(90deg, var(--amor-gold), var(--amor-red), var(--amor-gold))",
-        }}
-      />
+    <footer style={{ background: "linear-gradient(160deg, #0a1f40 0%, #0f2d5e 50%, #174698 100%)" }}>
+      {/* Gold accent line */}
+      <div style={{ height: 3, background: "linear-gradient(90deg, var(--amor-gold), var(--amor-red), var(--amor-gold))" }} />
 
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-10 lg:px-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
-          {/* Brand */}
+
+          {/* Brand column */}
           <div>
-            <Link href="/" className="inline-flex items-center gap-4">
-              <Image
-                src={BRAND_LOGO.src}
-                alt={logoAlt}
-                width={96}
-                height={96}
-                className="h-20 w-20 rounded-full bg-white/10 object-contain p-1"
-              />
-              <span className="text-2xl font-extrabold" style={{ color: "var(--amor-gold)" }}>
-                {SITE.companyName}
-              </span>
+            <Link href="/" className="inline-flex items-center gap-3">
+              <div style={{ width: 64, height: 64, borderRadius: "50%", overflow: "hidden", border: "2px solid rgba(201,168,76,0.5)", background: "rgba(255,255,255,0.1)", flexShrink: 0 }}>
+                <Image src={BRAND_LOGO.src} alt={logoAlt} width={64} height={64} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div>
+                <div style={{ fontFamily: "var(--font-playfair),Georgia,serif", fontSize: "1.4rem", fontWeight: 900, fontStyle: "italic", color: "var(--amor-gold)" }}>Amor</div>
+                <div style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>Travel</div>
+              </div>
             </Link>
 
-            <div
-              className="my-5 h-0.5 w-16"
-              style={{ background: "linear-gradient(90deg, var(--amor-gold), transparent)" }}
-            />
+            <div style={{ height: 1, width: 48, background: "linear-gradient(90deg, var(--amor-gold), transparent)", margin: "20px 0" }} />
 
-            <p className="max-w-xs text-sm leading-relaxed text-white/70">
+            <p style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", maxWidth: 260 }}>
               {t("footerTagline")}
             </p>
 
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href={SITE.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-200 hover:border-white hover:text-white"
-              >
-                <FacebookIcon className="h-4 w-4" />
-              </a>
-              <a
-                href={SITE.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-200 hover:border-white hover:text-white"
-              >
-                <InstagramIcon className="h-4 w-4" />
-              </a>
+            {/* Social icons — white circles */}
+            <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
+              {[
+                { href: SITE.social.facebook, label: "Facebook", icon: <FacebookIcon className="h-4 w-4" /> },
+                { href: SITE.social.instagram, label: "Instagram", icon: <InstagramIcon className="h-4 w-4" /> },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    width: 40, height: 40, borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    color: "#fff",
+                    background: "rgba(255,255,255,0.08)",
+                    transition: "background 0.2s, border-color 0.2s, transform 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(201,168,76,0.25)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--amor-gold)";
+                    (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.3)";
+                    (e.currentTarget as HTMLAnchorElement).style.transform = "";
+                  }}
+                >
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Address + Quick links */}
+          {/* Quick links + address */}
           <div>
-            <h3
-              className="mb-5 text-sm font-bold uppercase tracking-[0.15em]"
-              style={{ color: "var(--amor-gold)" }}
-            >
-              {t("addressLabel")}
-            </h3>
-
-            <div className="flex gap-3 text-sm leading-relaxed text-white/75">
-              <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-amor-red" />
-              <span>{isEn ? SITE.address.en : SITE.address.mk}</span>
-            </div>
-
-            <h3
-              className="mb-4 mt-8 text-sm font-bold uppercase tracking-[0.15em]"
-              style={{ color: "var(--amor-gold)" }}
-            >
+            <h3 style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--amor-gold)", marginBottom: 20 }}>
               {isEn ? "Quick Links" : "Брзи Врски"}
             </h3>
-            <nav className="flex flex-col gap-2" aria-label="Footer">
+            <nav style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {[
                 { href: "/", labelMk: "Почетна", labelEn: "Home" },
                 { href: "/patuvanja", labelMk: "Патувања", labelEn: "Trips" },
@@ -113,62 +98,47 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="group flex items-center gap-2 text-sm text-white/70 transition-colors duration-200 hover:text-white"
+                  style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(255,255,255,0.75)", transition: "color 0.2s" }}
                 >
-                  <span
-                    className="h-px w-4 transition-all duration-200 group-hover:w-6"
-                    style={{ background: "var(--amor-gold)" }}
-                  />
+                  <span style={{ width: 16, height: 1, background: "var(--amor-gold)", display: "inline-block", flexShrink: 0 }} />
                   {isEn ? link.labelEn : link.labelMk}
                 </Link>
               ))}
             </nav>
+
+            <h3 style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--amor-gold)", marginTop: 28, marginBottom: 12 }}>
+              {t("addressLabel")}
+            </h3>
+            <div style={{ display: "flex", gap: 10, color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.6 }}>
+              <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--amor-gold)" }} />
+              <span>{isEn ? SITE.address.en : SITE.address.mk}</span>
+            </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h3
-              className="mb-5 text-sm font-bold uppercase tracking-[0.15em]"
-              style={{ color: "var(--amor-gold)" }}
-            >
+            <h3 style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--amor-gold)", marginBottom: 20 }}>
               {t("contactTitle")}
             </h3>
-
-            <ul className="space-y-4">
+            <ul style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <li>
-                <a
-                  href={phoneHref}
-                  className="flex items-start gap-3 text-sm text-white/75 transition-colors duration-200 hover:text-white"
-                >
-                  <span
-                    className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "rgba(255,29,29,0.15)" }}
-                  >
-                    <PhoneIcon className="h-4 w-4 text-amor-red" />
+                <a href={phoneHref} style={{ display: "flex", gap: 12, color: "rgba(255,255,255,0.8)", fontSize: 14, textDecoration: "none", transition: "color 0.2s" }}>
+                  <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: "50%", background: "rgba(255,29,29,0.2)", flexShrink: 0 }}>
+                    <PhoneIcon className="h-4 w-4" style={{ color: "#FF1D1D" }} />
                   </span>
                   <span>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-white/40">
-                      {t("phoneLabel")}
-                    </span>
+                    <span style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 2 }}>{t("phoneLabel")}</span>
                     {SITE.phone}
                   </span>
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${SITE.publicEmail}`}
-                  className="flex items-start gap-3 text-sm text-white/75 transition-colors duration-200 hover:text-white"
-                >
-                  <span
-                    className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "rgba(255,29,29,0.15)" }}
-                  >
-                    <MailIcon className="h-4 w-4 text-amor-red" />
+                <a href={`mailto:${SITE.publicEmail}`} style={{ display: "flex", gap: 12, color: "rgba(255,255,255,0.8)", fontSize: 14, textDecoration: "none", transition: "color 0.2s" }}>
+                  <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: "50%", background: "rgba(255,29,29,0.2)", flexShrink: 0 }}>
+                    <MailIcon className="h-4 w-4" style={{ color: "#FF1D1D" }} />
                   </span>
                   <span>
-                    <span className="block text-xs font-bold uppercase tracking-wider text-white/40">
-                      {t("emailLabel")}
-                    </span>
+                    <span style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 2 }}>{t("emailLabel")}</span>
                     {SITE.publicEmail}
                   </span>
                 </a>
@@ -177,14 +147,12 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
           </div>
         </div>
 
-        <div
-          className="mt-14 flex flex-col items-center justify-between gap-4 border-t pt-6 text-center sm:flex-row sm:text-left"
-          style={{ borderColor: "rgba(255,255,255,0.1)" }}
-        >
-          <p className="text-sm text-white/45">
+        {/* Bottom bar */}
+        <div style={{ marginTop: 48, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
             © {new Date().getFullYear()} {SITE.companyName}. {t("footerRights")}
           </p>
-          <p className="text-xs text-white/30">
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
             {isEn ? "North Macedonia" : "Северна Македонија"} · IATA
           </p>
         </div>
