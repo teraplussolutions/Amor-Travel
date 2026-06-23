@@ -10,7 +10,7 @@ import type { AgentUser } from "@/app/admin/user-actions";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Tab = "content" | "trips" | "settings" | "team";
+type Tab = "content" | "trips" | "settings" | "team" | "permissions";
 
 type Props = {
   trips: ImportedTrip[];
@@ -98,6 +98,7 @@ export function AdminPanelClient({ trips: initialTrips, users: initialUsers, her
     { id: "trips", label: "Trips", icon: "✈️" },
     { id: "settings", label: "Settings", icon: "⚙️" },
     { id: "team", label: "Team", icon: "👥" },
+    { id: "permissions", label: "Permissions", icon: "🔐" },
   ];
 
   return (
@@ -165,6 +166,7 @@ export function AdminPanelClient({ trips: initialTrips, users: initialUsers, her
         {tab === "trips" && <TripsPanel trips={trips} onTripsChange={setTrips} />}
         {tab === "settings" && <SettingsPanel />}
         {tab === "team" && <TeamPanel users={users} onUsersChange={setUsers} />}
+        {tab === "permissions" && <PermissionsPanel />}
       </div>
     </div>
   );
@@ -1053,6 +1055,220 @@ function TeamPanel({
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Permissions Panel ────────────────────────────────────────────────────────
+
+const CRM_MODULES = [
+  { id: "dashboard", label: "Dashboard", icon: "🏠", path: "/agent", desc: "Main CRM homepage overview" },
+  { id: "clients", label: "Clients", icon: "👥", path: "/agent/clients", desc: "Client list and profiles" },
+  { id: "quotes", label: "Quotations", icon: "📋", path: "/agent/quotes", desc: "Travel quote builder" },
+  { id: "sales", label: "Sales", icon: "💰", path: "/agent/sales", desc: "Sales tracking and invoices" },
+  { id: "expenses", label: "Expenses", icon: "🧾", path: "/agent/expenses", desc: "Expense management" },
+  { id: "vouchers", label: "Vouchers", icon: "🎫", path: "/agent/vouchers", desc: "Voucher generation" },
+  { id: "search", label: "Search Flights", icon: "✈️", path: "/agent/search", desc: "Flight & travel search tool" },
+];
+
+const ROLES = ["admin", "senior_agent", "agent", "intern"] as const;
+type Role = (typeof ROLES)[number];
+
+const ROLE_LABELS: Record<Role, string> = {
+  admin: "Admin",
+  senior_agent: "Senior Agent",
+  agent: "Agent",
+  intern: "Intern",
+};
+
+const ROLE_COLORS: Record<Role, string> = {
+  admin: "#174698",
+  senior_agent: "#0369a1",
+  agent: "#15803d",
+  intern: "#b45309",
+};
+
+const DEFAULT_PERMISSIONS: Record<Role, string[]> = {
+  admin: CRM_MODULES.map((m) => m.id),
+  senior_agent: ["dashboard", "clients", "quotes", "sales", "expenses", "vouchers", "search"],
+  agent: ["dashboard", "clients", "quotes", "sales", "search"],
+  intern: ["dashboard", "clients", "search"],
+};
+
+function PermissionsPanel() {
+  const [perms, setPerms] = useState<Record<Role, string[]>>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const stored = localStorage.getItem("amor_crm_permissions");
+        if (stored) return JSON.parse(stored);
+      } catch { /* ignore */ }
+    }
+    return DEFAULT_PERMISSIONS;
+  });
+  const [saved, setSaved] = useState(false);
+  const [activeRole, setActiveRole] = useState<Role>("agent");
+
+  function toggle(role: Role, moduleId: string) {
+    setPerms((prev) => {
+      const current = prev[role] ?? [];
+      const next = current.includes(moduleId)
+        ? current.filter((id) => id !== moduleId)
+        : [...current, moduleId];
+      return { ...prev, [role]: next };
+    });
+    setSaved(false);
+  }
+
+  function handleSave() {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("amor_crm_permissions", JSON.stringify(perms));
+    }
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  }
+
+  function handleReset() {
+    setPerms(DEFAULT_PERMISSIONS);
+    setSaved(false);
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-bold text-gray-800">🔐 CRM Page Permissions</h2>
+            <p className="mt-1 text-sm text-gray-500">Control which CRM pages each role can access</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handleReset}
+              className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-bold text-gray-600 hover:bg-gray-50 transition-colors"
+            >
+              ↩ Reset defaults
+            </button>
+            <button
+              type="button"
+              onClick={handleSave}
+              className="rounded-xl px-5 py-2 text-sm font-bold text-white transition-all hover:opacity-90"
+              style={{ background: "linear-gradient(135deg,#174698,#0f2d5e)" }}
+            >
+              {saved ? "✓ Saved!" : "Save permissions"}
+            </button>
+          </div>
+        </div>
+
+        {/* Role tabs */}
+        <div className="mb-6 flex flex-wrap gap-2">
+          {ROLES.map((role) => (
+            <button
+              key={role}
+              type="button"
+              onClick={() => setActiveRole(role)}
+              className="rounded-full px-4 py-1.5 text-sm font-bold transition-all"
+              style={{
+                background: activeRole === role ? ROLE_COLORS[role] : "#f1f5f9",
+                color: activeRole === role ? "#fff" : "#475569",
+              }}
+            >
+              {ROLE_LABELS[role]}
+              <span
+                className="ml-2 rounded-full px-1.5 py-0.5 text-xs"
+                style={{
+                  background: activeRole === role ? "rgba(255,255,255,0.25)" : "#e2e8f0",
+                  color: activeRole === role ? "#fff" : "#64748b",
+                }}
+              >
+                {(perms[activeRole] ?? []).length}/{CRM_MODULES.length}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Module toggles */}
+        <div className="grid gap-3 sm:grid-cols-2">
+          {CRM_MODULES.map((mod) => {
+            const enabled = (perms[activeRole] ?? []).includes(mod.id);
+            const isProtected = mod.id === "dashboard" && activeRole === "admin";
+            return (
+              <div
+                key={mod.id}
+                className="flex items-center justify-between rounded-xl border p-4 transition-all"
+                style={{
+                  borderColor: enabled ? ROLE_COLORS[activeRole] + "40" : "#e2e8f0",
+                  background: enabled ? ROLE_COLORS[activeRole] + "08" : "#fafafa",
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">{mod.icon}</span>
+                  <div>
+                    <div className="font-bold text-gray-800 text-sm">{mod.label}</div>
+                    <div className="text-xs text-gray-400">{mod.path}</div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  disabled={isProtected}
+                  onClick={() => toggle(activeRole, mod.id)}
+                  className="relative flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                  style={{ background: enabled ? ROLE_COLORS[activeRole] : "#cbd5e1" }}
+                  aria-checked={enabled}
+                  role="switch"
+                >
+                  <span
+                    className="absolute h-5 w-5 rounded-full bg-white shadow transition-all duration-200"
+                    style={{ left: enabled ? "calc(100% - 22px)" : "2px" }}
+                  />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {saved && (
+          <div className="mt-4 rounded-xl px-4 py-2.5 text-sm font-bold" style={{ background: "#f0fdf4", color: "#15803d" }}>
+            ✓ Permissions saved for {ROLE_LABELS[activeRole]}
+          </div>
+        )}
+      </div>
+
+      {/* Summary table */}
+      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm overflow-x-auto">
+        <h3 className="mb-4 font-bold text-gray-800">Permission matrix</h3>
+        <table className="w-full text-sm">
+          <thead>
+            <tr>
+              <th className="pb-3 text-left text-xs font-bold uppercase tracking-wider text-gray-400">Module</th>
+              {ROLES.map((role) => (
+                <th key={role} className="pb-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: ROLE_COLORS[role] }}>
+                  {ROLE_LABELS[role]}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {CRM_MODULES.map((mod) => (
+              <tr key={mod.id}>
+                <td className="py-2.5 font-medium text-gray-700">
+                  <span className="mr-2">{mod.icon}</span>{mod.label}
+                </td>
+                {ROLES.map((role) => {
+                  const has = (perms[role] ?? []).includes(mod.id);
+                  return (
+                    <td key={role} className="py-2.5 text-center">
+                      {has
+                        ? <span style={{ color: ROLE_COLORS[role], fontSize: 18 }}>✓</span>
+                        : <span className="text-gray-300 text-lg">✗</span>
+                      }
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

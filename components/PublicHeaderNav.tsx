@@ -88,34 +88,38 @@ export function PublicHeaderNav() {
         </div>
       </div>
 
-      {/* ── MOBILE layout ── */}
+      {/* ── MOBILE layout: logo LEFT | name CENTER | hamburger RIGHT ── */}
       <div
-        className="flex items-center justify-between px-3 lg:hidden"
-        style={{ minHeight: 80 }}
+        className="flex items-center px-3 lg:hidden"
+        style={{ minHeight: 72, gap: 0 }}
       >
-        {/* Spacer left = hamburger width so brand is truly centered */}
-        <div style={{ width: 44, flexShrink: 0 }} />
-
-        {/* Brand — centered */}
-        <Link href="/" className="flex flex-col items-center gap-1" style={{ flex: 1, justifyContent: "center" }}>
+        {/* Logo — left */}
+        <Link href="/" style={{ flexShrink: 0 }}>
           <Image
             src={BRAND_LOGO.src}
             alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
-            width={120} height={120} priority
-            style={{ width: 120, height: 120, objectFit: "contain", transition: "transform 0.25s ease" }}
+            width={64} height={64} priority
+            style={{ width: 64, height: 64, objectFit: "contain" }}
           />
-          <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.35rem", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1, textAlign: "center" }}>
+        </Link>
+
+        {/* Site name — center (absolutely centered in row) */}
+        <Link
+          href="/"
+          style={{ flex: 1, textAlign: "center" }}
+        >
+          <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.4rem", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1 }}>
             {SITE.companyName}
           </span>
         </Link>
 
-        {/* Hamburger only */}
-        <div style={{ width: 44, flexShrink: 0, display: "flex", justifyContent: "flex-end" }}>
+        {/* Hamburger — right */}
+        <div style={{ flexShrink: 0 }}>
           <MenuButton onClick={() => setMenuOpen(true)} />
         </div>
       </div>
 
-      {/* Mobile nav drawer — includes lang picker inside */}
+      {/* Mobile nav drawer */}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} title={SITE.companyName}>
         <div className="flex flex-col gap-6">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
@@ -141,7 +145,6 @@ export function PublicHeaderNav() {
                 <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" className="header-social__link" aria-label="Instagram"><InstagramIcon className="h-4 w-4" /></a>
               </div>
             </div>
-            {/* Language picker inside drawer */}
             <LanguagePicker variant="header" className="w-fit" />
           </div>
         </div>
