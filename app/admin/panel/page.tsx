@@ -1,4 +1,6 @@
 import { AdminPanelClient } from "@/components/admin/AdminPanelClient";
+
+export const dynamic = "force-dynamic";
 import { loadAllTrips } from "@/app/admin/trip-actions";
 import { listUsers } from "@/app/admin/user-actions";
 import { ADMIN_HERO_DEFAULTS } from "@/lib/site-images";

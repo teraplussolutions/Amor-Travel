@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Sale, SaleItem, Client, SaleStatus, PaymentType } from "@/lib/crm/types";

@@ -243,13 +243,14 @@ export default async function HomePage({ params }: HomePageProps) {
             <Link
               href={contactPath}
               className="inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 text-sm font-bold transition-all duration-200 hover:opacity-90 active:scale-95"
-              style={{ background: "linear-gradient(135deg, var(--amor-gold), #a8883a)", color: "#1a1a1a", boxShadow: "0 4px 16px rgba(201,168,76,0.4)" }}
+              style={{ background: "linear-gradient(135deg, var(--amor-gold), #a8883a)", color: "#ffffff", boxShadow: "0 4px 16px rgba(201,168,76,0.4)" }}
             >
               {t("ctaRequestQuote")}
             </Link>
             <a
               href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-              className="inline-flex items-center gap-2 rounded-lg border-2 border-white/40 px-8 py-4 text-sm font-bold text-white transition-all duration-200 hover:border-white/80 hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-lg border-2 border-white/40 px-8 py-4 text-sm font-bold transition-all duration-200 hover:border-white/80 hover:bg-white/10"
+              style={{ color: "#ffffff" }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
