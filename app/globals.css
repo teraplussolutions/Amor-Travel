@@ -675,3 +675,8 @@ a {
   color: var(--amor-red);
   transform: translateY(-2px);
 }
+
+/* Force white text on all footer links */
+footer a {
+  color: #ffffff !important;
+}

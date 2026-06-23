@@ -90,25 +90,22 @@ export function PublicHeaderNav() {
 
       {/* ── MOBILE layout: logo LEFT | name CENTER | hamburger RIGHT ── */}
       <div
-        className="flex items-center px-3 lg:hidden"
-        style={{ minHeight: 72, gap: 0 }}
+        className="flex items-center px-2 lg:hidden"
+        style={{ minHeight: 80 }}
       >
-        {/* Logo — left */}
+        {/* Logo — left, 80px */}
         <Link href="/" style={{ flexShrink: 0 }}>
           <Image
             src={BRAND_LOGO.src}
             alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
-            width={64} height={64} priority
-            style={{ width: 64, height: 64, objectFit: "contain" }}
+            width={80} height={80} priority
+            style={{ width: 80, height: 80, objectFit: "contain", display: "block" }}
           />
         </Link>
 
-        {/* Site name — center (absolutely centered in row) */}
-        <Link
-          href="/"
-          style={{ flex: 1, textAlign: "center" }}
-        >
-          <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.4rem", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1 }}>
+        {/* Site name — center, flex:1 so it fills remaining space */}
+        <Link href="/" style={{ flex: 1, textAlign: "center", padding: "0 4px" }}>
+          <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(1.1rem, 5vw, 1.35rem)", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1, display: "block" }}>
             {SITE.companyName}
           </span>
         </Link>

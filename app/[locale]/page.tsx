@@ -106,7 +106,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </Link>
         <Link
           href={tripsPath}
-          className="inline-flex items-center justify-center gap-2 rounded-lg border-2 px-7 py-3.5 text-sm font-bold backdrop-blur-sm transition-all duration-200 hover:bg-white/10"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border-2 px-7 py-3.5 text-sm font-bold backdrop-blur-sm transition-all duration-200 hover:bg-white/10 !text-white"
           style={{ borderColor: "rgba(255,255,255,0.85)", color: "#ffffff", WebkitTextFillColor: "#ffffff", textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
         >
           {t("ctaViewTrips")}
@@ -191,8 +191,8 @@ export default async function HomePage({ params }: HomePageProps) {
             </div>
             <Link
               href={tripsPath}
-              className="shrink-0 rounded-lg border-2 px-5 py-2.5 text-sm font-bold transition-all duration-200"
-              style={{ borderColor: "var(--amor-blue)", color: "var(--amor-blue)" }}
+              className="shrink-0 rounded-lg px-5 py-2.5 text-sm font-bold transition-all duration-200"
+              style={{ background: "var(--amor-blue)", color: "#ffffff" }}
             >
               {isEn ? "View all trips →" : "Сите патувања →"}
             </Link>
