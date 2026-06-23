@@ -86,7 +86,7 @@ export default async function TripDetailPage({ params }: TripDetailPageProps) {
       : null;
 
   return (
-    <main className="overflow-x-hidden px-4 py-10 sm:px-6 sm:py-16">
+    <main className="overflow-x-hidden px-5 py-10 sm:px-8 sm:py-16">
       <div className="mx-auto max-w-4xl">
         <Link href={backHref} className="inline-flex min-h-11 items-center text-lg text-amor-blue underline">
           ← {t("tripsCatalogTitle")}
@@ -109,26 +109,20 @@ export default async function TripDetailPage({ params }: TripDetailPageProps) {
         <p className="mt-3 text-xl">{destination}</p>
 
         {(trip.departure_date || trip.duration_days) && (
-          <dl className="mt-6 grid gap-3 text-lg sm:grid-cols-2">
+          <dl className="mt-6 space-y-2 text-base">
             {trip.departure_date ? (
               <>
-                <dt className="font-medium">{locale === "en" ? "Departure" : "Поаѓање"}</dt>
-                <dd>{trip.departure_date}</dd>
+                <div style={{display:"flex",gap:8}}><dt style={{fontWeight:700,minWidth:110,color:"#174698"}}>{locale === "en" ? "Departure" : "Поаѓање"}:</dt><dd>{trip.departure_date}</dd></div>
               </>
             ) : null}
             {trip.return_date ? (
               <>
-                <dt className="font-medium">{locale === "en" ? "Return" : "Враќање"}</dt>
-                <dd>{trip.return_date}</dd>
+                <div style={{display:"flex",gap:8}}><dt style={{fontWeight:700,minWidth:110,color:"#174698"}}>{locale === "en" ? "Return" : "Враќање"}:</dt><dd>{trip.return_date}</dd></div>
               </>
             ) : null}
             {trip.duration_days ? (
               <>
-                <dt className="font-medium">{locale === "en" ? "Duration" : "Траење"}</dt>
-                <dd>
-                  {trip.duration_days} {locale === "en" ? "days" : "дена"}
-                  {trip.duration_nights ? ` · ${trip.duration_nights}` : ""}
-                </dd>
+                <div style={{display:"flex",gap:8}}><dt style={{fontWeight:700,minWidth:110,color:"#174698"}}>{locale === "en" ? "Duration" : "Траење"}:</dt><dd>{trip.duration_days} {locale === "en" ? "days" : "дена"}{trip.duration_nights ? ` · ${trip.duration_nights}` : ""}</dd></div>
               </>
             ) : null}
           </dl>
