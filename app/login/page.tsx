@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { createBrowserClient } from "@supabase/ssr";
 import { BRAND_LOGO } from "@/lib/site-images";
@@ -17,6 +18,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const router = useRouter();
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -29,7 +31,9 @@ export default function LoginPage() {
     setLoading(false);
     if (error) { setError(error.message); return; }
     const params = new URLSearchParams(window.location.search);
-    window.location.href = params.get("redirect") || "/admin";
+    const dest = params.get("redirect") || "/agent";
+    router.refresh();
+    setTimeout(() => router.push(dest), 100);
   }
 
   async function handleForgot(e: React.FormEvent) {
