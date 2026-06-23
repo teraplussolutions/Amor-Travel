@@ -55,9 +55,17 @@ npm run dev
 npm run build
 ```
 
+## Database (Amor project `ekdeizmxgucpvcrmoftz`)
+
+**Verify:** `npm run verify:supabase` — all five tables should return HTTP 200.
+
+**Seed catalog:** `npm run seed:trips` — upserts agency, site settings, and 163 trips from `data/imported-trips.json`.
+
+**CLI / psql from this PC:** direct `db.*.supabase.co` often fails (IPv6). Use pooler **`aws-1-eu-central-1.pooler.supabase.com`** (not `aws-0`). Session mode port `5432`, transaction mode `6543`. Set `SUPABASE_DB_PASSWORD` in `.env.local`, URL-encode `@` and `$` in the password when building a connection string.
+
 ## Apply migration manually
 
-If Supabase CLI or MCP is linked to the wrong project, apply the Phase 2 schema in the [Amor Travel SQL editor](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/sql/new):
+If Supabase CLI link fails (wrong org token), apply Phase 2 in the [SQL editor](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/sql/new) or via psql on the **aws-1** pooler above:
 
 1. Open the file `supabase/migrations/20260623000000_initial_phase2_schema.sql` in this repo and paste its **entire** contents into the SQL editor, then run.
 2. In [Project Settings → API](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/settings/api), copy **anon public** into `.env.local` as `NEXT_PUBLIC_SUPABASE_ANON_KEY` (along with `NEXT_PUBLIC_SUPABASE_URL`).
@@ -76,5 +84,7 @@ Without Supabase service role key, uploads save to `public/site-assets/` for loc
 ## Scripts
 
 ```bash
-npm run import:trips   # Import trips from amortravel.mk
+npm run import:trips      # Import trips from amortravel.mk → JSON
+npm run seed:trips        # Push JSON catalog into Supabase
+npm run verify:supabase   # Check Phase 2 tables via REST
 ```

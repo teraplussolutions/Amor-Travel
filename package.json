@@ -7,12 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "import:trips": "tsx scripts/import-amortravel.ts"
+    "import:trips": "tsx scripts/import-amortravel.ts",
+    "verify:supabase": "tsx scripts/verify-supabase.ts",
+    "seed:trips": "tsx scripts/seed-trips-supabase.ts",
+    "ensure:storage": "tsx scripts/ensure-storage-bucket.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.8",
     "@swc/helpers": "^0.5.23",
+    "@vercel/speed-insights": "^2.0.0",
     "next": "^15.3.3",
     "next-intl": "^4.1.0",
     "react": "^19.0.0",
