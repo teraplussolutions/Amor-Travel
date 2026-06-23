@@ -78,7 +78,7 @@ export default function LoginPage() {
         <div style={{ padding: "2.5rem 2rem 2rem" }}>
           {/* Brand */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "2rem" }}>
-            <Image src={BRAND_LOGO.src} alt={BRAND_LOGO.altEn} width={130} height={130} style={{ width: 130, height: 130, objectFit: "contain" }} />
+            <Image src={BRAND_LOGO.src} alt={BRAND_LOGO.altEn} width={260} height={260} style={{ width: 260, height: 260, objectFit: "contain" }} />
             <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.75rem", fontWeight: 900, fontStyle: "italic", color: "#FF1D1D", lineHeight: 1.1, marginTop: 8 }}>
               {SITE.companyName}
             </span>

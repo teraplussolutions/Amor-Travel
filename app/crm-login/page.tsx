@@ -38,7 +38,7 @@ export default function CrmLoginPage() {
       <div style={{ background: "#fff", borderRadius: 20, padding: "40px 36px", width: "100%", maxWidth: 420, boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <Image src={BRAND_LOGO.src} alt="Amor Travel" width={100} height={100} style={{ width: 100, height: 100, objectFit: "contain", margin: "0 auto" }} />
+          <Image src={BRAND_LOGO.src} alt="Amor Travel" width={200} height={200} style={{ width: 200, height: 200, objectFit: "contain", margin: "0 auto" }} />
           <div style={{ fontFamily: "Georgia, serif", fontSize: "1.5rem", fontWeight: 900, fontStyle: "italic", color: "#FF1D1D", marginTop: 8 }}>
             {SITE.companyName}
           </div>
