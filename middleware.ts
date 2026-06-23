@@ -48,7 +48,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Non-protected: run intl middleware for public pages
-  if (!pathname.startsWith(LOGIN_PATH) && !pathname.startsWith("/api")) {
+  if (!pathname.startsWith(LOGIN_PATH) && !pathname.startsWith("/setup") && !pathname.startsWith("/api")) {
     return intlMiddleware(request);
   }
 
