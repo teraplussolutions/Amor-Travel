@@ -3,9 +3,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Client, ClientType } from "@/lib/crm/types";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 const supabase = createClient();
 
+  const { lang } = useStaffLang();
+  const mk = lang === "mk";
 const TYPE_COLORS: Record<ClientType, string> = {
   Regular: "#174698",
   New: "#15803d",
@@ -97,16 +100,16 @@ function Modal({ client, onClose, onSaved }: {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
           {field("First Name *", "first_name")}
           {field("Last Name *", "last_name")}
-          {field("Email", "email", "email")}
-          {field("Phone", "phone", "tel")}
+          {field(mk ? "Е-пошта" : "Email", "email", "email")}
+          {field(mk ? "Телефон" : "Phone", "phone", "tel")}
           {field("Phone 2", "phone2", "tel")}
           {field("Passport #", "passport_number")}
           {field("Passport Expiry", "passport_expiry", "date")}
           {field("Date of Birth", "date_of_birth", "date")}
           {field("Gender", "gender", "text", ["", "Male", "Female", "Other"])}
           {field("Nationality", "nationality")}
-          {field("City", "city")}
-          {field("Country", "country")}
+          {field(mk ? "Град" : "City", "city")}
+          {field(mk ? "Држава" : "Country", "country")}
           {field("Client Type", "client_type", "text", ["Regular", "New", "VIP", "Corporate", "Blacklist"])}
           {field("Language", "language_pref", "text", ["mk", "en"])}
         </div>
@@ -212,7 +215,7 @@ export default function ClientsPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
-                  {["Code", "Name", "Contact", "Type", "City", ""].map((h) => (
+                  {["Code", "Name", "Contact", "Type", mk ? "Град" : "City", ""].map((h) => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>

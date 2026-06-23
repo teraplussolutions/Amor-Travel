@@ -96,6 +96,7 @@ function mergeTrips(existing: RawTrip, incoming: RawTrip, source: TripSource): R
     gallery_images: pickArray(existing.gallery_images, incoming.gallery_images),
     source: [...new Set([...existing.source, source])],
     source_urls: pickArray(existing.source_urls, incoming.source_urls),
+    hidden: existing.hidden ?? false,
   };
 }
 
@@ -128,6 +129,7 @@ async function crawlMkTrips(limit?: number): Promise<RawTrip[]> {
         gallery_images: trip.gallery_images,
         source: ["amortravel.mk"] as TripSource[],
         source_urls: [trip.source_url],
+        hidden: false as boolean,
       } satisfies RawTrip;
     } catch (error) {
       console.warn(`Failed ${slug}:`, error instanceof Error ? error.message : error);

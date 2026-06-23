@@ -27,6 +27,7 @@ export type ImportedTrip = {
   source: TripSource[];
   source_urls: string[];
   published: boolean;
+  hidden: boolean;
   imported_at: string;
   image_match: "page" | "keyword" | "none";
 };

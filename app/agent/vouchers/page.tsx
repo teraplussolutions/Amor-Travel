@@ -4,9 +4,12 @@ import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Voucher, VoucherType, Client } from "@/lib/crm/types";
 import { fmtEur } from "@/lib/crm/types";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 const supabase = createClient();
 
+  const { lang } = useStaffLang();
+  const mk = lang === "mk";
 const STATUS_COLORS = { Active: "#15803d", Used: "#174698", Expired: "#64748b" };
 
 function Badge({ label, color }: { label: string; color: string }) {

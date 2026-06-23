@@ -1,4 +1,5 @@
 type IconProps = {
+  style?: React.CSSProperties;
   className?: string;
 };
 

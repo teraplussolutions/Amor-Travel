@@ -136,7 +136,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
               <li>
                 <a href={phoneHref} style={{ display: "flex", gap: 12, color: "rgba(255,255,255,0.8)", fontSize: 14, textDecoration: "none", transition: "color 0.2s" }}>
                   <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: "50%", background: "rgba(255,29,29,0.2)", flexShrink: 0 }}>
-                    <PhoneIcon className="h-4 w-4" style={{ color: "#FF1D1D" }} />
+                    <PhoneIcon className="h-4 w-4"  />
                   </span>
                   <span>
                     <span style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 2 }}>{t("phoneLabel")}</span>

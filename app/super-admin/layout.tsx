@@ -1,16 +1,14 @@
 import { StaffShell } from "@/components/StaffShell";
 
-const navItems = [{ href: "/super-admin", label: "Overview" }];
+const navItems = [{ href: "/super-admin", labelMk: "Преглед", labelEn: "Overview", bottomNav: true }];
 
-export default function SuperAdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function SuperAdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <StaffShell
-      title="Super Admin"
-      subtitle="Platform owner — agencies and white-label"
+      titleMk="Супер Админ"
+      titleEn="Super Admin"
+      subtitleMk="Сопственик на платформата"
+      subtitleEn="Platform owner — agencies and white-label"
       navItems={navItems}
       accent="super"
     >

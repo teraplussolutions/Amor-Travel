@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 // Major airports with IATA codes — typed to get autocomplete
 const AIRPORTS = [
@@ -173,6 +174,8 @@ const QUICK_LINKS = [
 ];
 
 export default function SearchPage() {
+  const { lang } = useStaffLang();
+  const mk = lang === "mk";
   const [origin, setOrigin] = useState<Airport | null>({ code: "SKP", name: "Skopje", country: "North Macedonia" });
   const [dest, setDest] = useState<Airport | null>(null);
   const [date, setDate] = useState("");
@@ -200,29 +203,29 @@ export default function SearchPage() {
   return (
     <div>
       <div style={{ marginBottom: 28 }}>
-        <h1 style={{ fontSize: "1.4rem", fontWeight: 800, color: "#174698" }}>Flight & Travel Search</h1>
-        <p style={{ fontSize: 14, color: "#64748b", marginTop: 4 }}>Type a city or IATA code to search — links open directly on the booking site</p>
+        <h1 style={{ fontSize: "1.4rem", fontWeight: 800, color: "#174698" }}>{mk ? "Пребарај летови и патувања" : "Flight & Travel Search"}</h1>
+        <p style={{ fontSize: 14, color: "#64748b", marginTop: 4 }}>{mk ? "Внеси град или IATA код за да пребараш" : "Type a city or IATA code to search — links open directly on the booking site"}</p>
       </div>
 
       {/* Quick search */}
       <div style={{ background: "linear-gradient(135deg,#0f2d5e,#174698)", borderRadius: 20, padding: "28px 32px", marginBottom: 32, color: "#fff" }}>
         <div style={{ height: 3, background: "linear-gradient(90deg,#C9A84C,#FF1D1D,#C9A84C)", borderRadius: 4, marginBottom: 20 }} />
-        <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#C9A84C", marginBottom: 16 }}>✈️ Quick Flight Search</h2>
+        <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#C9A84C", marginBottom: 16 }}>{mk ? "✈️ Брзо пребарување летови" : "✈️ Quick Flight Search"}</h2>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, alignItems: "end", marginBottom: 16 }}>
           <AirportInput
-            label="From"
+            label={mk ? "Од" : "From"}
             value={origin}
             onChange={setOrigin}
             placeholder="Skopje (SKP)"
           />
           <AirportInput
-            label="To"
+            label={mk ? "До" : "To"}
             value={dest}
             onChange={setDest}
             placeholder="Type city or code..."
           />
           <div>
-            <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.1em" }}>Date</label>
+            <label style={{ display: "block", fontSize: 11, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.1em" }}>{mk ? "Датум" : "Date"}</label>
             <input
               type="date"
               value={date}
@@ -238,7 +241,7 @@ export default function SearchPage() {
             rel="noopener noreferrer"
             style={{ flex: 1, padding: "12px 24px", borderRadius: 12, background: "linear-gradient(135deg,#C9A84C,#a8883a)", color: "#fff", fontWeight: 800, fontSize: 14, cursor: "pointer", textDecoration: "none", textAlign: "center" }}
           >
-            Search on Aviasales ✈️
+            {mk ? "Пребарај на Aviasales ✈️" : "Search on Aviasales ✈️"}
           </a>
           <a
             href={buildSkyscannerUrl()}
@@ -246,13 +249,13 @@ export default function SearchPage() {
             rel="noopener noreferrer"
             style={{ flex: 1, padding: "12px 24px", borderRadius: 12, background: "rgba(255,255,255,0.15)", color: "#fff", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none", textAlign: "center", border: "2px solid rgba(255,255,255,0.3)" }}
           >
-            Search on Skyscanner 🔍
+            {mk ? "Пребарај на Skyscanner 🔍" : "Search on Skyscanner 🔍"}
           </a>
         </div>
       </div>
 
       {/* Quick links grid */}
-      <h2 style={{ fontSize: "1rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>Booking Platforms</h2>
+      <h2 style={{ fontSize: "1rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>{mk ? "Платформи за резервации" : "Booking Platforms"}</h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 14 }}>
         {QUICK_LINKS.map((l) => (
           <a

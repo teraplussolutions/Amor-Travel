@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useTransition, useMemo } from "react";
+import { useStaffLang } from "@/components/StaffLangContext";
+import { staffT } from "@/lib/staff-i18n";
 import Image from "next/image";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { saveTrip, deleteTrip, toggleTripPublished, toggleTripHidden } from "@/app/admin/trip-actions";
@@ -89,16 +91,18 @@ function StatusBadge({ msg }: { msg: string }) {
 // ─── Root Component ───────────────────────────────────────────────────────────
 
 export function AdminPanelClient({ trips: initialTrips, users: initialUsers, heroDefaults }: Props) {
+  const { lang } = useStaffLang();
+  const T = staffT.admin;
   const [tab, setTab] = useState<Tab>("content");
   const [trips, setTrips] = useState(initialTrips);
   const [users, setUsers] = useState(initialUsers);
 
   const tabs: { id: Tab; label: string; icon: string }[] = [
-    { id: "content", label: "Website Content", icon: "🌐" },
-    { id: "trips", label: "Trips", icon: "✈️" },
-    { id: "settings", label: "Settings", icon: "⚙️" },
-    { id: "team", label: "Team", icon: "👥" },
-    { id: "permissions", label: "Permissions", icon: "🔐" },
+    { id: "content", label: lang === "mk" ? T.websiteContent.mk : T.websiteContent.en, icon: "🌐" },
+    { id: "trips", label: lang === "mk" ? T.trips.mk : T.trips.en, icon: "✈️" },
+    { id: "settings", label: lang === "mk" ? T.settings.mk : T.settings.en, icon: "⚙️" },
+    { id: "team", label: lang === "mk" ? T.team.mk : T.team.en, icon: "👥" },
+    { id: "permissions", label: lang === "mk" ? T.permissions.mk : T.permissions.en, icon: "🔐" },
   ];
 
   return (
@@ -175,6 +179,7 @@ export function AdminPanelClient({ trips: initialTrips, users: initialUsers, her
 // ─── Content Panel (Hero + Logo) ──────────────────────────────────────────────
 
 function ContentPanel({ heroDefaults }: { heroDefaults: string[] }) {
+  const { lang } = useStaffLang();
   const [logoUrl, setLogoUrl] = useState("");
   const [heroSlots, setHeroSlots] = useState(() =>
     heroDefaults.slice(0, 6).map((src, i) => ({ id: i, url: src, destination: "" }))
@@ -263,6 +268,7 @@ function ContentPanel({ heroDefaults }: { heroDefaults: string[] }) {
 // ─── Settings Panel (Contact + Social) ───────────────────────────────────────
 
 function SettingsPanel() {
+  const { lang } = useStaffLang();
   const [saved, setSaved] = useState(false);
   const [form, setForm] = useState({
     phone: "+389 75 446 070",
@@ -295,7 +301,7 @@ function SettingsPanel() {
         </div>
       )}
 
-      <SectionCard title="Contact Details" icon="📞">
+      <SectionCard title={lang === "mk" ? "Контакт детали" : "Contact Details"} icon="📞">
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label className={labelCls}>Phone number</label>
@@ -318,7 +324,7 @@ function SettingsPanel() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Social Media Links" icon="📱">
+      <SectionCard title={lang === "mk" ? "Социјални мрежи" : "Social Media Links"} icon="📱">
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label className={labelCls}>
@@ -372,6 +378,7 @@ function TripsPanel({
   trips: ImportedTrip[];
   onTripsChange: (trips: ImportedTrip[]) => void;
 }) {
+  const { lang } = useStaffLang();
   const [showForm, setShowForm] = useState(false);
   const [editingTrip, setEditingTrip] = useState<ImportedTrip | null>(null);
   const [search, setSearch] = useState("");
@@ -716,6 +723,7 @@ function TripForm({
         source: trip?.source ?? [],
         source_urls: trip?.source_urls ?? [],
         published: form.published,
+        hidden: trip?.hidden ?? false,
         imported_at: trip?.imported_at ?? new Date().toISOString(),
         image_match: trip?.image_match ?? "none",
       };
@@ -879,6 +887,7 @@ function TeamPanel({
   users: AgentUser[];
   onUsersChange: (users: AgentUser[]) => void;
 }) {
+  const { lang } = useStaffLang();
   const [showCreate, setShowCreate] = useState(false);
   const [changingPw, setChangingPw] = useState<AgentUser | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -1097,6 +1106,7 @@ const DEFAULT_PERMISSIONS: Record<Role, string[]> = {
 };
 
 function PermissionsPanel() {
+  const { lang } = useStaffLang();
   const [perms, setPerms] = useState<Record<Role, string[]>>(() => {
     if (typeof window !== "undefined") {
       try {
@@ -1155,7 +1165,7 @@ function PermissionsPanel() {
               className="rounded-xl px-5 py-2 text-sm font-bold text-white transition-all hover:opacity-90"
               style={{ background: "linear-gradient(135deg,#174698,#0f2d5e)" }}
             >
-              {saved ? "✓ Saved!" : "Save permissions"}
+              {saved ? lang === "mk" ? "✓ Зачувано!" : "✓ Saved!" : lang === "mk" ? "Зачувај дозволи" : "Save permissions"}
             </button>
           </div>
         </div>

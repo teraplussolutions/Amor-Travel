@@ -4,9 +4,12 @@ import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Sale, SaleItem, Client, SaleStatus, PaymentType } from "@/lib/crm/types";
 import { MKD_RATE, fmtEur, fmtMkd } from "@/lib/crm/types";
+import { useStaffLang } from "@/components/StaffLangContext";
 
 const supabase = createClient();
 
+  const { lang } = useStaffLang();
+  const mk = lang === "mk";
 const STATUS_COLORS: Record<SaleStatus, string> = {
   Pending: "#b45309", Completed: "#15803d", Cancelled: "#64748b", Refunded: "#7c3aed",
 };
@@ -152,9 +155,9 @@ function Modal({ sale, clients, onClose, onSaved }: {
           {items.length > 0 && (
             <div style={{ marginTop: 12, padding: "14px 16px", background: "#f8fafc", borderRadius: 12, display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12 }}>
               {[
-                ["Revenue", fmtEur(revenue_eur), "#174698"],
+                [mk ? "Приход" : "Revenue", fmtEur(revenue_eur), "#174698"],
                 ["Cost", fmtEur(cost_eur), "#b45309"],
-                ["Profit", fmtEur(profit_eur), profit_eur >= 0 ? "#15803d" : "#FF1D1D"],
+                [mk ? "Добивка" : "Profit", fmtEur(profit_eur), profit_eur >= 0 ? "#15803d" : "#FF1D1D"],
                 ["Margin", `${margin}%`, profit_eur >= 0 ? "#15803d" : "#FF1D1D"],
               ].map(([label, val, color]) => (
                 <div key={label} style={{ textAlign: "center" }}>
@@ -227,8 +230,8 @@ export default function SalesPage() {
       {/* Summary cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 14, marginBottom: 24 }}>
         {[
-          { label: "Revenue", value: fmtEur(totals.revenue), color: "#174698" },
-          { label: "Profit", value: fmtEur(totals.profit), color: "#15803d" },
+          { label: mk ? "Приход" : "Revenue", value: fmtEur(totals.revenue), color: "#174698" },
+          { label: mk ? "Добивка" : "Profit", value: fmtEur(totals.profit), color: "#15803d" },
           { label: "MKD Profit", value: fmtMkd(totals.profit * MKD_RATE), color: "#C9A84C" },
           { label: "Margin", value: totals.revenue > 0 ? `${((totals.profit / totals.revenue) * 100).toFixed(1)}%` : "—", color: "#7c3aed" },
         ].map((c) => (
@@ -254,7 +257,7 @@ export default function SalesPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
-                  {["Code", "Client", "Destination", "Revenue", "Cost", "Profit", "Payment", "Status", ""].map((h) => (
+                  {["Code", "Client", "Destination", mk ? "Приход" : "Revenue", "Cost", mk ? "Добивка" : "Profit", "Payment", "Status", ""].map((h) => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>

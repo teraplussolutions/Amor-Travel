@@ -4,16 +4,11 @@ import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 const intlMiddleware = createIntlMiddleware(routing);
-
-// Routes that require auth
 const PROTECTED_PREFIXES = ["/agent", "/admin", "/super-admin"];
-// The login page itself
 const LOGIN_PATH = "/login";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  // Check if this is a protected route
   const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
 
   if (isProtected) {
@@ -25,7 +20,8 @@ export async function middleware(request: NextRequest) {
       {
         cookies: {
           getAll() { return request.cookies.getAll(); },
-          setAll(cookiesToSet) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setAll(cookiesToSet: { name: string; value: string; options: any }[]) {
             cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
             response = NextResponse.next({ request });
             cookiesToSet.forEach(({ name, value, options }) =>
@@ -47,7 +43,6 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Non-protected: run intl middleware for public pages
   if (!pathname.startsWith(LOGIN_PATH) && !pathname.startsWith("/setup") && !pathname.startsWith("/api")) {
     return intlMiddleware(request);
   }
@@ -56,7 +51,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next|_vercel|.*\\..*).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)",],
 };
