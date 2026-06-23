@@ -78,22 +78,32 @@ export function PublicHeaderNav() {
         </div>
       </div>
 
-      {/* ── MOBILE: [logo + name centered] [hamburger right] ── */}
-      <div className="flex items-center px-3 lg:hidden" style={{ minHeight: 76 }}>
-        {/* Logo + Name together — centered */}
-        <Link href="/" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: 24, gap: 10, textDecoration: "none" }}>
+      {/* ── MOBILE: logo left | name CENTER (absolute) | hamburger right ── */}
+      <div className="relative flex items-center px-2 lg:hidden" style={{ height: 72 }}>
+        {/* Logo — left, bigger but contained */}
+        <Link href="/" aria-label={SITE.companyName} style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
           <Image
             src={BRAND_LOGO.src}
             alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
-            width={140} height={140} priority
-            style={{ width: 140, height: 140, objectFit: "contain", flexShrink: 0 }}
+            width={100} height={100} priority
+            style={{ width: 100, height: 100, objectFit: "contain" }}
           />
-          <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(1.2rem, 5.5vw, 1.5rem)", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1 }}>
-            {SITE.companyName}
-          </span>
         </Link>
-        {/* Hamburger right */}
-        <div style={{ flexShrink: 0 }}>
+        {/* Company name — absolutely centered, never moves */}
+        <Link
+          href="/"
+          style={{
+            position: "absolute", left: "50%", transform: "translateX(-50%)",
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: "clamp(1.15rem, 5vw, 1.4rem)", fontWeight: 900, fontStyle: "italic",
+            color: "var(--amor-red)", lineHeight: 1.1, whiteSpace: "nowrap",
+            textDecoration: "none", pointerEvents: "auto",
+          }}
+        >
+          {SITE.companyName}
+        </Link>
+        {/* Hamburger — right */}
+        <div style={{ marginLeft: "auto", flexShrink: 0 }}>
           <MenuButton onClick={() => setMenuOpen(true)} />
         </div>
       </div>
