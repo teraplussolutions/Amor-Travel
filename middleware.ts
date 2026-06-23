@@ -3,7 +3,12 @@ import { createServerClient } from "@supabase/ssr";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
-const intlMiddleware = createIntlMiddleware(routing);
+// Always force MK as default — ignore browser Accept-Language
+const intlMiddleware = createIntlMiddleware({
+  ...routing,
+  localeDetection: false,
+  defaultLocale: "mk",
+});
 
 const ADMIN_PREFIXES = ["/admin", "/super-admin"];
 const AGENT_PREFIXES = ["/agent"];
@@ -12,7 +17,7 @@ const SKIP_ALL       = ["/login", "/crm-login", "/setup", "/api", "/reset-passwo
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip everything for login/setup/api pages
+  // Skip login/api pages entirely
   if (SKIP_ALL.some((p) => pathname.startsWith(p))) {
     return NextResponse.next();
   }
@@ -53,7 +58,15 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Public pages — run intl routing
+  // Strip Accept-Language to prevent EN detection, then run intl
+  const headers = new Headers(request.headers);
+  headers.delete("accept-language");
+  const modifiedRequest = new Request(request.url, {
+    headers,
+    method: request.method,
+    body: request.body,
+  });
+
   return intlMiddleware(request);
 }
 
