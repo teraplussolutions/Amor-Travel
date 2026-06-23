@@ -60,7 +60,7 @@ function Modal({ quote, clients, onClose, onSaved }: {
   const total_mkd = total_eur * MKD_RATE;
 
   async function save() {
-    if (!form.destination) { setErr("Destination required"); return; }
+    if (!form.destination) { setErr("Потребна е дестинација"); return; }
     setSaving(true); setErr("");
     const payload: Record<string, unknown> = {
       ...form, items, total_eur, total_mkd,
@@ -86,7 +86,7 @@ function Modal({ quote, clients, onClose, onSaved }: {
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
       <div style={{ background: "#fff", borderRadius: 20, width: "100%", maxWidth: 700, maxHeight: "92vh", overflowY: "auto", padding: 32 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 24 }}>
-          <h2 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#174698" }}>{form.id ? "Edit Quote" : "New Quote"}</h2>
+          <h2 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#174698" }}>{form.id ? "Уреди понуда" : "Нова понуда"}</h2>
           <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#94a3b8" }}>✕</button>
         </div>
         {err && <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "#b91c1c", marginBottom: 16 }}>{err}</div>}
@@ -175,7 +175,7 @@ function Modal({ quote, clients, onClose, onSaved }: {
 
         <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
           <button onClick={onClose} style={{ padding: "10px 20px", borderRadius: 10, border: "1px solid #e2e8f0", background: "#fff", cursor: "pointer", fontWeight: 600 }}>Cancel</button>
-          <button onClick={save} disabled={saving} style={{ padding: "10px 24px", borderRadius: 10, border: "none", background: "linear-gradient(135deg,#174698,#0f2d5e)", color: "#fff", cursor: "pointer", fontWeight: 700, opacity: saving ? 0.7 : 1 }}>{saving ? "Saving…" : "Save Quote"}</button>
+          <button onClick={save} disabled={saving} style={{ padding: "10px 24px", borderRadius: 10, border: "none", background: "linear-gradient(135deg,#174698,#0f2d5e)", color: "#fff", cursor: "pointer", fontWeight: 700, opacity: saving ? 0.7 : 1 }}>{saving ? "Се зачувува..." : "Зачувај понуда"}</button>
         </div>
       </div>
     </div>
@@ -340,7 +340,7 @@ export default function QuotesPage() {
       </div>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
-        <input placeholder="Search code, destination, client…" value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 10, border: "1px solid #e2e8f0", fontSize: 14, background: "#f8fafc" }} />
+        <input placeholder="Пребарај код, дестинација, клиент..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 10, border: "1px solid #e2e8f0", fontSize: 14, background: "#f8fafc" }} />
         {["All", "Draft", "Sent", "Confirmed", "Cancelled", "Expired"].map((s) => (
           <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 14px", borderRadius: 10, border: "1px solid", borderColor: statusFilter === s ? "#174698" : "#e2e8f0", background: statusFilter === s ? "#174698" : "#fff", color: statusFilter === s ? "#fff" : "#64748b", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>{s}</button>
         ))}

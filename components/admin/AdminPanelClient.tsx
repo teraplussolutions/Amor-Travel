@@ -196,7 +196,7 @@ function ContentPanel({ heroDefaults }: { heroDefaults: string[] }) {
 
   return (
     <div className="space-y-6">
-      <SectionCard title="Agency Logo" icon="🏷️">
+      <SectionCard title={lang === "mk" ? "Лого на агенцијата" : "Agency Logo"} icon="🏷️">
         <p className="text-sm text-gray-500">Upload your logo — PNG or SVG with transparency recommended. Appears in header and footer.</p>
         <div className="max-w-sm">
           <ImageUploadField
@@ -212,7 +212,7 @@ function ContentPanel({ heroDefaults }: { heroDefaults: string[] }) {
         </div>
       </SectionCard>
 
-      <SectionCard title="Homepage Hero Slideshow" icon="🌄">
+      <SectionCard title={lang === "mk" ? "Слајдшоу на насловната" : "Homepage Hero Slideshow"} icon="🌄">
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">Wide hero images (21:9 ratio). Each becomes a homepage slide.</p>
           <button
@@ -436,7 +436,7 @@ function TripsPanel({
       const res = await toggleTripHidden(slug, hidden);
       if (res.error) { flash("Error: " + res.error); return; }
       onTripsChange(trips.map((t) => (t.slug === slug ? { ...t, hidden } : t)));
-      flash(hidden ? "Trip hidden from public." : "Trip visible again.");
+      flash(hidden ? lang === "mk" ? "Патувањето е скриено." : "Trip hidden from public." : lang === "mk" ? "Патувањето е видливо." : "Trip visible again.");
     });
   }
 
@@ -446,7 +446,7 @@ function TripsPanel({
       const res = await deleteTrip(slug);
       if (res.error) { flash("Error: " + res.error); return; }
       onTripsChange(trips.filter((t) => t.slug !== slug));
-      flash("Trip deleted.");
+      flash(lang === "mk" ? "Патувањето е избришано." : "Trip deleted.");
     });
   }
 
@@ -468,8 +468,8 @@ function TripsPanel({
   }
 
   const sortOpts: { key: TripSort; label: string }[] = [
-    { key: "newest", label: "Newest first" },
-    { key: "oldest", label: "Oldest first" },
+    { key: "newest", label: lang === "mk" ? "Најново прво" : "Newest first" },
+    { key: "oldest", label: lang === "mk" ? "Најстаро прво" : "Oldest first" },
     { key: "price_asc", label: "Price ↑" },
     { key: "price_desc", label: "Price ↓" },
     { key: "title_az", label: "A → Z" },
@@ -555,7 +555,7 @@ function TripsPanel({
       <div className="space-y-3">
         {filtered.length === 0 && (
           <div className="rounded-2xl border border-dashed border-gray-200 py-16 text-center text-gray-400">
-            {search || filterDate || filterStatus !== "all" ? "No trips match your filters." : "No trips yet. Create your first trip!"}
+            {search || filterDate || filterStatus !== "all" ? lang === "mk" ? "Нема патувања според филтрите." : "No trips match your filters." : lang === "mk" ? "Нема патувања. Создади го првото!" : "No trips yet. Create your first trip!"}
           </div>
         )}
         {filtered.map((trip) => (
@@ -743,14 +743,14 @@ function TripForm({
           ← Back to list
         </button>
         <h2 className="text-xl font-extrabold" style={{ color: BLUE }}>
-          {isNew ? "New Trip" : `Edit: ${trip?.title_mk}`}
+          {isNew ? lang === "mk" ? "Ново патување" : "New Trip" : `Edit: ${trip?.title_mk}`}
         </h2>
       </div>
 
       {error && <div className="rounded-xl bg-red-50 px-4 py-3 text-sm font-bold text-red-600">{error}</div>}
 
       {/* Hero image */}
-      <SectionCard title="Cover Image" icon="🖼️">
+      <SectionCard title={lang === "mk" ? "Насловна слика" : "Cover Image"} icon="🖼️">
         <ImageUploadField
           folder="trips"
           namePrefix={`trip-${form.title_mk.slice(0, 20) || "new"}`}
@@ -764,7 +764,7 @@ function TripForm({
       </SectionCard>
 
       {/* Basic info */}
-      <SectionCard title="Basic Information" icon="📋">
+      <SectionCard title={lang === "mk" ? "Основни информации" : "Basic Information"} icon="📋">
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <label className={labelCls}>Title (Macedonian) *</label>
@@ -827,13 +827,13 @@ function TripForm({
             />
           </button>
           <span className="text-sm font-medium text-gray-700">
-            {form.published ? "✓ Published — visible on website" : "Draft — hidden from public"}
+            {form.published ? lang === "mk" ? "✓ Објавено — видливо на сајтот" : "✓ Published — visible on website" : lang === "mk" ? "Нацрт — скриено од јавноста" : "Draft — hidden from public"}
           </span>
         </div>
       </SectionCard>
 
       {/* Program */}
-      <SectionCard title="Program & Details" icon="📝" defaultOpen={false}>
+      <SectionCard title={lang === "mk" ? "Програма и детали" : "Program & Details"} icon="📝" defaultOpen={false}>
         <div>
           <label className={labelCls}>Full Program (Macedonian)</label>
           <textarea
@@ -864,7 +864,7 @@ function TripForm({
           className="rounded-xl px-8 py-3 text-sm font-extrabold text-white shadow-md transition-all hover:opacity-90 active:scale-95 disabled:opacity-60"
           style={{ background: `linear-gradient(135deg, ${BLUE}, ${NAVY})`, boxShadow: "0 4px 16px rgba(23,70,152,0.3)" }}
         >
-          {isPending ? "Saving…" : isNew ? "✓ Create Trip" : "✓ Save Changes"}
+          {isPending ? lang === "mk" ? "Се зачувува..." : "Saving…" : isNew ? lang === "mk" ? "✓ Креирај патување" : "✓ Create Trip" : lang === "mk" ? "✓ Зачувај промени" : "✓ Save Changes"}
         </button>
         <button
           type="button"
@@ -907,7 +907,7 @@ function TeamPanel({
       if (res.error) { flash("Error: " + res.error); return; }
       onUsersChange([...users, { id: res.id!, email: newEmail, name: newName, role: newRole, created_at: new Date().toISOString(), last_sign_in_at: null }]);
       setNewEmail(""); setNewName(""); setNewPw(""); setNewRole("agent"); setShowCreate(false);
-      flash("Agent created successfully.");
+      flash(lang === "mk" ? "Агентот е создаден." : "Agent created successfully.");
     });
   }
 
@@ -917,7 +917,7 @@ function TeamPanel({
       const res = await deleteUser(user.id);
       if (res.error) { flash("Error: " + res.error); return; }
       onUsersChange(users.filter((u) => u.id !== user.id));
-      flash("User removed.");
+      flash(lang === "mk" ? "Корисникот е отстранет." : "User removed.");
     });
   }
 
@@ -928,7 +928,7 @@ function TeamPanel({
       const res = await changePassword(changingPw.id, newPwVal);
       if (res.error) { flash("Error: " + res.error); return; }
       setChangingPw(null); setNewPwVal("");
-      flash("Password updated.");
+      flash(lang === "mk" ? "Лозинката е сменета." : "Password updated.");
     });
   }
 
@@ -952,7 +952,7 @@ function TeamPanel({
 
       {/* Create form */}
       {showCreate && (
-        <SectionCard title="New Agent Account" icon="👤">
+        <SectionCard title={lang === "mk" ? "Нов агент" : "New Agent Account"} icon="👤">
           <form onSubmit={handleCreate} className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
@@ -981,7 +981,7 @@ function TeamPanel({
               className="rounded-xl px-6 py-2.5 text-sm font-extrabold text-white disabled:opacity-60"
               style={{ background: `linear-gradient(135deg, ${BLUE}, ${NAVY})` }}
             >
-              {isPending ? "Creating…" : "Create Account"}
+              {isPending ? lang === "mk" ? "Се креира..." : "Creating…" : lang === "mk" ? "Креирај агент" : "Create Account"}
             </button>
           </form>
         </SectionCard>
@@ -1002,7 +1002,7 @@ function TeamPanel({
             </div>
             <div className="flex gap-3">
               <button type="submit" disabled={isPending} className="flex-1 rounded-xl py-2.5 text-sm font-extrabold text-white disabled:opacity-60" style={{ background: `linear-gradient(135deg, ${BLUE}, ${NAVY})` }}>
-                {isPending ? "Saving…" : "Update Password"}
+                {isPending ? lang === "mk" ? "Се зачувува..." : "Saving…" : lang === "mk" ? "Смени лозинка" : "Update Password"}
               </button>
               <button type="button" onClick={() => { setChangingPw(null); setNewPwVal(""); }} className="flex-1 rounded-xl border border-gray-200 py-2.5 text-sm font-bold text-gray-600">
                 Cancel

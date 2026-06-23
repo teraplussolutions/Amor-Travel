@@ -46,7 +46,7 @@ function Modal({ client, onClose, onSaved }: {
   const set = (k: keyof Client, v: unknown) => setForm((f) => ({ ...f, [k]: v }));
 
   async function save() {
-    if (!form.first_name || !form.last_name) { setErr("First and last name required"); return; }
+    if (!form.first_name || !form.last_name) { setErr("Потребни се ime i prezime"); return; }
     setSaving(true); setErr("");
     const payload = { ...form };
     delete (payload as Record<string, unknown>).id;
@@ -92,7 +92,7 @@ function Modal({ client, onClose, onSaved }: {
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
       <div style={{ background: "#fff", borderRadius: 20, width: "100%", maxWidth: 640, maxHeight: "90vh", overflowY: "auto", padding: 32, boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-          <h2 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#174698" }}>{form.id ? "Edit Client" : "New Client"}</h2>
+          <h2 style={{ fontSize: "1.2rem", fontWeight: 800, color: "#174698" }}>{form.id ? "Уреди клиент" : "Нов клиент"}</h2>
           <button onClick={onClose} style={{ border: "none", background: "none", fontSize: 22, cursor: "pointer", color: "#94a3b8" }}>✕</button>
         </div>
         {err && <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "#b91c1c", marginBottom: 16 }}>{err}</div>}
@@ -127,7 +127,7 @@ function Modal({ client, onClose, onSaved }: {
             onClick={save}
             disabled={saving}
             style={{ padding: "10px 24px", borderRadius: 10, border: "none", background: "linear-gradient(135deg,#174698,#0f2d5e)", color: "#fff", cursor: "pointer", fontWeight: 700, fontSize: 14, opacity: saving ? 0.7 : 1 }}
-          >{saving ? "Saving…" : "Save Client"}</button>
+          >{saving ? "Се зачувува..." : "Зачувај клиент"}</button>
         </div>
       </div>
     </div>
@@ -183,7 +183,7 @@ export default function ClientsPage() {
       {/* Filters */}
       <div style={{ display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap" }}>
         <input
-          placeholder="Search name, email, phone, code…"
+          placeholder="Пребарај ime, email, телефон, код..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           style={{ flex: 1, minWidth: 200, padding: "9px 14px", borderRadius: 10, border: "1px solid #e2e8f0", fontSize: 14, background: "#f8fafc" }}
@@ -214,7 +214,7 @@ export default function ClientsPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
-                  {["Code", "Name", "Contact", "Type", "Град", ""].map((h) => (
+                  {["Код", "Ime", "Контакт", "Тип", "Град", ""].map((h) => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>
