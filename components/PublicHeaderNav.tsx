@@ -116,36 +116,39 @@ export function PublicHeaderNav() {
         </div>
       </div>
 
-      {/* Mobile nav drawer */}
+      {/* Mobile nav drawer — premium redesign */}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} title={SITE.companyName}>
-        <div className="flex flex-col gap-6">
-          <nav className="flex flex-col gap-1" aria-label="Mobile">
-            {navLinks.map(({ href, labelKey, Icon }) => (
-              <Link key={href} href={href} className={`mobile-nav-link${isActive(href) ? " mobile-nav-link--active" : ""}`} onClick={() => setMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <Icon />{t(labelKey)}
-              </Link>
-            ))}
-          </nav>
-          <div className="mobile-nav-meta">
-            <a href={phoneHref} className="mobile-nav-meta__row">
-              <PhoneIcon className="h-5 w-5 shrink-0 text-amor-red" />
-              <span>{SITE.phone}</span>
-            </a>
-            <p className="mobile-nav-meta__row">
-              <MapPinIcon className="h-5 w-5 shrink-0 text-amor-red" />
-              <span>{SITE.address.mk}</span>
-            </p>
-            <div className="flex items-center gap-3 pt-1">
-              <span className="text-base font-medium text-amor-blue">{tPublic("followUs")}</span>
-              <div className="header-social">
-                <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" className="header-social__link" aria-label="Facebook"><FacebookIcon className="h-4 w-4" /></a>
-                <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" className="header-social__link" aria-label="Instagram"><InstagramIcon className="h-4 w-4" /></a>
-              </div>
-            </div>
-            <LanguagePicker variant="header" className="w-fit" />
-          </div>
-        </div>
-      </MobileNav>
-    </div>
-  );
-}
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+
+          {/* ── Navigation buttons ── */}
+          <nav style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28 }} aria-label="Mobile">
+            {navLinks.map(({ href, labelKey, Icon }, i) => {
+              const active = isActive(href);
+              const colors = ["#174698", "#C9A84C", "#FF1D1D"];
+              const accent = colors[i % colors.length];
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 16,
+                    padding: "16px 20px",
+                    borderRadius: 16,
+                    background: active
+                      ? `linear-gradient(135deg, ${accent}18, ${accent}08)`
+                      : "#f8fafc",
+                    border: `2px solid ${active ? accent : "#e8ecf4"}`,
+                    textDecoration: "none",
+                    boxShadow: active ? `0 4px 20px ${accent}25` : "0 2px 8px rgba(0,0,0,0.04)",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  <span style={{
+                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                    background: active ? accent : `${accent}15`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    color: active ? "#fff" : accent,
+                  }}>
+                    <Icon />
+                  </span
