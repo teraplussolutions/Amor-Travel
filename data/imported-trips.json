@@ -30,8 +30,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/2-avgust-vo-bari/2-avgust-vo-bari-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:30.166Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:30.166Z",
+    "hidden": false
   },
   {
     "slug": "atina-mikonos-kushadasi-patmos-krit-iraklion-santo",
@@ -64,8 +65,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/atina-mikonos-kushadasi-patmos-krit-iraklion-santo/atina-mikonos-kushadasi-patmos-krit-iraklion-santo-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.469Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.469Z",
+    "hidden": false
   },
   {
     "slug": "7-nono-krstarenje-vo-grcija",
@@ -98,8 +100,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/7-nono-krstarenje-vo-grcija/7-nono-krstarenje-vo-grcija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.318Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.318Z",
+    "hidden": false
   },
   {
     "slug": "atina-kefalonija-dubrovnik-kotor-bari-krf-katakolo",
@@ -132,8 +135,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/atina-kefalonija-dubrovnik-kotor-bari-krf-katakolo/atina-kefalonija-dubrovnik-kotor-bari-krf-katakolo-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.635Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.635Z",
+    "hidden": false
   },
   {
     "slug": "azuren-breg-nica-kan-antib-sttrope-monako-monte-ka",
@@ -166,8 +170,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/azuren-breg-nica-kan-antib-sttrope-monako-monte-ka/azuren-breg-nica-kan-antib-sttrope-monako-monte-ka-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:29.629Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:29.629Z",
+    "hidden": false
   },
   {
     "slug": "amalfi-bregneapolpompeja-i-ostrov-kapri",
@@ -200,8 +205,9 @@
     "destination_en": "НЕАПОЛ",
     "hero_image": "/site-assets/trips/amalfi-bregneapolpompeja-i-ostrov-kapri/amalfi-bregneapolpompeja-i-ostrov-kapri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:35.030Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:35.030Z",
+    "hidden": false
   },
   {
     "slug": "amalfi-riviera-3np-sorento-kapri-positano-amalfi-n",
@@ -240,8 +246,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/amalfi-riviera-3np-sorento-kapri-positano-amalfi-n/amalfi-riviera-3np-sorento-kapri-positano-amalfi-n-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:28.994Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:28.994Z",
+    "hidden": false
   },
   {
     "slug": "antichka-makedonija-za-24ti-maj",
@@ -274,8 +281,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/antichka-makedonija-za-24ti-maj/antichka-makedonija-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:00.515Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:00.515Z",
+    "hidden": false
   },
   {
     "slug": "atina-peloponez-i-meteori-za-sv-kiril-i-metodij",
@@ -308,8 +316,9 @@
     "destination_en": "Пелопонез и Метеори за Св. Кирил и Методиј",
     "hero_image": "/site-assets/trips/atina-peloponez-i-meteori-za-sv-kiril-i-metodij/atina-peloponez-i-meteori-za-sv-kiril-i-metodij-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:58.644Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:58.644Z",
+    "hidden": false
   },
   {
     "slug": "atina-8mi-mart",
@@ -342,8 +351,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/atina-8mi-mart/atina-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:49.919Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:49.919Z",
+    "hidden": false
   },
   {
     "slug": "bari-za-24ti-maj",
@@ -376,8 +386,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/bari-za-24ti-maj/bari-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:11.772Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:11.772Z",
+    "hidden": false
   },
   {
     "slug": "bari-alberobelo-rim",
@@ -410,8 +421,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/bari-alberobelo-rim/bari-alberobelo-rim-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:35.787Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:35.787Z",
+    "hidden": false
   },
   {
     "slug": "barselona",
@@ -444,8 +456,9 @@
     "destination_en": "БАРСЕЛОНА",
     "hero_image": "/site-assets/trips/barselona/barselona-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:34.311Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:34.311Z",
+    "hidden": false
   },
   {
     "slug": "barselona-vo-maj-spanija",
@@ -478,8 +491,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/barselona-vo-maj-spanija/barselona-vo-maj-spanija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:26.916Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:26.916Z",
+    "hidden": false
   },
   {
     "slug": "barselona-vo-mart",
@@ -512,8 +526,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/barselona-vo-mart/barselona-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:59.058Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:59.058Z",
+    "hidden": false
   },
   {
     "slug": "bejrut-vo-mart",
@@ -546,8 +561,9 @@
     "destination_en": "Lebanon",
     "hero_image": "/site-assets/trips/bejrut-vo-mart/bejrut-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:30.885Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:30.885Z",
+    "hidden": false
   },
   {
     "slug": "belgrad-i-temishvar-za-8mi-mart-srbija",
@@ -580,8 +596,9 @@
     "destination_en": "Serbia",
     "hero_image": "/site-assets/trips/belgrad-i-temishvar-za-8mi-mart-srbija/belgrad-i-temishvar-za-8mi-mart-srbija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:26.421Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:26.421Z",
+    "hidden": false
   },
   {
     "slug": "brazil-argentina",
@@ -614,8 +631,9 @@
     "destination_en": "БРАЗИЛ",
     "hero_image": "/site-assets/trips/brazil-argentina/brazil-argentina-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:02.245Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:02.245Z",
+    "hidden": false
   },
   {
     "slug": "bratislava-za-denot-na-vljubenite-brat",
@@ -648,8 +666,9 @@
     "destination_en": "БРАТИСЛАВА",
     "hero_image": "/site-assets/trips/bratislava-za-denot-na-vljubenite-brat/bratislava-za-denot-na-vljubenite-brat-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:26.195Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:26.195Z",
+    "hidden": false
   },
   {
     "slug": "budva-za-8mi-mart",
@@ -682,8 +701,9 @@
     "destination_en": "ЦРНА ГОРА",
     "hero_image": "/site-assets/trips/budva-za-8mi-mart/budva-za-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:43.295Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:43.295Z",
+    "hidden": false
   },
   {
     "slug": "budimpeshta-8mi-mart",
@@ -716,8 +736,9 @@
     "destination_en": "Hungary",
     "hero_image": "/site-assets/trips/budimpeshta-8mi-mart/budimpeshta-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:05.596Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:05.596Z",
+    "hidden": false
   },
   {
     "slug": "budimpeshta-vo-mart",
@@ -750,8 +771,9 @@
     "destination_en": "Hungary",
     "hero_image": "/site-assets/trips/budimpeshta-vo-mart/budimpeshta-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:41.069Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:41.069Z",
+    "hidden": false
   },
   {
     "slug": "budimpeshta-za-veligden",
@@ -784,8 +806,9 @@
     "destination_en": "Hungary",
     "hero_image": "/site-assets/trips/budimpeshta-za-veligden/budimpeshta-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:37.648Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:37.648Z",
+    "hidden": false
   },
   {
     "slug": "budimpeshta-i-viena-za-24ti-maj",
@@ -818,8 +841,9 @@
     "destination_en": "Hungary",
     "hero_image": "/site-assets/trips/budimpeshta-i-viena-za-24ti-maj/budimpeshta-i-viena-za-24ti-maj-hero.jpeg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:14.907Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:14.907Z",
+    "hidden": false
   },
   {
     "slug": "bukuresht-vo-mart",
@@ -852,8 +876,9 @@
     "destination_en": "Романија",
     "hero_image": "/site-assets/trips/bukuresht-vo-mart/bukuresht-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:44.550Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:44.550Z",
+    "hidden": false
   },
   {
     "slug": "bursa-eskishehirturska-venecija",
@@ -886,8 +911,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/bursa-eskishehirturska-venecija/bursa-eskishehirturska-venecija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:13.242Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:13.242Z",
+    "hidden": false
   },
   {
     "slug": "veligden-vo-kavala",
@@ -920,8 +946,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/veligden-vo-kavala/veligden-vo-kavala-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:10.235Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:10.235Z",
+    "hidden": false
   },
   {
     "slug": "veligden-krstarenje-po-mediteranot",
@@ -954,8 +981,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/veligden-krstarenje-po-mediteranot/veligden-krstarenje-po-mediteranot-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:55.398Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:55.398Z",
+    "hidden": false
   },
   {
     "slug": "venecija-vo-mart",
@@ -988,8 +1016,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/venecija-vo-mart/venecija-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.002Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.002Z",
+    "hidden": false
   },
   {
     "slug": "venecija-vo-septemvri",
@@ -1022,8 +1051,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/venecija-vo-septemvri/venecija-vo-septemvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:30.839Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:30.839Z",
+    "hidden": false
   },
   {
     "slug": "venecija-vo-fevruari",
@@ -1056,8 +1086,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/venecija-vo-fevruari/venecija-vo-fevruari-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:31.724Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:31.724Z",
+    "hidden": false
   },
   {
     "slug": "venecija-milano-verona-trst-za-veligden",
@@ -1090,8 +1121,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/venecija-milano-verona-trst-za-veligden/venecija-milano-verona-trst-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:38.799Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:38.799Z",
+    "hidden": false
   },
   {
     "slug": "venecijamilanoveronatrst-za-8mi-mart-2026",
@@ -1124,8 +1156,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/venecijamilanoveronatrst-za-8mi-mart-2026/venecijamilanoveronatrst-za-8mi-mart-2026-hero.webp",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:33.339Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:33.339Z",
+    "hidden": false
   },
   {
     "slug": "viena-praga-pariz-minhen-salzburg-za-nova-godina",
@@ -1158,8 +1191,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/viena-praga-pariz-minhen-salzburg-za-nova-godina/viena-praga-pariz-minhen-salzburg-za-nova-godina-hero.jpeg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:29.297Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:29.297Z",
+    "hidden": false
   },
   {
     "slug": "vila-dajmond-ksamil-albanija",
@@ -1192,8 +1226,9 @@
     "destination_en": "Albania",
     "hero_image": "/site-assets/trips/vila-dajmond-ksamil-albanija/vila-dajmond-ksamil-albanija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.812Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.812Z",
+    "hidden": false
   },
   {
     "slug": "vila-lemi",
@@ -1226,8 +1261,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/vila-lemi/vila-lemi-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:52.156Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:52.156Z",
+    "hidden": false
   },
   {
     "slug": "vodici-vo-svetata-zemja",
@@ -1291,8 +1327,9 @@
     "destination_en": "ЕРУСАЛИМ",
     "hero_image": "/site-assets/trips/vodici-vo-svetata-zemja/vodici-vo-svetata-zemja-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:30.227Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:30.227Z",
+    "hidden": false
   },
   {
     "slug": "gruzija-vo-dekemvri",
@@ -1325,8 +1362,9 @@
     "destination_en": "Georgia",
     "hero_image": "/site-assets/trips/gruzija-vo-dekemvri/gruzija-vo-dekemvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:24.139Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:24.139Z",
+    "hidden": false
   },
   {
     "slug": "gruzija-za-1vi-maj",
@@ -1359,8 +1397,9 @@
     "destination_en": "Georgia",
     "hero_image": "/site-assets/trips/gruzija-za-1vi-maj/gruzija-za-1vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:47.976Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:47.976Z",
+    "hidden": false
   },
   {
     "slug": "grcija-promo-last-minute-ponudi",
@@ -1393,8 +1432,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/grcija-promo-last-minute-ponudi/grcija-promo-last-minute-ponudi-hero.webp",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:31.864Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:31.864Z",
+    "hidden": false
   },
   {
     "slug": "dubai-vo-april",
@@ -1458,8 +1498,9 @@
     "destination_en": "Dubai",
     "hero_image": "/site-assets/trips/dubai-vo-april/dubai-vo-april-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.704Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.704Z",
+    "hidden": false
   },
   {
     "slug": "dubai-vo-oktomvri",
@@ -1523,8 +1564,9 @@
     "destination_en": "Dubai",
     "hero_image": "/site-assets/trips/dubai-vo-oktomvri/dubai-vo-oktomvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:28.114Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:28.114Z",
+    "hidden": false
   },
   {
     "slug": "edrene-za-8mi-mart",
@@ -1557,8 +1599,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/edrene-za-8mi-mart/edrene-za-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:47.720Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:47.720Z",
+    "hidden": false
   },
   {
     "slug": "erusalim-vo-juni",
@@ -1591,8 +1634,9 @@
     "destination_en": "ЕРУСАЛИМ",
     "hero_image": "/site-assets/trips/erusalim-vo-juni/erusalim-vo-juni-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:21.787Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:21.787Z",
+    "hidden": false
   },
   {
     "slug": "erusalim-vo-fevruari",
@@ -1656,8 +1700,9 @@
     "destination_en": "Israel",
     "hero_image": "/site-assets/trips/erusalim-vo-fevruari/erusalim-vo-fevruari-hero.webp",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:31.986Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:31.986Z",
+    "hidden": false
   },
   {
     "slug": "erusalim-za-veligden",
@@ -1731,8 +1776,9 @@
     "destination_en": "Israel",
     "hero_image": "/site-assets/trips/erusalim-za-veligden/erusalim-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:43.040Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:43.040Z",
+    "hidden": false
   },
   {
     "slug": "zagreb-i-ljubljana",
@@ -1765,8 +1811,9 @@
     "destination_en": "Croatia",
     "hero_image": "/site-assets/trips/zagreb-i-ljubljana/zagreb-i-ljubljana-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:29.893Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:29.893Z",
+    "hidden": false
   },
   {
     "slug": "zakintos-leto-2026",
@@ -1799,8 +1846,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/zakintos-leto-2026/zakintos-leto-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:50.764Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:50.764Z",
+    "hidden": false
   },
   {
     "slug": "izmir-8mi-mart",
@@ -1833,8 +1881,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/izmir-8mi-mart/izmir-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:36.951Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:36.951Z",
+    "hidden": false
   },
   {
     "slug": "izmir-vo-april",
@@ -1867,8 +1916,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/izmir-vo-april/izmir-vo-april-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:35.700Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:35.700Z",
+    "hidden": false
   },
   {
     "slug": "indija-shri-lanka-maldivi",
@@ -1901,8 +1951,9 @@
     "destination_en": "India",
     "hero_image": "/site-assets/trips/indija-shri-lanka-maldivi/indija-shri-lanka-maldivi-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:01.663Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:01.663Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-19-230326",
@@ -1935,8 +1986,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-19-230326/istanbul-19-230326-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:40.173Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:40.173Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-vo-mart",
@@ -1969,8 +2021,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-vo-mart/istanbul-vo-mart-hero.jpeg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:32.745Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:32.745Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-vo-septemvri",
@@ -2003,8 +2056,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-vo-septemvri/istanbul-vo-septemvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:31.012Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:31.012Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-za-1vi-maj",
@@ -2037,8 +2091,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-za-1vi-maj/istanbul-za-1vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:12.570Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:12.570Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-za-24-ti-maj",
@@ -2071,8 +2126,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-za-24-ti-maj/istanbul-za-24-ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:18.427Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:18.427Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-za-veligden",
@@ -2105,8 +2161,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-za-veligden/istanbul-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:37.303Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:37.303Z",
+    "hidden": false
   },
   {
     "slug": "istanbul-za-veligden-3-noi",
@@ -2139,8 +2196,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/istanbul-za-veligden-3-noi/istanbul-za-veligden-3-noi-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:46.387Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:46.387Z",
+    "hidden": false
   },
   {
     "slug": "jashi-za-prvi-maj",
@@ -2173,8 +2231,9 @@
     "destination_en": "РОМАНИЈА",
     "hero_image": "/site-assets/trips/jashi-za-prvi-maj/jashi-za-prvi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:39.428Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:39.428Z",
+    "hidden": false
   },
   {
     "slug": "jordanpetravadi-ramamman",
@@ -2207,8 +2266,9 @@
     "destination_en": "ПЕТРА",
     "hero_image": "/site-assets/trips/jordanpetravadi-ramamman/jordanpetravadi-ramamman-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:26.293Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:26.293Z",
+    "hidden": false
   },
   {
     "slug": "kalitea-sopstven-zakup-alek-apartmani",
@@ -2241,8 +2301,9 @@
     "destination_en": "сопствен закуп - Aлек апартмани",
     "hero_image": "/site-assets/trips/kalitea-sopstven-zakup-alek-apartmani/kalitea-sopstven-zakup-alek-apartmani-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:31.572Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:31.572Z",
+    "hidden": false
   },
   {
     "slug": "kapadokija-oktomvriska-bajka",
@@ -2291,8 +2352,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/kapadokija-oktomvriska-bajka/kapadokija-oktomvriska-bajka-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:29.791Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:29.791Z",
+    "hidden": false
   },
   {
     "slug": "kinapekingsian-i-shangaj",
@@ -2325,8 +2387,9 @@
     "destination_en": "ПЕКИНГ",
     "hero_image": "/site-assets/trips/kinapekingsian-i-shangaj/kinapekingsian-i-shangaj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:36.618Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:36.618Z",
+    "hidden": false
   },
   {
     "slug": "kina-shangaj-peking",
@@ -2359,8 +2422,9 @@
     "destination_en": "КИНА",
     "hero_image": "/site-assets/trips/kina-shangaj-peking/kina-shangaj-peking-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:26.205Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:26.205Z",
+    "hidden": false
   },
   {
     "slug": "kipar-vo-fevruari-2026",
@@ -2393,8 +2457,9 @@
     "destination_en": "Cyprus",
     "hero_image": "/site-assets/trips/kipar-vo-fevruari-2026/kipar-vo-fevruari-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:35.288Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:35.288Z",
+    "hidden": false
   },
   {
     "slug": "kipar-vo-mart",
@@ -2427,8 +2492,9 @@
     "destination_en": "Cyprus",
     "hero_image": "/site-assets/trips/kipar-vo-mart/kipar-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:43.628Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:43.628Z",
+    "hidden": false
   },
   {
     "slug": "kipar-vo-fevruari",
@@ -2461,8 +2527,9 @@
     "destination_en": "Cyprus",
     "hero_image": "/site-assets/trips/kipar-vo-fevruari/kipar-vo-fevruari-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:31.128Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:31.128Z",
+    "hidden": false
   },
   {
     "slug": "kosta-brava-shpanija-2026",
@@ -2495,8 +2562,9 @@
     "destination_en": "Шпанија 2026",
     "hero_image": "/site-assets/trips/kosta-brava-shpanija-2026/kosta-brava-shpanija-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:07.619Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:07.619Z",
+    "hidden": false
   },
   {
     "slug": "kostur-peshterata-na-zmejot-svahil",
@@ -2529,8 +2597,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/kostur-peshterata-na-zmejot-svahil/kostur-peshterata-na-zmejot-svahil-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:21.875Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:21.875Z",
+    "hidden": false
   },
   {
     "slug": "kralstvo-jordan-veligdenska-pustinska-avantura",
@@ -2563,8 +2632,9 @@
     "destination_en": "Хашемитско Кралство Јордан",
     "hero_image": "/site-assets/trips/kralstvo-jordan-veligdenska-pustinska-avantura/kralstvo-jordan-veligdenska-pustinska-avantura-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:47.169Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:47.169Z",
+    "hidden": false
   },
   {
     "slug": "krit-2026",
@@ -2597,8 +2667,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krit-2026/krit-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:09.358Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:09.358Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-atos-310526",
@@ -2631,8 +2702,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krstarenje-atos-310526/krstarenje-atos-310526-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:25.866Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:25.866Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-atos-za-1-vi-maj",
@@ -2665,8 +2737,9 @@
     "destination_en": "Атос",
     "hero_image": "/site-assets/trips/krstarenje-atos-za-1-vi-maj/krstarenje-atos-za-1-vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:27.573Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:27.573Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-atos-za-1vi-maj",
@@ -2699,8 +2772,9 @@
     "destination_en": "АТОС",
     "hero_image": "/site-assets/trips/krstarenje-atos-za-1vi-maj/krstarenje-atos-za-1vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:07.044Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:07.044Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-po-grchkite-ostrovi-i-kushadasi",
@@ -2733,8 +2807,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krstarenje-po-grchkite-ostrovi-i-kushadasi/krstarenje-po-grchkite-ostrovi-i-kushadasi-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.281Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.281Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-aljaska",
@@ -2767,8 +2842,9 @@
     "destination_en": "Алјаска",
     "hero_image": "/site-assets/trips/krstarenje-aljaska/krstarenje-aljaska-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:54.825Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:54.825Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-zapaden-mediteran",
@@ -2801,8 +2877,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/krstarenje-zapaden-mediteran/krstarenje-zapaden-mediteran-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:55.252Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:55.252Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-japonija-i-juzhna-korea",
@@ -2835,8 +2912,9 @@
     "destination_en": "Japan",
     "hero_image": "/site-assets/trips/krstarenje-japonija-i-juzhna-korea/krstarenje-japonija-i-juzhna-korea-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:55.683Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:55.683Z",
+    "hidden": false
   },
   {
     "slug": "krstarenje-sadhavai-i-meksiko",
@@ -2869,8 +2947,9 @@
     "destination_en": "ХАВАИ И МЕКСИКО",
     "hero_image": "/site-assets/trips/krstarenje-sadhavai-i-meksiko/krstarenje-sadhavai-i-meksiko-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:55.998Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:55.998Z",
+    "hidden": false
   },
   {
     "slug": "krf-vo-mart",
@@ -2903,8 +2982,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krf-vo-mart/krf-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:43.213Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:43.213Z",
+    "hidden": false
   },
   {
     "slug": "krf-za-24ti-maj",
@@ -2937,8 +3017,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krf-za-24ti-maj/krf-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:22.313Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:22.313Z",
+    "hidden": false
   },
   {
     "slug": "krf-za-veligden",
@@ -2971,8 +3052,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/krf-za-veligden/krf-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.872Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.872Z",
+    "hidden": false
   },
   {
     "slug": "kurshumliska-banja-za-8mi-mart",
@@ -3005,8 +3087,9 @@
     "destination_en": "Serbia",
     "hero_image": "/site-assets/trips/kurshumliska-banja-za-8mi-mart/kurshumliska-banja-za-8mi-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.957Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.957Z",
+    "hidden": false
   },
   {
     "slug": "kushadasi-pamukale-efes-kukjata-na-bogorodica",
@@ -3039,8 +3122,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/kushadasi-pamukale-efes-kukjata-na-bogorodica/kushadasi-pamukale-efes-kukjata-na-bogorodica-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.197Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.197Z",
+    "hidden": false
   },
   {
     "slug": "leto-vo-andaluzija-2026",
@@ -3073,8 +3157,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/leto-vo-andaluzija-2026/leto-vo-andaluzija-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:03.580Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:03.580Z",
+    "hidden": false
   },
   {
     "slug": "leto-za-mladi-26-kavos-krf",
@@ -3113,8 +3198,9 @@
     "destination_en": "КРФ",
     "hero_image": "/site-assets/trips/leto-za-mladi-26-kavos-krf/leto-za-mladi-26-kavos-krf-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:30.618Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:30.618Z",
+    "hidden": false
   },
   {
     "slug": "leto-na-sardinija",
@@ -3147,8 +3233,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/leto-na-sardinija/leto-na-sardinija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:17.246Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:17.246Z",
+    "hidden": false
   },
   {
     "slug": "leto-na-sardinija-italija-2026",
@@ -3181,8 +3268,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/leto-na-sardinija-italija-2026/leto-na-sardinija-italija-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:30.412Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:30.412Z",
+    "hidden": false
   },
   {
     "slug": "liban-vo-mesec-oktomvri",
@@ -3215,8 +3303,9 @@
     "destination_en": "Lebanon",
     "hero_image": "/site-assets/trips/liban-vo-mesec-oktomvri/liban-vo-mesec-oktomvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:28.532Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:28.532Z",
+    "hidden": false
   },
   {
     "slug": "lutraki-i-voden",
@@ -3249,8 +3338,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/lutraki-i-voden/lutraki-i-voden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:11.455Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:11.455Z",
+    "hidden": false
   },
   {
     "slug": "lutraki-i-voden-vo-mart",
@@ -3283,8 +3373,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/lutraki-i-voden-vo-mart/lutraki-i-voden-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:47.271Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:47.271Z",
+    "hidden": false
   },
   {
     "slug": "ljubljana-bled-bohinj-postojnska-jama-i-opatija",
@@ -3317,8 +3408,9 @@
     "destination_en": "БЛЕД",
     "hero_image": "/site-assets/trips/ljubljana-bled-bohinj-postojnska-jama-i-opatija/ljubljana-bled-bohinj-postojnska-jama-i-opatija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:14.289Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:14.289Z",
+    "hidden": false
   },
   {
     "slug": "magichna-avantura-niz-oazite-pustinite-i-ostrovite",
@@ -3351,8 +3443,9 @@
     "destination_en": "ПУСТИНИТЕ И ОСТРОВИТЕ НА ОМАН",
     "hero_image": "/site-assets/trips/magichna-avantura-niz-oazite-pustinite-i-ostrovite/magichna-avantura-niz-oazite-pustinite-i-ostrovite-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:02.757Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:02.757Z",
+    "hidden": false
   },
   {
     "slug": "magichna-kapadokija-vo-mart",
@@ -3385,8 +3478,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/magichna-kapadokija-vo-mart/magichna-kapadokija-vo-mart-hero.webp",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:33.083Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:33.083Z",
+    "hidden": false
   },
   {
     "slug": "magichna-kapadokija-za-veligden",
@@ -3419,8 +3513,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/magichna-kapadokija-za-veligden/magichna-kapadokija-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.788Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.788Z",
+    "hidden": false
   },
   {
     "slug": "magichnata-toskana-za-24ti-maj",
@@ -3453,8 +3548,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/magichnata-toskana-za-24ti-maj/magichnata-toskana-za-24ti-maj-hero.jpeg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:22.971Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:22.971Z",
+    "hidden": false
   },
   {
     "slug": "magichnite-gradovi-i-zamoci-na-irska",
@@ -3487,8 +3583,9 @@
     "destination_en": "ИРСКА",
     "hero_image": "/site-assets/trips/magichnite-gradovi-i-zamoci-na-irska/magichnite-gradovi-i-zamoci-na-irska-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.421Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.421Z",
+    "hidden": false
   },
   {
     "slug": "madrid-i-toledo",
@@ -3521,8 +3618,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/madrid-i-toledo/madrid-i-toledo-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:58.220Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:58.220Z",
+    "hidden": false
   },
   {
     "slug": "madrid-i-toledo-vo-oktomvri",
@@ -3555,8 +3653,9 @@
     "destination_en": "Spain",
     "hero_image": "/site-assets/trips/madrid-i-toledo-vo-oktomvri/madrid-i-toledo-vo-oktomvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:28.416Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:28.416Z",
+    "hidden": false
   },
   {
     "slug": "maldivi-2026",
@@ -3589,8 +3688,9 @@
     "destination_en": "МАЛДИВИ",
     "hero_image": "/site-assets/trips/maldivi-2026/maldivi-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:08.456Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:08.456Z",
+    "hidden": false
   },
   {
     "slug": "malta-vo-oktomvri",
@@ -3623,8 +3723,9 @@
     "destination_en": "Malta",
     "hero_image": "/site-assets/trips/malta-vo-oktomvri/malta-vo-oktomvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:30.042Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:30.042Z",
+    "hidden": false
   },
   {
     "slug": "malta-za-veligden",
@@ -3657,8 +3758,9 @@
     "destination_en": "Malta",
     "hero_image": "/site-assets/trips/malta-za-veligden/malta-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:06.279Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:06.279Z",
+    "hidden": false
   },
   {
     "slug": "malta-leto-2026",
@@ -3691,8 +3793,9 @@
     "destination_en": "Malta",
     "hero_image": "/site-assets/trips/malta-leto-2026/malta-leto-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:20.411Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:20.411Z",
+    "hidden": false
   },
   {
     "slug": "marokorabatfeskazablanka",
@@ -3725,8 +3828,9 @@
     "destination_en": "Рабат",
     "hero_image": "/site-assets/trips/marokorabatfeskazablanka/marokorabatfeskazablanka-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.363Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.363Z",
+    "hidden": false
   },
   {
     "slug": "matarushka-banja",
@@ -3759,8 +3863,9 @@
     "destination_en": "Serbia",
     "hero_image": "/site-assets/trips/matarushka-banja/matarushka-banja-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:33.769Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:33.769Z",
+    "hidden": false
   },
   {
     "slug": "neapol-vo-maj",
@@ -3793,8 +3898,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/neapol-vo-maj/neapol-vo-maj-hero.webp",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:16.929Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:16.929Z",
+    "hidden": false
   },
   {
     "slug": "nezaboravna-avantura-vo-japonija",
@@ -3827,8 +3933,9 @@
     "destination_en": "JAPONIJA",
     "hero_image": "/site-assets/trips/nezaboravna-avantura-vo-japonija/nezaboravna-avantura-vo-japonija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.518Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.518Z",
+    "hidden": false
   },
   {
     "slug": "novi-sadsremski-karlovciso-poseta-na-sombor-suboti",
@@ -3861,8 +3968,9 @@
     "destination_en": "СРЕМСКИ КАРЛОВЦИсо посета на  СОМБОР",
     "hero_image": "/site-assets/trips/novi-sadsremski-karlovciso-poseta-na-sombor-suboti/novi-sadsremski-karlovciso-poseta-na-sombor-suboti-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:13.859Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:13.859Z",
+    "hidden": false
   },
   {
     "slug": "norveshki-fjordovi",
@@ -3895,8 +4003,9 @@
     "destination_en": "Norway",
     "hero_image": "/site-assets/trips/norveshki-fjordovi/norveshki-fjordovi-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:55.166Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:55.166Z",
+    "hidden": false
   },
   {
     "slug": "ostrog-i-budva-zlatna-esenska-kombinacija",
@@ -3929,8 +4038,9 @@
     "destination_en": "ЦРНА ГОРА",
     "hero_image": "/site-assets/trips/ostrog-i-budva-zlatna-esenska-kombinacija/ostrog-i-budva-zlatna-esenska-kombinacija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:31.275Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:31.275Z",
+    "hidden": false
   },
   {
     "slug": "pariz-viena-praga-minhen-salzburg-5np",
@@ -3963,8 +4073,9 @@
     "destination_en": "Austria",
     "hero_image": "/site-assets/trips/pariz-viena-praga-minhen-salzburg-5np/pariz-viena-praga-minhen-salzburg-5np-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:29.214Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:29.214Z",
+    "hidden": false
   },
   {
     "slug": "pariz-vo-dekemvri",
@@ -3997,8 +4108,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/pariz-vo-dekemvri/pariz-vo-dekemvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:33.366Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:33.366Z",
+    "hidden": false
   },
   {
     "slug": "pariz-vo-maj",
@@ -4031,8 +4143,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/pariz-vo-maj/pariz-vo-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:15.167Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:15.167Z",
+    "hidden": false
   },
   {
     "slug": "paris-vo-mesec-mart",
@@ -4065,8 +4178,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/paris-vo-mesec-mart/paris-vo-mesec-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:30.645Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:30.645Z",
+    "hidden": false
   },
   {
     "slug": "pariz-za-1vi-maj",
@@ -4099,8 +4213,9 @@
     "destination_en": "France",
     "hero_image": "/site-assets/trips/pariz-za-1vi-maj/pariz-za-1vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:04.611Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:04.611Z",
+    "hidden": false
   },
   {
     "slug": "poklonichko-patuvanje-kefalonija",
@@ -4133,8 +4248,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/poklonichko-patuvanje-kefalonija/poklonichko-patuvanje-kefalonija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.776Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.776Z",
+    "hidden": false
   },
   {
     "slug": "portugalija-vo-mart",
@@ -4167,8 +4283,9 @@
     "destination_en": "Portugal",
     "hero_image": "/site-assets/trips/portugalija-vo-mart/portugalija-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:36.703Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:36.703Z",
+    "hidden": false
   },
   {
     "slug": "portugalija-za-veligden-porto",
@@ -4201,8 +4318,9 @@
     "destination_en": "Portugal",
     "hero_image": "/site-assets/trips/portugalija-za-veligden-porto/portugalija-za-veligden-porto-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:25.563Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:25.563Z",
+    "hidden": false
   },
   {
     "slug": "praga",
@@ -4235,8 +4353,9 @@
     "destination_en": "ПРАГА",
     "hero_image": "/site-assets/trips/praga/praga-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:34.220Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:34.220Z",
+    "hidden": false
   },
   {
     "slug": "praga-drezden-viena-za-8-mi-dekemvri",
@@ -4269,8 +4388,9 @@
     "destination_en": "Czech Republic",
     "hero_image": "/site-assets/trips/praga-drezden-viena-za-8-mi-dekemvri/praga-drezden-viena-za-8-mi-dekemvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:28.947Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:28.947Z",
+    "hidden": false
   },
   {
     "slug": "praga-za-24ti-maj",
@@ -4303,8 +4423,9 @@
     "destination_en": "Czech Republic",
     "hero_image": "/site-assets/trips/praga-za-24ti-maj/praga-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:05.352Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:05.352Z",
+    "hidden": false
   },
   {
     "slug": "prodolzhen-vikend-vo-toskana",
@@ -4337,8 +4458,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/prodolzhen-vikend-vo-toskana/prodolzhen-vikend-vo-toskana-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:41.569Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:41.569Z",
+    "hidden": false
   },
   {
     "slug": "prolet-vo-dubai",
@@ -4402,8 +4524,9 @@
     "destination_en": "Dubai",
     "hero_image": "/site-assets/trips/prolet-vo-dubai/prolet-vo-dubai-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:30.141Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:30.141Z",
+    "hidden": false
   },
   {
     "slug": "rafting-na-tara-vo-maj",
@@ -4436,8 +4559,9 @@
     "destination_en": "ЦРНА ГОРА",
     "hero_image": "/site-assets/trips/rafting-na-tara-vo-maj/rafting-na-tara-vo-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:27.779Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:27.779Z",
+    "hidden": false
   },
   {
     "slug": "rim-za-8mi-mart-italija",
@@ -4470,8 +4594,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/rim-za-8mi-mart-italija/rim-za-8mi-mart-italija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:25.228Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:25.228Z",
+    "hidden": false
   },
   {
     "slug": "salzburg-za-8mi-mart-avstria",
@@ -4504,8 +4629,9 @@
     "destination_en": "Austria",
     "hero_image": "/site-assets/trips/salzburg-za-8mi-mart-avstria/salzburg-za-8mi-mart-avstria-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:24.538Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:24.538Z",
+    "hidden": false
   },
   {
     "slug": "santorini-za-24ti-maj",
@@ -4538,8 +4664,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/santorini-za-24ti-maj/santorini-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:01.243Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:01.243Z",
+    "hidden": false
   },
   {
     "slug": "saraevo-mostar-i-zlatibor-za-1vi-maj",
@@ -4572,8 +4699,9 @@
     "destination_en": "МОСТАР И ЗЛАТИБОР ЗА 1ви МАЈ",
     "hero_image": "/site-assets/trips/saraevo-mostar-i-zlatibor-za-1vi-maj/saraevo-mostar-i-zlatibor-za-1vi-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:11.295Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:11.295Z",
+    "hidden": false
   },
   {
     "slug": "saraevo-mostar-i-zlatibor-vo-oktomvri",
@@ -4606,8 +4734,9 @@
     "destination_en": "МОСТАР И ЗЛАТИБОР ВО ОКТОМВРИ",
     "hero_image": "/site-assets/trips/saraevo-mostar-i-zlatibor-vo-oktomvri/saraevo-mostar-i-zlatibor-vo-oktomvri-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.943Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.943Z",
+    "hidden": false
   },
   {
     "slug": "saraevo-za-8-mart-bosna",
@@ -4640,8 +4769,9 @@
     "destination_en": "БОСНА И ХЕРЦЕГОВИНА",
     "hero_image": "/site-assets/trips/saraevo-za-8-mart-bosna/saraevo-za-8-mart-bosna-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:27.243Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:27.243Z",
+    "hidden": false
   },
   {
     "slug": "saraevo-i-mostar-za-24-maj",
@@ -4674,8 +4804,9 @@
     "destination_en": "БОСНА И ХЕРЦЕГОВИНА",
     "hero_image": "/site-assets/trips/saraevo-i-mostar-za-24-maj/saraevo-i-mostar-za-24-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:19.376Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:19.376Z",
+    "hidden": false
   },
   {
     "slug": "sv-nektarij-eginski-sveti-efrem-novi-manastir-pant",
@@ -4708,8 +4839,9 @@
     "destination_en": "СВЕТИ ЕФРЕМ НОВИ",
     "hero_image": "/site-assets/trips/sv-nektarij-eginski-sveti-efrem-novi-manastir-pant/sv-nektarij-eginski-sveti-efrem-novi-manastir-pant-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:59.149Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:59.149Z",
+    "hidden": false
   },
   {
     "slug": "svnektarij-eginski-svefrem-novimanastir-pantokrato",
@@ -4742,8 +4874,9 @@
     "destination_en": "СВ.ЕФРЕМ НОВИ",
     "hero_image": "/site-assets/trips/svnektarij-eginski-svefrem-novimanastir-pantokrato/svnektarij-eginski-svefrem-novimanastir-pantokrato-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.116Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.116Z",
+    "hidden": false
   },
   {
     "slug": "sivota-parga-mecovo",
@@ -4776,8 +4909,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/sivota-parga-mecovo/sivota-parga-mecovo-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:24.446Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:24.446Z",
+    "hidden": false
   },
   {
     "slug": "skrienite-bogatstva-na-uzbekistan",
@@ -4810,8 +4944,9 @@
     "destination_en": "Uzbekistan",
     "hero_image": "/site-assets/trips/skrienite-bogatstva-na-uzbekistan/skrienite-bogatstva-na-uzbekistan-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:42.617Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:42.617Z",
+    "hidden": false
   },
   {
     "slug": "slovenija-vo-maj",
@@ -4844,8 +4979,9 @@
     "destination_en": "Slovenia",
     "hero_image": "/site-assets/trips/slovenija-vo-maj/slovenija-vo-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:15.901Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:15.901Z",
+    "hidden": false
   },
   {
     "slug": "solun-paralija-meteori",
@@ -4878,8 +5014,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/solun-paralija-meteori/solun-paralija-meteori-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:46.303Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:46.303Z",
+    "hidden": false
   },
   {
     "slug": "sopstven-zakup-paralija",
@@ -4912,8 +5049,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/sopstven-zakup-paralija/sopstven-zakup-paralija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:48.652Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:48.652Z",
+    "hidden": false
   },
   {
     "slug": "sopstven-zakup-olympic-beach",
@@ -4946,8 +5084,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/sopstven-zakup-olympic-beach/sopstven-zakup-olympic-beach-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:49.054Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:49.054Z",
+    "hidden": false
   },
   {
     "slug": "studio-kouras",
@@ -4980,8 +5119,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/studio-kouras/studio-kouras-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:51.981Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:51.981Z",
+    "hidden": false
   },
   {
     "slug": "toskana-8-mart",
@@ -5014,8 +5154,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/toskana-8-mart/toskana-8-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:32.411Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:32.411Z",
+    "hidden": false
   },
   {
     "slug": "toskana-za-veligden",
@@ -5048,8 +5189,9 @@
     "destination_en": "Italy",
     "hero_image": "/site-assets/trips/toskana-za-veligden/toskana-za-veligden-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:38.271Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:38.271Z",
+    "hidden": false
   },
   {
     "slug": "tumane-i-belgrad",
@@ -5082,8 +5224,9 @@
     "destination_en": "Serbia",
     "hero_image": "/site-assets/trips/tumane-i-belgrad/tumane-i-belgrad-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:15.568Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:15.568Z",
+    "hidden": false
   },
   {
     "slug": "tumane-temishvar-vo-mart",
@@ -5116,8 +5259,9 @@
     "destination_en": "Serbia",
     "hero_image": "/site-assets/trips/tumane-temishvar-vo-mart/tumane-temishvar-vo-mart-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:43.128Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:43.128Z",
+    "hidden": false
   },
   {
     "slug": "hotel-alba-orikum-albanija",
@@ -5150,8 +5294,9 @@
     "destination_en": "Albania",
     "hero_image": "/site-assets/trips/hotel-alba-orikum-albanija/hotel-alba-orikum-albanija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:29.377Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:29.377Z",
+    "hidden": false
   },
   {
     "slug": "hotel-erato-paralija",
@@ -5184,8 +5329,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/hotel-erato-paralija/hotel-erato-paralija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:49.328Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:49.328Z",
+    "hidden": false
   },
   {
     "slug": "hotel-kolaveri-resort-drach",
@@ -5218,8 +5364,9 @@
     "destination_en": "Albania",
     "hero_image": "/site-assets/trips/hotel-kolaveri-resort-drach/hotel-kolaveri-resort-drach-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:28.016Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:28.016Z",
+    "hidden": false
   },
   {
     "slug": "hotel-mojsez-leptokarija",
@@ -5252,8 +5399,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/hotel-mojsez-leptokarija/hotel-mojsez-leptokarija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:51.536Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:51.536Z",
+    "hidden": false
   },
   {
     "slug": "crna-gora-za-24ti-maj",
@@ -5286,8 +5434,9 @@
     "destination_en": "ЦРНА ГОРА",
     "hero_image": "/site-assets/trips/crna-gora-za-24ti-maj/crna-gora-za-24ti-maj-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:20.324Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:20.324Z",
+    "hidden": false
   },
   {
     "slug": "shvedska-i-danska-0509-0809-i-1010-1310",
@@ -5320,8 +5469,9 @@
     "destination_en": "Шведска и Данска",
     "hero_image": "/site-assets/trips/shvedska-i-danska-0509-0809-i-1010-1310/shvedska-i-danska-0509-0809-i-1010-1310-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:27.769Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:27.769Z",
+    "hidden": false
   },
   {
     "slug": "afrodite-studios",
@@ -5354,8 +5504,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/afrodite-studios/afrodite-studios-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:53.321Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:53.321Z",
+    "hidden": false
   },
   {
     "slug": "bahar-aqua-resort-4-ostrov-avsha",
@@ -5388,8 +5539,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/bahar-aqua-resort-4-ostrov-avsha/bahar-aqua-resort-4-ostrov-avsha-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:53.560Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:53.560Z",
+    "hidden": false
   },
   {
     "slug": "bernina-express-sirmione-tirano-stmoris-lucern-ins",
@@ -5422,8 +5574,9 @@
     "destination_en": "Швајцарија",
     "hero_image": "/site-assets/trips/bernina-express-sirmione-tirano-stmoris-lucern-ins/bernina-express-sirmione-tirano-stmoris-lucern-ins-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:32.126Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:32.126Z",
+    "hidden": false
   },
   {
     "slug": "esenska-bajka-vo-praga",
@@ -5456,8 +5609,9 @@
     "destination_en": "Прага",
     "hero_image": "/site-assets/trips/esenska-bajka-vo-praga/esenska-bajka-vo-praga-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:28.747Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:28.747Z",
+    "hidden": false
   },
   {
     "slug": "flex-festival-balkan-party-2026",
@@ -5490,8 +5644,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/flex-festival-balkan-party-2026/flex-festival-balkan-party-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:08.636Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:08.636Z",
+    "hidden": false
   },
   {
     "slug": "flora-suites-summer-2026",
@@ -5524,8 +5679,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/flora-suites-summer-2026/flora-suites-summer-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:27.469Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:27.469Z",
+    "hidden": false
   },
   {
     "slug": "hotel-maya-bay",
@@ -5558,8 +5714,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/hotel-maya-bay/hotel-maya-bay-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:52.857Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:52.857Z",
+    "hidden": false
   },
   {
     "slug": "hotel-melike-summer-2026",
@@ -5592,8 +5749,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/hotel-melike-summer-2026/hotel-melike-summer-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:27.057Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:27.057Z",
+    "hidden": false
   },
   {
     "slug": "hotel-papatya-summer-2026",
@@ -5626,8 +5784,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/hotel-papatya-summer-2026/hotel-papatya-summer-2026-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:42:26.537Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:42:26.537Z",
+    "hidden": false
   },
   {
     "slug": "mari-pembe-boutique-hotel-3-ostrov-avsha",
@@ -5660,8 +5819,9 @@
     "destination_en": "Turkey",
     "hero_image": "/site-assets/trips/mari-pembe-boutique-hotel-3-ostrov-avsha/mari-pembe-boutique-hotel-3-ostrov-avsha-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:54.096Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:54.096Z",
+    "hidden": false
   },
   {
     "slug": "villa-argiro-agios-nikitaslefkada",
@@ -5694,8 +5854,9 @@
     "destination_en": "Лефкада",
     "hero_image": "/site-assets/trips/villa-argiro-agios-nikitaslefkada/villa-argiro-agios-nikitaslefkada-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:57.056Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:57.056Z",
+    "hidden": false
   },
   {
     "slug": "villa-kostas-sophies-nidri-grcija",
@@ -5728,8 +5889,9 @@
     "destination_en": "Greece",
     "hero_image": "/site-assets/trips/villa-kostas-sophies-nidri-grcija/villa-kostas-sophies-nidri-grcija-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:57.481Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:57.481Z",
+    "hidden": false
   },
   {
     "slug": "villa-kostas-nidri-ostrov-lefkada",
@@ -5762,7 +5924,8 @@
     "destination_en": "Остров Лефкада",
     "hero_image": "/site-assets/trips/villa-kostas-nidri-ostrov-lefkada/villa-kostas-nidri-ostrov-lefkada-hero.jpg",
     "image_match": "page",
-    "published": false,
-    "imported_at": "2026-06-22T23:41:56.338Z"
+    "published": true,
+    "imported_at": "2026-06-22T23:41:56.338Z",
+    "hidden": false
   }
 ]

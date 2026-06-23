@@ -3,7 +3,7 @@
 import { useState, useTransition, useMemo } from "react";
 import Image from "next/image";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
-import { saveTrip, deleteTrip, toggleTripPublished } from "@/app/admin/trip-actions";
+import { saveTrip, deleteTrip, toggleTripPublished, toggleTripHidden } from "@/app/admin/trip-actions";
 import { createUser, changePassword, deleteUser } from "@/app/admin/user-actions";
 import type { ImportedTrip } from "@/lib/trips/types";
 import type { AgentUser } from "@/app/admin/user-actions";
@@ -375,7 +375,7 @@ function TripsPanel({
   const [search, setSearch] = useState("");
   const [filterDate, setFilterDate] = useState("");
   const [filterDateTo, setFilterDateTo] = useState("");
-  const [filterStatus, setFilterStatus] = useState<"all" | "published" | "draft">("all");
+  const [filterStatus, setFilterStatus] = useState<"all" | "published" | "draft" | "hidden">("all");
   const [sort, setSort] = useState<TripSort>("newest");
   const [isPending, startTransition] = useTransition();
   const [statusMsg, setStatusMsg] = useState("");
@@ -394,8 +394,9 @@ function TripsPanel({
     }
     if (filterDate) list = list.filter((t) => !t.departure_date || t.departure_date >= filterDate);
     if (filterDateTo) list = list.filter((t) => !t.return_date || t.return_date <= filterDateTo);
-    if (filterStatus === "published") list = list.filter((t) => t.published);
-    if (filterStatus === "draft") list = list.filter((t) => !t.published);
+    if (filterStatus === "published") list = list.filter((t) => t.published && !t.hidden);
+    if (filterStatus === "draft") list = list.filter((t) => !t.published && !t.hidden);
+    if (filterStatus === "hidden") list = list.filter((t) => t.hidden);
 
     list.sort((a, b) => {
       if (sort === "newest") return (b.departure_date ?? "").localeCompare(a.departure_date ?? "");
@@ -418,6 +419,15 @@ function TripsPanel({
       const res = await toggleTripPublished(slug, published);
       if (res.error) { flash("Error: " + res.error); return; }
       onTripsChange(trips.map((t) => (t.slug === slug ? { ...t, published } : t)));
+    });
+  }
+
+  function handleHide(slug: string, hidden: boolean) {
+    startTransition(async () => {
+      const res = await toggleTripHidden(slug, hidden);
+      if (res.error) { flash("Error: " + res.error); return; }
+      onTripsChange(trips.map((t) => (t.slug === slug ? { ...t, hidden } : t)));
+      flash(hidden ? "Trip hidden from public." : "Trip visible again.");
     });
   }
 
@@ -496,8 +506,9 @@ function TripsPanel({
           {/* Status */}
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value as typeof filterStatus)} className={inputCls}>
             <option value="all">All status</option>
-            <option value="published">Published only</option>
-            <option value="draft">Drafts only</option>
+            <option value="published">✓ Published</option>
+            <option value="draft">○ Drafts</option>
+            <option value="hidden">⊘ Hidden</option>
           </select>
           {/* Date from */}
           <div>
@@ -566,12 +577,14 @@ function TripsPanel({
                 </div>
                 <span
                   className="shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold"
-                  style={trip.published
+                  style={trip.hidden
+                    ? { background: "#fef9c3", color: "#92400e" }
+                    : trip.published
                     ? { background: "#dcfce7", color: "#15803d" }
                     : { background: "#f3f4f6", color: "#6b7280" }
                   }
                 >
-                  {trip.published ? "✓ Live" : "Draft"}
+                  {trip.hidden ? "⊘ Hidden" : trip.published ? "✓ Live" : "○ Draft"}
                 </span>
               </div>
 
@@ -588,9 +601,21 @@ function TripsPanel({
                   disabled={isPending}
                   onClick={() => handleToggle(trip.slug, !trip.published)}
                   className="rounded-lg px-3 py-1.5 text-xs font-bold text-white transition-colors disabled:opacity-50"
-                  style={{ background: trip.published ? "#6b7280" : "#16a34a" }}
+                  style={{ background: trip.published ? "#16a34a" : "#6b7280" }}
                 >
-                  {trip.published ? "⬇ Unpublish" : "⬆ Publish"}
+                  {trip.published ? "✓ Published" : "○ Set Live"}
+                </button>
+                <button
+                  type="button"
+                  disabled={isPending}
+                  onClick={() => handleHide(trip.slug, !trip.hidden)}
+                  className="rounded-lg px-3 py-1.5 text-xs font-bold transition-colors disabled:opacity-50"
+                  style={trip.hidden
+                    ? { background: "#fef9c3", color: "#92400e", border: "1px solid #fde68a" }
+                    : { background: "#f3f4f6", color: "#374151", border: "1px solid #e5e7eb" }
+                  }
+                >
+                  {trip.hidden ? "👁 Unhide" : "⊘ Hide"}
                 </button>
                 <button
                   type="button"

@@ -22,7 +22,7 @@ export function getTripBySlug(slug: string): ImportedTrip | undefined {
 }
 
 export function getPublishedTrips(): ImportedTrip[] {
-  return loadImportedTrips().filter((trip) => trip.published || trip.hero_image);
+  return loadImportedTrips().filter((trip) => (trip.published || trip.hero_image) && !trip.hidden);
 }
 
 export function clearTripsCache() {
