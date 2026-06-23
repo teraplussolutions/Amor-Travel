@@ -67,16 +67,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                     background: "rgba(255,255,255,0.08)",
                     transition: "background 0.2s, border-color 0.2s, transform 0.2s",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(201,168,76,0.25)";
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--amor-gold)";
-                    (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.3)";
-                    (e.currentTarget as HTMLAnchorElement).style.transform = "";
-                  }}
+    className="footer-social__link"
                 >
                   {s.icon}
                 </a>
