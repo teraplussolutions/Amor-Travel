@@ -1,4 +1,5 @@
 import { StaffShell } from "@/components/StaffShell";
+import { ScrollButtons } from "@/components/ScrollButtons";
 
 const navItems = [
   { href: "/admin/panel", label: "Admin Panel", bottomNav: true },
@@ -14,9 +15,4 @@ export default function AdminLayout({
       title="Amor Travel Admin"
       subtitle="Website content for amortravel.net"
       navItems={navItems}
-      accent="admin"
-    >
-      {children}
-    </StaffShell>
-  );
-}
+      acc

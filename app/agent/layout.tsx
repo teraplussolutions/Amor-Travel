@@ -1,4 +1,5 @@
 import { StaffShell } from "@/components/StaffShell";
+import { ScrollButtons } from "@/components/ScrollButtons";
 
 const navItems = [
   { href: "/agent", label: "Dashboard", bottomNav: true },
@@ -23,6 +24,5 @@ export default function AgentLayout({
       accent="agent"
     >
       {children}
-    </StaffShell>
-  );
-}
+      <ScrollButtons />
+ 

@@ -14,6 +14,7 @@ import { BRAND_LOGO } from "@/lib/site-images";
 type PublicFooterProps = { locale: string };
 
 const phoneHref = `tel:${SITE.phone.replace(/\s/g, "")}`;
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.address.en)}`;
 
 export async function PublicFooter({ locale }: PublicFooterProps) {
   const t = await getTranslations("public");
@@ -29,16 +30,29 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-10 lg:px-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
 
-          {/* Brand column */}
+          {/* Brand column — same style as header */}
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
-              <div style={{ width: 64, height: 64, borderRadius: "50%", overflow: "hidden", border: "2px solid rgba(201,168,76,0.5)", background: "rgba(255,255,255,0.1)", flexShrink: 0 }}>
-                <Image src={BRAND_LOGO.src} alt={logoAlt} width={64} height={64} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </div>
-              <div>
-                <div style={{ fontFamily: "var(--font-playfair),Georgia,serif", fontSize: "1.4rem", fontWeight: 900, fontStyle: "italic", color: "var(--amor-gold)" }}>Amor</div>
-                <div style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>Travel</div>
-              </div>
+              <Image
+                src={BRAND_LOGO.src}
+                alt={logoAlt}
+                width={80}
+                height={80}
+                style={{ width: 80, height: 80, objectFit: "contain", flexShrink: 0 }}
+              />
+              <span
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  fontSize: "1.8rem",
+                  fontWeight: 900,
+                  fontStyle: "italic",
+                  letterSpacing: "-0.01em",
+                  color: "var(--amor-red)",
+                  lineHeight: 1.1,
+                }}
+              >
+                {SITE.companyName}
+              </span>
             </Link>
 
             <div style={{ height: 1, width: 48, background: "linear-gradient(90deg, var(--amor-gold), transparent)", margin: "20px 0" }} />
@@ -47,7 +61,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
               {t("footerTagline")}
             </p>
 
-            {/* Social icons — white circles */}
+            {/* Social icons */}
             <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
               {[
                 { href: SITE.social.facebook, label: "Facebook", icon: <FacebookIcon className="h-4 w-4" /> },
@@ -59,6 +73,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
+                  className="footer-social__link"
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
                     width: 40, height: 40, borderRadius: "50%",
@@ -67,7 +82,6 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                     background: "rgba(255,255,255,0.08)",
                     transition: "background 0.2s, border-color 0.2s, transform 0.2s",
                   }}
-    className="footer-social__link"
                 >
                   {s.icon}
                 </a>
@@ -100,10 +114,17 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
             <h3 style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--amor-gold)", marginTop: 28, marginBottom: 12 }}>
               {t("addressLabel")}
             </h3>
-            <div style={{ display: "flex", gap: 10, color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.6 }}>
+            <a
+              href={mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "flex", gap: 10, color: "rgba(255,255,255,0.75)", fontSize: 14, lineHeight: 1.6, textDecoration: "none", transition: "color 0.2s" }}
+            >
               <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--amor-gold)" }} />
-              <span>{isEn ? SITE.address.en : SITE.address.mk}</span>
-            </div>
+              <span style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>
+                {isEn ? SITE.address.en : SITE.address.mk}
+              </span>
+            </a>
           </div>
 
           {/* Contact */}
@@ -119,7 +140,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                   </span>
                   <span>
                     <span style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 2 }}>{t("phoneLabel")}</span>
-                    {SITE.phone}
+                    <span style={{ color: "#fff" }}>{SITE.phone}</span>
                   </span>
                 </a>
               </li>
@@ -130,7 +151,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
                   </span>
                   <span>
                     <span style={{ display: "block", fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 2 }}>{t("emailLabel")}</span>
-                    {SITE.publicEmail}
+                    <span style={{ color: "#fff" }}>{SITE.publicEmail}</span>
                   </span>
                 </a>
               </li>
@@ -140,7 +161,7 @@ export async function PublicFooter({ locale }: PublicFooterProps) {
 
         {/* Bottom bar */}
         <div style={{ marginTop: 48, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.1)", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
             © {new Date().getFullYear()} {SITE.companyName}. {t("footerRights")}
           </p>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
