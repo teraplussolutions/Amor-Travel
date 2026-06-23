@@ -4,12 +4,17 @@ import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 
 const intlMiddleware = createIntlMiddleware(routing);
-const PROTECTED_PREFIXES = ["/agent", "/admin", "/super-admin"];
-const LOGIN_PATH = "/login";
+
+const ADMIN_PREFIXES   = ["/admin", "/super-admin"];
+const AGENT_PREFIXES   = ["/agent"];
+const SKIP_INTL        = ["/login", "/crm-login", "/setup", "/api"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
+
+  const isAdminRoute = ADMIN_PREFIXES.some((p) => pathname.startsWith(p));
+  const isAgentRoute = AGENT_PREFIXES.some((p) => pathname.startsWith(p));
+  const isProtected  = isAdminRoute || isAgentRoute;
 
   if (isProtected) {
     let response = NextResponse.next({ request });
@@ -35,7 +40,9 @@ export async function middleware(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-      const loginUrl = new URL(LOGIN_PATH, request.url);
+      // Admin routes → /login, Agent routes → /crm-login
+      const loginPath = isAgentRoute ? "/crm-login" : "/login";
+      const loginUrl  = new URL(loginPath, request.url);
       loginUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -43,11 +50,12 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  if (!pathname.startsWith(LOGIN_PATH) && !pathname.startsWith("/setup") && !pathname.startsWith("/api")) {
-    return intlMiddleware(request);
+  // Skip intl for login pages and API
+  if (SKIP_INTL.some((p) => pathname.startsWith(p))) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  return intlMiddleware(request);
 }
 
 export const config = {

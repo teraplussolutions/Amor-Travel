@@ -31,7 +31,7 @@ export default function LoginPage() {
     setLoading(false);
     if (error) { setError(error.message); return; }
     const params = new URLSearchParams(window.location.search);
-    const dest = params.get("redirect") || "/agent";
+    const dest = params.get("redirect") || "/admin";
     router.refresh();
     setTimeout(() => router.push(dest), 100);
   }
