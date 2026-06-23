@@ -1,6 +1,6 @@
 # Amor Travel
 
-Next.js platform for **Amor Travel** (amortravel.net) — public website, admin CMS, and agent tools.
+Next.js platform for **Amor Travel** (amortravel.net) – public website, admin CMS, and agent tools.
 
 ## Image upload & compression
 
@@ -54,6 +54,14 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Apply migration manually
+
+If Supabase CLI or MCP is linked to the wrong project, apply the Phase 2 schema in the [Amor Travel SQL editor](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/sql/new):
+
+1. Open the file `supabase/migrations/20260623000000_initial_phase2_schema.sql` in this repo and paste its **entire** contents into the SQL editor, then run.
+2. In [Project Settings → API](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/settings/api), copy **anon public** into `.env.local` as `NEXT_PUBLIC_SUPABASE_ANON_KEY` (along with `NEXT_PUBLIC_SUPABASE_URL`).
+3. For server-side uploads and admin actions, set `SUPABASE_SERVICE_ROLE_KEY` from **service_role** in the same API page. If a newer `sb_secret_...` key fails with your SDK, use the legacy JWT (`eyJ...`) from API settings instead.
 
 ## Environment
 
