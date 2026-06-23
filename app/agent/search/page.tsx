@@ -216,6 +216,9 @@ export default function SearchPage() {
   function handleSearch() {
     if (!origin || !dest || !date) return;
     setSearched(true);
+    // Auto-open default engine in new tab since iframes are blocked
+    const url = buildUrl("aviasales");
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 
   const canSearch = !!(origin && dest && date);
@@ -246,7 +249,7 @@ export default function SearchPage() {
 
         {/* Trip type toggle */}
         <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-          {([ ["roundtrip", "↔️ Во двата правци"], ["oneway", "→ Само во една насока"] ] as [TripType, string][]).map(([t, lbl]) => (
+          {([ ["roundtrip", "↔️ Round Trip"], ["oneway", "→ One Way"] ] as [TripType, string][]).map(([t, lbl]) => (
             <button key={t} onClick={() => setTripType(t)} style={{ padding: "7px 18px", borderRadius: 20, border: "2px solid", borderColor: tripType === t ? "#C9A84C" : "rgba(255,255,255,0.25)", background: tripType === t ? "rgba(201,168,76,0.25)" : "transparent", color: tripType === t ? "#C9A84C" : "rgba(255,255,255,0.7)", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
               {lbl}
             </button>
@@ -304,26 +307,33 @@ export default function SearchPage() {
             <span style={{ fontWeight: 800, color: "#174698", fontSize: 15 }}>{origin?.code} → {dest?.code}{tripType === "roundtrip" && returnDate ? " → " + origin?.code : ""}</span>
             <span style={{ fontSize: 13, color: "#64748b" }}>📅 {date}{tripType === "roundtrip" && returnDate ? " — " + returnDate : ""}</span>
             <span style={{ fontSize: 13, color: "#64748b" }}>👤 {passengers} патник{passengers > 1 ? "а" : ""}</span>
-            <span style={{ fontSize: 13, color: "#64748b" }}>{tripType === "roundtrip" ? "↔️ Во двата правци" : "→ Само во една насока"}</span>
+            <span style={{ fontSize: 13, color: "#64748b" }}>{tripType === "roundtrip" ? "↔️ Round Trip" : "→ One Way"}</span>
           </div>
 
-          {/* iframe */}
-          <div style={{ borderRadius: 16, overflow: "hidden", border: "2px solid #e2e8f0" }}>
-            <div style={{ background: "#174698", padding: "10px 16px" }}>
-              <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
-                {ENGINES.find((e) => e.id === engine)?.icon} {ENGINES.find((e) => e.id === engine)?.label} — резултати
-              </span>
-              <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, marginLeft: 16 }}>Ако не се прикажи, отвори во нов таб →</span>
+          {/* Launch buttons - iframes blocked by booking sites */}
+          <div style={{ background: "#fff", borderRadius: 16, border: "2px solid #e2e8f0", padding: 28 }}>
+            <p style={{ fontSize: 14, color: "#64748b", marginBottom: 20, textAlign: "center" }}>
+              ✅ Search ready — click a platform below to view results in a new tab:
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: 14 }}>
+              {ENGINES.map((eng) => (
+                <a
+                  key={eng.id}
+                  href={buildUrl(eng.id)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 20px", borderRadius: 14, background: eng.color + "10", border: "2px solid " + eng.color + "40", textDecoration: "none", cursor: "pointer" }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = eng.color + "20"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = eng.color + "10"; }}
+                >
+                  <span style={{ fontSize: 28 }}>{eng.icon}</span>
+                  <div>
+                    <div style={{ fontWeight: 800, color: eng.color, fontSize: 16 }}>{eng.label}</div>
+                    <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 2 }}>Open results ↗</div>
+                  </div>
+                </a>
+              ))}
             </div>
-            <iframe
-              key={engine + currentUrl}
-              src={currentUrl}
-              width="100%"
-              height="700"
-              style={{ display: "block", border: "none" }}
-              title="Летови"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"
-            />
           </div>
         </div>
       )}

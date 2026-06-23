@@ -75,9 +75,9 @@ export default function LoginPage() {
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(160deg, #0a1f40 0%, #0f2d5e 50%, #174698 100%)", padding: "1rem" }}>
       <div style={{ width: "100%", maxWidth: 420, background: "#fff", borderRadius: 20, boxShadow: "0 24px 64px rgba(0,0,0,0.3)", overflow: "hidden" }}>
         <div style={{ height: 4, background: "linear-gradient(90deg, #C9A84C, #FF1D1D, #C9A84C)" }} />
-        <div style={{ padding: "2.5rem 2rem 2rem" }}>
+        <div style={{ padding: "1.5rem 2rem 2rem" }}>
           {/* Brand */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "2rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "1rem" }}>
             <Image src={BRAND_LOGO.src} alt={BRAND_LOGO.altEn} width={260} height={260} style={{ width: 260, height: 260, objectFit: "contain" }} />
             <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "1.75rem", fontWeight: 900, fontStyle: "italic", color: "#FF1D1D", lineHeight: 1.1, marginTop: 8 }}>
               {SITE.companyName}

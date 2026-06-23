@@ -35,17 +35,17 @@ export default function CrmLoginPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0f2d5e 0%, #174698 100%)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-      <div style={{ background: "#fff", borderRadius: 20, padding: "40px 36px", width: "100%", maxWidth: 420, boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
+      <div style={{ background: "#fff", borderRadius: 20, padding: "24px 36px", width: "100%", maxWidth: 420, boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
         {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: 28 }}>
-          <Image src={BRAND_LOGO.src} alt="Amor Travel" width={200} height={200} style={{ width: 200, height: 200, objectFit: "contain", margin: "0 auto" }} />
+          <Image src={BRAND_LOGO.src} alt="Amor Travel" width={240} height={240} style={{ width: 240, height: 240, objectFit: "contain", margin: "0 auto" }} />
           <div style={{ fontFamily: "Georgia, serif", fontSize: "1.5rem", fontWeight: 900, fontStyle: "italic", color: "#FF1D1D", marginTop: 8 }}>
             {SITE.companyName}
           </div>
           <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>CRM — Agent Portal</div>
         </div>
 
-        <div style={{ height: 3, background: "linear-gradient(90deg,#174698,#FF1D1D,#C9A84C)", borderRadius: 4, marginBottom: 28 }} />
+        <div style={{ height: 3, background: "linear-gradient(90deg,#174698,#FF1D1D,#C9A84C)", borderRadius: 4, marginBottom: 20 }} />
 
         {error && (
           <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 10, padding: "10px 14px", color: "#dc2626", fontSize: 14, marginBottom: 16 }}>
