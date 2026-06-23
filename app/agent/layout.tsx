@@ -25,4 +25,6 @@ export default function AgentLayout({
     >
       {children}
       <ScrollButtons />
- 
+    </StaffShell>
+  );
+}

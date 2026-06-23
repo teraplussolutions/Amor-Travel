@@ -15,4 +15,10 @@ export default function AdminLayout({
       title="Amor Travel Admin"
       subtitle="Website content for amortravel.net"
       navItems={navItems}
-      acc
+      accent="admin"
+    >
+      {children}
+      <ScrollButtons />
+    </StaffShell>
+  );
+}
