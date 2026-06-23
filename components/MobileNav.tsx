@@ -15,7 +15,7 @@ export function MobileNav({
   onClose,
   title,
   children,
-  side = "left",
+  side = "right",
 }: MobileNavProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -43,24 +43,24 @@ export function MobileNav({
     <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
       <button
         type="button"
-        className="absolute inset-0 bg-amor-text/30"
+        className="absolute inset-0 bg-amor-text/25 backdrop-blur-[2px]"
         aria-label="Close menu"
         onClick={onClose}
       />
       <div
         ref={panelRef}
-        className={`absolute top-0 ${slideClass} flex h-full w-[min(100%,20rem)] flex-col border-amor-soft bg-amor-white shadow-xl ${side === "left" ? "border-r" : "border-l"}`}
+        className={`mobile-nav-panel ${slideClass}`}
       >
-        <div className="flex min-h-14 items-center justify-between border-b border-amor-soft px-4">
+        <div className="mobile-nav-panel__header">
           {title ? (
-            <p className="text-lg font-semibold text-amor-blue">{title}</p>
+            <p className="text-xl font-bold text-amor-red">{title}</p>
           ) : (
             <span />
           )}
           <button
             type="button"
             onClick={onClose}
-            className="flex min-h-11 min-w-11 items-center justify-center rounded-lg text-amor-text hover:bg-amor-soft"
+            className="mobile-nav-panel__close"
             aria-label="Close menu"
           >
             <svg
@@ -76,7 +76,7 @@ export function MobileNav({
             </svg>
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto p-4">{children}</div>
+        <div className="mobile-nav-panel__body">{children}</div>
       </div>
     </div>
   );
@@ -92,7 +92,7 @@ export function MenuButton({ onClick, label = "Open menu" }: MenuButtonProps) {
     <button
       type="button"
       onClick={onClick}
-      className="flex min-h-11 min-w-11 items-center justify-center rounded-lg text-amor-blue hover:bg-amor-soft lg:hidden"
+      className="header-menu-btn lg:hidden"
       aria-label={label}
     >
       <svg

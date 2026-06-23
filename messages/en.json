@@ -36,7 +36,12 @@
     "tripsCatalogTitle": "Trips",
     "tripsCatalogIntro": "Organised trips and excursions from Amor Travel. Prices shown in EUR and MKD.",
     "tripsCatalogEmpty": "The catalog is being prepared. Please check back soon.",
-    "tripDetails": "View details"
+    "tripDetails": "View details",
+    "followUs": "Follow us",
+    "footerTagline": "Organised trips, excursions, and custom travel — with care in every detail.",
+    "footerRights": "All rights reserved.",
+    "exchangeRateLabel": "Rate",
+    "exchangeRateHint": "NBRM middle rate — EUR / MKD"
   },
   "agent": {
     "dashboard": "Dashboard",

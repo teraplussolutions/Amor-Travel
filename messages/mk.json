@@ -36,7 +36,12 @@
     "tripsCatalogTitle": "Патувања",
     "tripsCatalogIntro": "Организирани патувања и екскурзии од Amor Travel. Цените се прикажани во EUR и MKD.",
     "tripsCatalogEmpty": "Каталогот се подготвува. Проверете повторно наскоро.",
-    "tripDetails": "Повеќе детали"
+    "tripDetails": "Повеќе детали",
+    "followUs": "Следете нè",
+    "footerTagline": "Организирани патувања, екскурзии и индивидуални понуди — со внимание кон секој детал.",
+    "footerRights": "Сите права задржани.",
+    "exchangeRateLabel": "Курс",
+    "exchangeRateHint": "Среден курс на НБРМ — EUR / MKD"
   },
   "agent": {
     "dashboard": "Контролна табла",

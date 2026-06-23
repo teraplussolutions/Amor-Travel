@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Amor Travel CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C96A;
+  --navy:#1A2B4A;--navy-2:#243659;
+  --white:#fff;
+  --g50:#F8F9FA;--g100:#F1F3F5;--g200:#E9ECEF;
+  --g400:#868E96;--g600:#495057;--g800:#212529;
+  --green:#2D6A4F;--green-bg:#D8F3DC;
+  --red:#C0392B;--red-bg:#FDECEA;
+  --blue:#1565C0;--blue-bg:#E3F2FD;
+  --radius:8px;--shadow:0 2px 12px rgba(0,0,0,.09);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.14);
+}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;font-size:15px;color:var(--g800);background:var(--g50);}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ── LAYOUT ── */
+.app{display:flex;height:100vh;overflow:hidden;}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;min-width:240px;
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.sidebar-logo{
+  padding:20px 20px 16px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.sidebar-logo .icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;color:var(--navy);flex-shrink:0;
+}
+.sidebar-logo .name{font-size:15px;font-weight:700;color:#fff;line-height:1.2;}
+.sidebar-logo .sub{font-size:10px;color:var(--gold);letter-spacing:1px;}
+.nav-section{padding:16px 12px 4px;font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 16px;margin:1px 8px;border-radius:var(--radius);
+  color:rgba(255,255,255,.7);font-size:14px;font-weight:500;
+  cursor:pointer;transition:.2s;
+}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff;}
+.nav-item.active{background:rgba(201,168,76,.18);color:var(--gold);}
+.nav-item i{width:18px;text-align:center;font-size:14px;}
+.sidebar-footer{
+  margin-top:auto;padding:16px;border-top:1px solid rgba(255,255,255,.08);
+}
+.sidebar-footer a{
+  display:flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,.5);font-size:13px;
+  padding:8px 10px;border-radius:var(--radius);
+  transition:.2s;
+}
+.sidebar-footer a:hover{background:rgba(255,255,255,.07);color:#fff;}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{
+  background:#fff;border-bottom:1px solid var(--g200);
+  padding:0 28px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-shrink:0;
+}
+.topbar-title{font-size:18px;font-weight:700;color:var(--navy);}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--g50);border:1px solid var(--g200);border-radius:var(--radius);
+  padding:7px 12px;min-width:220px;
+}
+.search-box i{color:var(--g400);font-size:13px;}
+.search-box input{background:none;border:none;outline:none;font-size:14px;font-family:inherit;width:100%;color:var(--g800);}
+.avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--navy);cursor:pointer;
+}
+
+.content{flex:1;overflow-y:auto;padding:28px;}
+
+/* VIEWS */
+.view{display:none;}
+.view.active{display:block;}
+
+/* ── DASHBOARD ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px;}
+.kpi-card{
+  background:#fff;border-radius:12px;padding:20px;
+  box-shadow:var(--shadow);border:1px solid var(--g200);
+}
+.kpi-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.kpi-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.kpi-change{font-size:12px;font-weight:600;padding:3px 8px;border-radius:20px;}
+.kpi-change.up{background:var(--green-bg);color:var(--green);}
+.kpi-change.down{background:var(--red-bg);color:var(--red);}
+.kpi-value{font-size:26px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.kpi-label{font-size:13px;color:var(--g400);}
+
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.dash-card{background:#fff;border-radius:12px;padding:20px;box-shadow:var(--shadow);border:1px solid var(--g200);}
+.dash-card h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+
+/* ── TABLE ── */
+.table-wrap{background:#fff;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--g200);overflow:hidden;}
+.table-toolbar{
+  padding:16px 20px;border-bottom:1px solid var(--g100);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.table-toolbar-left{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.table-toolbar-right{display:flex;gap:8px;}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  background:var(--g50);font-size:12px;font-weight:600;
+  color:var(--g400);text-transform:uppercase;letter-spacing:.5px;
+  padding:11px 16px;text-align:left;border-bottom:1px solid var(--g200);
+  white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid var(--g100);transition:.15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--g50);}
+td{padding:12px 16px;font-size:14px;vertical-align:middle;}
+.no-data{text-align:center;padding:40px;color:var(--g400);}
+.no-data i{font-size:36px;margin-bottom:12px;display:block;}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
+.badge-new{background:#E3F2FD;color:#1565C0;}
+.badge-active{background:var(--green-bg);color:var(--green);}
+.badge-pending{background:#FFF9C4;color:#827717;}
+.badge-confirmed{background:var(--green-bg);color:var(--green);}
+.badge-cancelled{background:var(--red-bg);color:var(--red);}
+.badge-sent{background:#E8EAF6;color:#3949AB;}
+.badge-paid{background:var(--green-bg);color:var(--green);}
+.badge-overdue{background:var(--red-bg);color:var(--red);}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius);font-size:14px;font-weight:600;border:none;transition:.2s;cursor:pointer;}
+.btn-primary{background:var(--navy);color:#fff;}
+.btn-primary:hover{background:var(--navy-2);}
+.btn-gold{background:var(--gold);color:var(--navy);}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-outline{background:#fff;color:var(--navy);border:1.5px solid var(--g200);}
+.btn-outline:hover{border-color:var(--navy);background:var(--g50);}
+.btn-sm{padding:5px 12px;font-size:13px;}
+.btn-icon{width:30px;height:30px;padding:0;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-size:13px;}
+.btn-danger{background:var(--red-bg);color:var(--red);border:none;}
+.btn-danger:hover{background:var(--red);color:#fff;}
+
+/* FILTER ROW */
+.filter-input{
+  background:var(--g50);border:1px solid var(--g200);border-radius:var(--radius);
+  padding:7px 12px;font-size:14px;font-family:inherit;outline:none;transition:.2s;
+}
+.filter-input:focus{border-color:var(--gold);background:#fff;}
+select.filter-input{min-width:140px;}
+
+/* ── MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.5);z-index:2000;
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:#fff;border-radius:14px;
+  width:100%;max-width:600px;max-height:90vh;
+  display:flex;flex-direction:column;
+  box-shadow:var(--shadow-lg);
+}
+.modal-header{
+  padding:20px 24px;border-bottom:1px solid var(--g200);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;
+}
+.modal-header h3{font-size:17px;font-weight:700;color:var(--navy);}
+.modal-close{background:none;border:none;font-size:18px;color:var(--g400);cursor:pointer;padding:4px;}
+.modal-close:hover{color:var(--g800);}
+.modal-body{padding:24px;overflow-y:auto;flex:1;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--g200);display:flex;justify-content:flex-end;gap:10px;flex-shrink:0;}
+
+/* FORM */
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--g600);margin-bottom:5px;}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:9px 12px;border:1px solid var(--g200);border-radius:var(--radius);
+  font-size:14px;font-family:inherit;outline:none;transition:.2s;background:var(--g50);
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(201,168,76,.12);
+}
+.form-group textarea{resize:vertical;min-height:80px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* PIPELINE */
+.pipeline-board{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;}
+.pipeline-col{
+  min-width:220px;max-width:220px;
+  background:var(--g100);border-radius:10px;padding:12px;
+}
+.pipeline-col-header{
+  font-size:13px;font-weight:700;color:var(--navy);
+  margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;
+}
+.pipeline-count{
+  background:var(--navy);color:#fff;
+  font-size:11px;padding:2px 7px;border-radius:10px;
+}
+.pipeline-card{
+  background:#fff;border-radius:8px;padding:12px;
+  margin-bottom:8px;box-shadow:var(--shadow);border:1px solid var(--g200);
+  cursor:pointer;transition:.2s;
+}
+.pipeline-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+.pipeline-card-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.pipeline-card-dest{font-size:12px;color:var(--g400);}
+.pipeline-card-price{font-size:14px;font-weight:700;color:var(--gold);margin-top:6px;}
+
+/* FLIGHT SEARCH */
+.flight-providers{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px;}
+.provider-card{
+  background:#fff;border-radius:12px;padding:20px;text-align:center;
+  box-shadow:var(--shadow);border:1px solid var(--g200);transition:.2s;
+}
+.provider-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+.provider-icon{font-size:36px;margin-bottom:10px;}
+.provider-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.provider-desc{font-size:13px;color:var(--g600);margin-bottom:14px;}
+
+/* QUOTE ITEMS */
+.quote-items{border:1px solid var(--g200);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.quote-item-row{display:grid;grid-template-columns:3fr 1fr 1fr auto;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--g100);}
+.quote-item-row:last-child{border-bottom:none;}
+.quote-item-row.header{background:var(--g50);font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;}
+.quote-item-input{width:100%;padding:7px 10px;border:1px solid var(--g200);border-radius:6px;font-family:inherit;font-size:14px;outline:none;}
+.quote-item-input:focus{border-color:var(--gold);}
+.quote-total{text-align:right;padding:10px 12px;font-size:15px;font-weight:700;color:var(--navy);background:var(--g50);border-top:1px solid var(--g200);}
+
+/* PRINT */
+@media print{
+  .sidebar,.topbar,.table-toolbar,.btn,.modal-overlay{display:none!important;}
+  .content{padding:0;}
+  .main{overflow:visible;}
+  .app{display:block;}
+}
+
+/* SCROLL */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--g200);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--g400);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{width:200px;min-width:200px;}
+  .dash-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media(max-width:580px){
+  .sidebar{display:none;}
+  .content{padding:16px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="icon">AT</div>
+    <div><div class="name">Amor Travel</div><div class="sub">CRM</div></div>
+  </div>
+
+  <div class="nav-section">Main</div>
+  <div class="nav-item active" onclick="nav('dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
+  <div class="nav-item" onclick="nav('pipeline')"><i class="fas fa-filter"></i> Pipeline</div>
+  <div class="nav-item" onclick="nav('leads')"><i class="fas fa-bell"></i> Leads <span id="lead-badge" style="background:var(--gold);color:var(--navy);font-size:10px;padding:1px 7px;border-radius:10px;margin-left:auto;font-weight:700;display:none;"></span></div>
+
+  <div class="nav-section">Clients & Sales</div>
+  <div class="nav-item" onclick="nav('clients')"><i class="fas fa-users"></i> Clients</div>
+  <div class="nav-item" onclick="nav('quotes')"><i class="fas fa-file-alt"></i> Quotes</div>
+  <div class="nav-item" onclick="nav('invoices')"><i class="fas fa-file-invoice-dollar"></i> Invoices</div>
+
+  <div class="nav-section">Operations</div>
+  <div class="nav-item" onclick="nav('sales')"><i class="fas fa-cash-register"></i> Sales</div>
+  <div class="nav-item" onclick="nav('vouchers')"><i class="fas fa-gift"></i> Gift Vouchers</div>
+  <div class="nav-item" onclick="nav('flights')"><i class="fas fa-plane"></i> Flights</div>
+  <div class="nav-item" onclick="nav('expenses')"><i class="fas fa-receipt"></i> Expenses</div>
+
+  <div class="sidebar-footer">
+    <a href="index.html"><i class="fas fa-globe"></i> Website</a>
+    <a href="#" onclick="exportAll()"><i class="fas fa-download"></i> Export All</a>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+  <div class="topbar">
+    <span class="topbar-title" id="topbar-title">Dashboard</span>
+    <div class="topbar-right">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="global-search" placeholder="Search clients, quotes…" oninput="globalSearch(this.value)"/>
+      </div>
+      <div class="avatar" title="Admin">A</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div class="view active" id="view-dashboard">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h3>Recent Leads <button class="btn btn-sm btn-gold" onclick="nav('leads')">View all</button></h3>
+          <div id="dash-leads"></div>
+        </div>
+        <div class="dash-card">
+          <h3>Recent Quotes <button class="btn btn-sm btn-outline" onclick="nav('quotes')">View all</button></h3>
+          <div id="dash-quotes"></div>
+        </div>
+        <div class="dash-card">
+          <h3>Pipeline Overview</h3>
+          <div id="dash-pipeline"></div>
+        </div>
+        <div class="dash-card">
+          <h3>Top Destinations</h3>
+          <div id="dash-destinations"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PIPELINE ══ -->
+    <div class="view" id="view-pipeline">
+      <div style="margin-bottom:16px;display:flex;justify-content:flex-end;gap:8px;">
+        <button class="btn btn-gold" onclick="openModal('modal-quote');document.getElementById('qmodal-title').textContent='New Deal'"><i class="fas fa-plus"></i> Add Deal</button>
+      </div>
+      <div class="pipeline-board" id="pipeline-board"></div>
+    </div>
+
+    <!-- ══ LEADS ══ -->
+    <div class="view" id="view-leads">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search leads…" oninput="renderLeads(this.value)" id="lead-search"/>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="clearLeads()"><i class="fas fa-trash"></i> Clear all</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>Destination</th><th>Message</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="leads-tbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══ CLIENTS ══ -->
+    <div class="view" id="view-clients">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search clients…" oninput="renderClients(this.value)"/>
+            <select class="filter-input" onchange="renderClients(document.querySelector('#view-clients .filter-input').value, this.value)">
+              <option value="">All Status</option>
+              <option>Active</option><option>Inactive</option><option>VIP</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV('clients')"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn btn-gold btn-sm" onclick="openModal('modal-client')"><i class="fas fa-plus"></i> New Client</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>#</th><th>Name</th><th>Phone</th><th>Email</th><th>City</th><th>Status</th><th>Bookings</th><th>Total Spent</th><th>Actions</th>
+        </tr></thead><tbody id="clients-tbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══ QUOTES ══ -->
+    <div class="view" id="view-quotes">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search quotes…" oninput="renderQuotes(this.value)"/>
+            <select class="filter-input" onchange="renderQuotes('',this.value)">
+              <option value="">All Status</option>
+              <option>Draft</option><option>Sent</option><option>Confirmed</option><option>Cancelled</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV('quotes')"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn btn-gold btn-sm" onclick="openModal('modal-quote')"><i class="fas fa-plus"></i> New Quote</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>Quote #</th><th>Client</th><th>Destination</th><th>Dates</th><th>EUR</th><th>MKD</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="quotes-tbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══ INVOICES ══ -->
+    <div class="view" id="view-invoices">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search invoices…" oninput="renderInvoices(this.value)"/>
+            <select class="filter-input" onchange="renderInvoices('',this.value)">
+              <option value="">All Status</option>
+              <option>Sent</option><option>Paid</option><option>Overdue</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV('invoices')"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn btn-gold btn-sm" onclick="openModal('modal-invoice')"><i class="fas fa-plus"></i> New Invoice</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>Invoice #</th><th>Client</th><th>Description</th><th>Issue Date</th><th>Due Date</th><th>EUR</th><th>MKD</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="invoices-tbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══ SALES ══ -->
+    <div class="view" id="view-sales">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search sales…" oninput="renderSales(this.value)"/>
+            <select class="filter-input" onchange="renderSales('',this.value)">
+              <option value="">All Status</option>
+              <option>Pending</option><option>Completed</option><option>Cancelled</option><option>Refunded</option>
+            </select>
+            <select class="filter-input" onchange="renderSales('','',this.value)">
+              <option value="">All Payment</option>
+              <option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Custom</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV('sales')"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn btn-gold btn-sm" onclick="openSaleModal()"><i class="fas fa-plus"></i> New Sale</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>#</th><th>Date</th><th>Client</th><th>Destination</th><th>Payment</th>
+          <th>Sell (EUR)</th><th>Cost (EUR)</th><th>Profit (EUR)</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="sales-tbody"></tbody></table>
+        <div style="padding:14px 16px;background:var(--g50);border-top:1px solid var(--g200);display:flex;gap:24px;justify-content:flex-end;flex-wrap:wrap;">
+          <span style="font-size:14px;color:var(--g600);">Total Revenue: <strong id="s-total-rev" style="color:var(--navy);">€ 0</strong></span>
+          <span style="font-size:14px;color:var(--g600);">Total Cost: <strong id="s-total-cost" style="color:var(--red);">€ 0</strong></span>
+          <span style="font-size:14px;color:var(--g600);">Net Profit: <strong id="s-total-profit" style="color:var(--green);">€ 0</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ VOUCHERS ══ -->
+    <div class="view" id="view-vouchers">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search vouchers…" oninput="renderVouchers(this.value)"/>
+            <select class="filter-input" onchange="renderVouchers('',this.value)">
+              <option value="">All Status</option>
+              <option>Active</option><option>Used</option><option>Expired</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-gold btn-sm" onclick="openModal('modal-voucher')"><i class="fas fa-plus"></i> New Voucher</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>Code</th><th>Type</th><th>Value</th><th>Client</th><th>Expires</th><th>Uses</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="vouchers-tbody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ══ FLIGHTS ══ -->
+    <div class="view" id="view-flights">
+      <h3 style="color:var(--navy);margin-bottom:8px;font-size:18px;">✈ Flight Search — Free Tools</h3>
+      <p style="color:var(--g600);margin-bottom:24px;font-size:14px;">Open any provider below to search flights. Copy the best price into a Quote for your client.</p>
+
+      <div class="flight-providers">
+        <div class="provider-card" style="border:2px solid var(--gold);">
+          <div class="provider-icon">✈️</div>
+          <div class="provider-name" style="color:var(--gold);">Aviasales / Travelpayouts</div>
+          <div class="provider-desc">Primary — free affiliate search, earn commissions</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+            <a class="btn btn-gold btn-sm" href="https://www.aviasales.com" target="_blank"><i class="fas fa-external-link-alt"></i> Aviasales</a>
+            <a class="btn btn-outline btn-sm" href="https://travelpayouts.com" target="_blank">Travelpayouts</a>
+          </div>
+        </div>
+        <div class="provider-card">
+          <div class="provider-icon">🔍</div>
+          <div class="provider-name">Google Flights</div>
+          <div class="provider-desc">Best for calendar view & cheapest dates</div>
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/travel/flights" target="_blank"><i class="fas fa-external-link-alt"></i> Open</a>
+        </div>
+        <div class="provider-card">
+          <div class="provider-icon">🦁</div>
+          <div class="provider-name">Skyscanner</div>
+          <div class="provider-desc">Compare all airlines, whole month view</div>
+          <a class="btn btn-primary btn-sm" href="https://www.skyscanner.net" target="_blank"><i class="fas fa-external-link-alt"></i> Open</a>
+        </div>
+        <div class="provider-card">
+          <div class="provider-icon">🐙</div>
+          <div class="provider-name">Kiwi.com</div>
+          <div class="provider-desc">Multi-city & combination tickets</div>
+          <a class="btn btn-primary btn-sm" href="https://www.kiwi.com" target="_blank"><i class="fas fa-external-link-alt"></i> Open</a>
+        </div>
+        <div class="provider-card">
+          <div class="provider-icon">🧳</div>
+          <div class="provider-name">Kayak</div>
+          <div class="provider-desc">Price alerts & flexible dates</div>
+          <a class="btn btn-primary btn-sm" href="https://www.kayak.com/flights" target="_blank"><i class="fas fa-external-link-alt"></i> Open</a>
+        </div>
+        <div class="provider-card">
+          <div class="provider-icon">🌍</div>
+          <div class="provider-name">Momondo</div>
+          <div class="provider-desc">Hidden fares & cheap routes</div>
+          <a class="btn btn-primary btn-sm" href="https://www.momondo.com" target="_blank"><i class="fas fa-external-link-alt"></i> Open</a>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--g200);">
+        <h4 style="color:var(--navy);margin-bottom:16px;font-size:15px;"><i class="fas fa-clipboard-list" style="color:var(--gold);margin-right:8px;"></i>Save Flight Prices for a Quote</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label>From</label>
+            <input type="text" id="fl-from" placeholder="e.g. Skopje (SKP)"/>
+          </div>
+          <div class="form-group">
+            <label>To</label>
+            <input type="text" id="fl-to" placeholder="e.g. Athens (ATH)"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Departure</label>
+            <input type="date" id="fl-dep"/>
+          </div>
+          <div class="form-group">
+            <label>Return</label>
+            <input type="date" id="fl-ret"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Airline / Provider</label>
+            <input type="text" id="fl-airline" placeholder="e.g. Wizz Air"/>
+          </div>
+          <div class="form-group">
+            <label>Price per person (EUR)</label>
+            <input type="number" id="fl-price" placeholder="e.g. 89"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Passengers</label>
+            <input type="number" id="fl-pax" value="2" min="1"/>
+          </div>
+          <div class="form-group">
+            <label>Notes</label>
+            <input type="text" id="fl-notes" placeholder="Baggage included, etc."/>
+          </div>
+        </div>
+        <button class="btn btn-gold" onclick="saveFlightToQuote()"><i class="fas fa-save"></i> Save & Create Quote</button>
+      </div>
+    </div>
+
+    <!-- ══ EXPENSES ══ -->
+    <div class="view" id="view-expenses">
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar-left">
+            <input class="filter-input" placeholder="Search expenses…" oninput="renderExpenses(this.value)"/>
+            <select class="filter-input" id="exp-cat-filter" onchange="renderExpenses('')">
+              <option value="">All Categories</option>
+              <option>Flights</option><option>Hotels</option><option>Transport</option>
+              <option>Marketing</option><option>Office</option><option>Other</option>
+            </select>
+          </div>
+          <div class="table-toolbar-right">
+            <button class="btn btn-outline btn-sm" onclick="exportCSV('expenses')"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn btn-gold btn-sm" onclick="openModal('modal-expense')"><i class="fas fa-plus"></i> Add Expense</button>
+          </div>
+        </div>
+        <table><thead><tr>
+          <th>Date</th><th>Description</th><th>Category</th><th>EUR</th><th>MKD</th><th>Client/Tour</th><th>Actions</th>
+        </tr></thead><tbody id="expenses-tbody"></tbody></table>
+        <div style="padding:14px 16px;background:var(--g50);border-top:1px solid var(--g200);display:flex;justify-content:flex-end;gap:24px;">
+          <span style="font-size:14px;color:var(--g600);">Total EUR: <strong id="exp-total-eur" style="color:var(--navy);">0</strong></span>
+          <span style="font-size:14px;color:var(--g600);">Total MKD: <strong id="exp-total-mkd" style="color:var(--navy);">0</strong></span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══ MODALS ══ -->
+
+<!-- CLIENT MODAL -->
+<div class="modal-overlay" id="modal-client">
+<div class="modal">
+  <div class="modal-header">
+    <h3 id="cmodal-title">New Client</h3>
+    <button class="modal-close" onclick="closeModal('modal-client')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="c-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>First Name *</label><input id="c-fname" required/></div>
+      <div class="form-group"><label>Last Name *</label><input id="c-lname" required/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Phone</label><input id="c-phone" type="tel"/></div>
+      <div class="form-group"><label>Email</label><input id="c-email" type="email"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>City</label><input id="c-city"/></div>
+      <div class="form-group"><label>Status</label>
+        <select id="c-status"><option>Active</option><option>Inactive</option><option>VIP</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Notes</label><textarea id="c-notes"></textarea></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-client')">Cancel</button>
+    <button class="btn btn-gold" onclick="saveClient()"><i class="fas fa-save"></i> Save</button>
+  </div>
+</div></div>
+
+<!-- QUOTE MODAL -->
+<div class="modal-overlay" id="modal-quote">
+<div class="modal" style="max-width:700px;">
+  <div class="modal-header">
+    <h3 id="qmodal-title">New Quote</h3>
+    <button class="modal-close" onclick="closeModal('modal-quote')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="q-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Client *</label>
+        <select id="q-client"><option value="">— Select Client —</option></select>
+      </div>
+      <div class="form-group"><label>Destination *</label><input id="q-dest" placeholder="e.g. Crete, Greece"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Departure Date</label><input type="date" id="q-dep"/></div>
+      <div class="form-group"><label>Return Date</label><input type="date" id="q-ret"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Travelers</label><input type="number" id="q-pax" value="2" min="1"/></div>
+      <div class="form-group"><label>Status</label>
+        <select id="q-status"><option>Draft</option><option>Sent</option><option>Confirmed</option><option>Cancelled</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Items</label>
+      <div class="quote-items">
+        <div class="quote-item-row header"><span>Description</span><span>Qty</span><span>EUR/unit</span><span></span></div>
+        <div id="quote-items-list"></div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="addQuoteItem()"><i class="fas fa-plus"></i> Add Item</button>
+    </div>
+    <div class="quote-total">Total: <span id="q-total-eur">€ 0.00</span> &nbsp;≈&nbsp; <span id="q-total-mkd">0 МКД</span></div>
+    <div class="form-group" style="margin-top:14px;"><label>Notes / Terms</label><textarea id="q-notes"></textarea></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-quote')">Cancel</button>
+    <button class="btn btn-outline" onclick="printQuote()"><i class="fas fa-print"></i> Print / PDF</button>
+    <button class="btn btn-gold" onclick="saveQuote()"><i class="fas fa-save"></i> Save</button>
+  </div>
+</div></div>
+
+<!-- INVOICE MODAL -->
+<div class="modal-overlay" id="modal-invoice">
+<div class="modal">
+  <div class="modal-header">
+    <h3 id="imodal-title">New Invoice</h3>
+    <button class="modal-close" onclick="closeModal('modal-invoice')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="i-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Client *</label>
+        <select id="i-client"><option value="">— Select —</option></select>
+      </div>
+      <div class="form-group"><label>Quote #</label>
+        <select id="i-quote"><option value="">— Link Quote (optional) —</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Description *</label><input id="i-desc" placeholder="e.g. Greece Tour Package — 7 nights"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Amount (EUR) *</label><input type="number" id="i-eur" oninput="updateInvMKD()"/></div>
+      <div class="form-group"><label>Amount (MKD)</label><input type="number" id="i-mkd" readonly style="background:var(--g100);"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Issue Date</label><input type="date" id="i-issue"/></div>
+      <div class="form-group"><label>Due Date</label><input type="date" id="i-due"/></div>
+    </div>
+    <div class="form-group"><label>Status</label>
+      <select id="i-status"><option>Sent</option><option>Paid</option><option>Overdue</option></select>
+    </div>
+    <div class="form-group"><label>Notes</label><textarea id="i-notes"></textarea></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-invoice')">Cancel</button>
+    <button class="btn btn-outline" onclick="printInvoice()"><i class="fas fa-print"></i> Print / PDF</button>
+    <button class="btn btn-gold" onclick="saveInvoice()"><i class="fas fa-save"></i> Save</button>
+  </div>
+</div></div>
+
+<!-- SALE MODAL -->
+<div class="modal-overlay" id="modal-sale">
+<div class="modal" style="max-width:700px;">
+  <div class="modal-header">
+    <h3 id="smodal-title">New Sale</h3>
+    <button class="modal-close" onclick="closeModal('modal-sale')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="s-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Client *</label>
+        <select id="s-client"><option value="">— Select Client —</option></select>
+      </div>
+      <div class="form-group"><label>Date</label><input type="date" id="s-date"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Destination</label><input id="s-dest" placeholder="e.g. Crete, Greece"/></div>
+      <div class="form-group"><label>Payment Type</label>
+        <select id="s-pay"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Custom</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Departure</label><input type="date" id="s-dep"/></div>
+      <div class="form-group"><label>Return</label><input type="date" id="s-ret"/></div>
+    </div>
+    <div class="form-group"><label>Sale Items</label>
+      <div class="quote-items">
+        <div class="quote-item-row header" style="grid-template-columns:3fr 1fr 1fr 1fr auto;">
+          <span>Description</span><span>Qty</span><span>Sell (EUR)</span><span>Cost (EUR)</span><span></span>
+        </div>
+        <div id="sale-items-list"></div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="addSaleItem()"><i class="fas fa-plus"></i> Add Item</button>
+    </div>
+    <div class="quote-total" style="display:flex;justify-content:flex-end;gap:24px;">
+      <span>Revenue: <strong id="s-total-rev-live" style="color:var(--navy);">€ 0</strong></span>
+      <span>Cost: <strong id="s-total-cost-live" style="color:var(--red);">€ 0</strong></span>
+      <span>Profit: <strong id="s-total-profit-live" style="color:var(--green);">€ 0</strong></span>
+    </div>
+    <div class="form-row" style="margin-top:14px;">
+      <div class="form-group"><label>Status</label>
+        <select id="s-status"><option>Completed</option><option>Pending</option><option>Cancelled</option><option>Refunded</option></select>
+      </div>
+      <div class="form-group"><label>Voucher Code (optional)</label>
+        <input id="s-voucher" placeholder="Apply a voucher code"/>
+      </div>
+    </div>
+    <div class="form-group"><label>Notes</label><textarea id="s-notes"></textarea></div>
+    <div style="background:var(--g50);border-radius:8px;padding:12px;margin-top:8px;">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;font-weight:600;">
+        <input type="checkbox" id="s-auto-invoice" checked style="width:16px;height:16px;"/> Auto-create invoice on save
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-sale')">Cancel</button>
+    <button class="btn btn-gold" onclick="saveSale()"><i class="fas fa-save"></i> Save Sale</button>
+  </div>
+</div></div>
+
+<!-- VOUCHER MODAL -->
+<div class="modal-overlay" id="modal-voucher">
+<div class="modal">
+  <div class="modal-header">
+    <h3>New Gift Voucher</h3>
+    <button class="modal-close" onclick="closeModal('modal-voucher')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="v-id"/>
+    <div class="form-row">
+      <div class="form-group"><label>Voucher Code</label>
+        <div style="display:flex;gap:8px;">
+          <input id="v-code" placeholder="e.g. AMOR50"/>
+          <button class="btn btn-outline btn-sm" onclick="genCode()" style="white-space:nowrap;"><i class="fas fa-magic"></i> Generate</button>
+        </div>
+      </div>
+      <div class="form-group"><label>Type</label>
+        <select id="v-type" onchange="updateVoucherTypeLabel()">
+          <option value="percent">% Discount</option>
+          <option value="fixed">Fixed Amount (EUR)</option>
+          <option value="free">Free Trip / Tour</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label id="v-value-label">Discount (%)</label>
+        <input type="number" id="v-value" placeholder="e.g. 10"/>
+      </div>
+      <div class="form-group"><label>Client (optional — leave blank for generic)</label>
+        <select id="v-client"><option value="">— Any Client —</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Expiry Date</label><input type="date" id="v-expiry"/></div>
+      <div class="form-group"><label>Usage Limit</label>
+        <select id="v-uses"><option value="1">Single Use</option><option value="0">Multi-use (unlimited)</option><option value="5">5 uses</option><option value="10">10 uses</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Description / Terms</label>
+      <input id="v-desc" placeholder="e.g. 10% off any summer tour 2025"/>
+    </div>
+    <div style="margin-top:4px;">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;">
+        <input type="checkbox" id="v-lang-mk" checked style="width:15px;height:15px;"/> Print in Македонски
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;margin-top:6px;">
+        <input type="checkbox" id="v-lang-en" checked style="width:15px;height:15px;"/> Print in English
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-voucher')">Cancel</button>
+    <button class="btn btn-outline" onclick="printVoucher()"><i class="fas fa-print"></i> Print PDF</button>
+    <button class="btn btn-gold" onclick="saveVoucher()"><i class="fas fa-save"></i> Save</button>
+  </div>
+</div></div>
+
+<!-- EXPENSE MODAL -->
+<div class="modal-overlay" id="modal-expense">
+<div class="modal">
+  <div class="modal-header">
+    <h3>Add Expense</h3>
+    <button class="modal-close" onclick="closeModal('modal-expense')">✕</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" id="ex-id"/>
+    <div class="form-group"><label>Description *</label><input id="ex-desc"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Category</label>
+        <select id="ex-cat">
+          <option>Flights</option><option>Hotels</option><option>Transport</option>
+          <option>Marketing</option><option>Office</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Date</label><input type="date" id="ex-date"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Amount (EUR)</label><input type="number" id="ex-eur" oninput="updateExpMKD()"/></div>
+      <div class="form-group"><label>Amount (MKD)</label><input type="number" id="ex-mkd" readonly style="background:var(--g100);"/></div>
+    </div>
+    <div class="form-group"><label>Client / Tour</label><input id="ex-ref" placeholder="Optional reference"/></div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline" onclick="closeModal('modal-expense')">Cancel</button>
+    <button class="btn btn-gold" onclick="saveExpense()"><i class="fas fa-save"></i> Save</button>
+  </div>
+</div></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  CONSTANTS
+// ══════════════════════════════════════════════════════
+const EUR_MKD = 61.5; // approximate — update daily
+
+// ══════════════════════════════════════════════════════
+//  DATA LAYER — localStorage
+// ══════════════════════════════════════════════════════
+const DB = {
+  get: k => JSON.parse(localStorage.getItem('amor-crm-'+k) || '[]'),
+  set: (k,v) => localStorage.setItem('amor-crm-'+k, JSON.stringify(v)),
+};
+let clients  = DB.get('clients');
+let quotes   = DB.get('quotes');
+let invoices = DB.get('invoices');
+let expenses = DB.get('expenses');
+let leads    = JSON.parse(localStorage.getItem('amor-leads') || '[]');
+
+function save(key, data) {
+  localStorage.setItem('amor-crm-'+key, JSON.stringify(data));
+}
+function saveLead(data) {
+  localStorage.setItem('amor-leads', JSON.stringify(data));
+}
+
+// IDs
+let _nextId = { clients:1, quotes:1, invoices:1, expenses:1 };
+function nextId(k) {
+  clients = DB.get('clients'); quotes = DB.get('quotes');
+  invoices = DB.get('invoices'); expenses = DB.get('expenses');
+  const arr = DB.get(k);
+  if (!arr.length) return 1;
+  return Math.max(...arr.map(x=>x.id||0))+1;
+}
+
+// ══════════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════════
+const TITLES = {
+  dashboard:'Dashboard', pipeline:'Pipeline', leads:'Leads',
+  clients:'Clients', quotes:'Quotes', invoices:'Invoices',
+  sales:'Sales', vouchers:'Gift Vouchers',
+  flights:'Flight Search', expenses:'Expenses'
+};
+function nav(page) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.textContent.trim().toLowerCase().startsWith(TITLES[page].split(' ')[0].toLowerCase()))
+      n.classList.add('active');
+  });
+  document.getElementById('topbar-title').textContent = TITLES[page];
+  renderPage(page);
+}
+function renderPage(page) {
+  if(page==='dashboard') renderDashboard();
+  if(page==='pipeline')  renderPipeline();
+  if(page==='leads')     renderLeads();
+  if(page==='clients')   renderClients();
+  if(page==='quotes')    renderQuotes();
+  if(page==='invoices')  renderInvoices();
+  if(page==='sales')     { populateClientDropdown('s-client'); renderSales(); }
+  if(page==='vouchers')  { populateClientDropdown('v-client'); renderVouchers(); }
+  if(page==='expenses')  renderExpenses();
+}
+
+// ══════════════════════════════════════════════════════
+//  DASHBOARD
+// ══════════════════════════════════════════════════════
+function renderDashboard() {
+  leads    = JSON.parse(localStorage.getItem('amor-leads')||'[]');
+  clients  = DB.get('clients');
+  quotes   = DB.get('quotes');
+  invoices = DB.get('invoices');
+  expenses = DB.get('expenses');
+
+  const sales = DB.get('sales');
+  const totalSalesRev = sales.filter(s=>s.status==='Completed').reduce((s,x)=>s+(x.revenue||0),0);
+  const totalSalesCost = sales.filter(s=>s.status==='Completed').reduce((s,x)=>s+(x.supplierCost||0),0);
+  const totalInvoiced = invoices.reduce((s,i)=>s+(parseFloat(i.eur)||0),0);
+  const totalPaid = invoices.filter(i=>i.status==='Paid').reduce((s,i)=>s+(parseFloat(i.eur)||0),0);
+  const totalExp = expenses.reduce((s,e)=>s+(parseFloat(e.eur)||0),0);
+  const profit = totalSalesRev - totalSalesCost - totalExp;
+
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:#E3F2FD;color:#1565C0;"><i class="fas fa-users"></i></div>
+        <span class="kpi-change up"><i class="fas fa-arrow-up"></i></span>
+      </div>
+      <div class="kpi-value">${clients.length}</div>
+      <div class="kpi-label">Total Clients</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:#E8EAF6;color:#3949AB;"><i class="fas fa-file-alt"></i></div>
+        <span class="kpi-change up"><i class="fas fa-arrow-up"></i></span>
+      </div>
+      <div class="kpi-value">${quotes.length}</div>
+      <div class="kpi-label">Active Quotes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:var(--green-bg);color:var(--green);"><i class="fas fa-euro-sign"></i></div>
+      </div>
+      <div class="kpi-value">€ ${totalSalesRev.toLocaleString('en',{minimumFractionDigits:0})}</div>
+      <div class="kpi-label">Sales Revenue</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:rgba(201,168,76,.12);color:var(--gold);"><i class="fas fa-chart-line"></i></div>
+        <span class="kpi-change ${profit>=0?'up':'down'}">${profit>=0?'▲':'▼'}</span>
+      </div>
+      <div class="kpi-value" style="color:${profit>=0?'var(--green)':'var(--red)'};">€ ${profit.toLocaleString('en',{minimumFractionDigits:0})}</div>
+      <div class="kpi-label">Net Profit</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:#FFF9C4;color:#827717;"><i class="fas fa-bell"></i></div>
+      </div>
+      <div class="kpi-value">${leads.length}</div>
+      <div class="kpi-label">New Leads</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-top">
+        <div class="kpi-icon" style="background:var(--red-bg);color:var(--red);"><i class="fas fa-receipt"></i></div>
+      </div>
+      <div class="kpi-value">€ ${totalExp.toLocaleString('en',{minimumFractionDigits:0})}</div>
+      <div class="kpi-label">Total Expenses</div>
+    </div>`;
+
+  // Recent leads
+  const leadsHtml = leads.slice(0,5).map(l=>`
+    <div style="padding:10px 0;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;">
+      <div><div style="font-size:14px;font-weight:600;">${esc(l.name||'')}</div>
+      <div style="font-size:12px;color:var(--g400);">${esc(l.destination||'No destination')} • ${new Date(l.date).toLocaleDateString()}</div></div>
+      <span class="badge badge-new">New</span>
+    </div>`).join('') || '<div class="no-data"><i class="fas fa-inbox"></i>No leads yet</div>';
+  document.getElementById('dash-leads').innerHTML = leadsHtml;
+
+  // Recent quotes
+  const qHtml = quotes.slice(-5).reverse().map(q=>`
+    <div style="padding:10px 0;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;">
+      <div><div style="font-size:14px;font-weight:600;">${esc(q.destination||'')}</div>
+      <div style="font-size:12px;color:var(--g400);">${esc(getClientName(q.clientId))}</div></div>
+      <div style="text-align:right;"><div style="font-size:14px;font-weight:700;color:var(--gold);">€ ${(q.total||0).toFixed(0)}</div>
+      <span class="badge badge-${(q.status||'draft').toLowerCase()}">${q.status||'Draft'}</span></div>
+    </div>`).join('') || '<div class="no-data"><i class="fas fa-file-alt"></i>No quotes yet</div>';
+  document.getElementById('dash-quotes').innerHTML = qHtml;
+
+  // Pipeline overview
+  const stages = ['Lead','Proposal','Negotiation','Confirmed','Won','Lost'];
+  const pStats = stages.map(s=>({stage:s, count:quotes.filter(q=>q.pipeline===s).length}));
+  document.getElementById('dash-pipeline').innerHTML = pStats.map(p=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--g100);">
+      <span style="font-size:14px;">${p.stage}</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:80px;height:6px;background:var(--g200);border-radius:3px;">
+          <div style="width:${Math.min(100,(p.count/Math.max(1,quotes.length))*100)}%;height:100%;background:var(--gold);border-radius:3px;"></div>
+        </div>
+        <span style="font-size:13px;font-weight:600;width:20px;text-align:right;">${p.count}</span>
+      </div>
+    </div>`).join('');
+
+  // Top destinations
+  const destMap = {};
+  quotes.forEach(q=>{ if(q.destination) destMap[q.destination]=(destMap[q.destination]||0)+1; });
+  const sorted = Object.entries(destMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  document.getElementById('dash-destinations').innerHTML = sorted.length ? sorted.map(([d,c])=>`
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--g100);">
+      <span style="font-size:14px;font-weight:500;">📍 ${esc(d)}</span>
+      <span style="font-size:13px;color:var(--g400);">${c} quote${c>1?'s':''}</span>
+    </div>`).join('') : '<div style="color:var(--g400);font-size:14px;padding:12px 0;">Add quotes to see destinations</div>';
+
+  // Update lead badge
+  const badge = document.getElementById('lead-badge');
+  if(leads.length>0){badge.textContent=leads.length;badge.style.display='inline';}
+  else badge.style.display='none';
+}
+
+// ══════════════════════════════════════════════════════
+//  PIPELINE
+// ══════════════════════════════════════════════════════
+const STAGES = ['Lead','Proposal','Negotiation','Confirmed','Won','Lost'];
+function renderPipeline() {
+  quotes = DB.get('quotes');
+  const board = document.getElementById('pipeline-board');
+  board.innerHTML = STAGES.map(stage=>{
+    const cards = quotes.filter(q=>q.pipeline===stage);
+    return `<div class="pipeline-col">
+      <div class="pipeline-col-header">${stage} <span class="pipeline-count">${cards.length}</span></div>
+      ${cards.map(q=>`
+        <div class="pipeline-card" onclick="editQuote(${q.id})">
+          <div class="pipeline-card-name">${esc(getClientName(q.clientId))}</div>
+          <div class="pipeline-card-dest">📍 ${esc(q.destination||'')}</div>
+          <div class="pipeline-card-price">€ ${(q.total||0).toFixed(0)}</div>
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════
+//  LEADS
+// ══════════════════════════════════════════════════════
+function renderLeads(filter='') {
+  leads = JSON.parse(localStorage.getItem('amor-leads')||'[]');
+  const f = filter.toLowerCase();
+  const filtered = leads.filter(l=>
+    !f || (l.name||'').toLowerCase().includes(f) ||
+          (l.email||'').toLowerCase().includes(f) ||
+          (l.destination||'').toLowerCase().includes(f));
+  const tbody = document.getElementById('leads-tbody');
+  tbody.innerHTML = filtered.length ? filtered.map((l,i)=>`
+    <tr>
+      <td style="font-size:12px;color:var(--g400);">${new Date(l.date).toLocaleDateString()}</td>
+      <td><strong>${esc(l.name||'')}</strong></td>
+      <td><a href="mailto:${esc(l.email||'')}" style="color:var(--blue);">${esc(l.email||'')}</a></td>
+      <td>${esc(l.phone||'—')}</td>
+      <td>${esc(l.destination||'—')}</td>
+      <td style="max-width:200px;font-size:13px;color:var(--g600);">${esc((l.message||'').substring(0,60))}${l.message&&l.message.length>60?'…':''}</td>
+      <td><span class="badge badge-new">${l.status||'New'}</span></td>
+      <td>
+        <button class="btn btn-sm btn-gold" onclick="convertLead(${i})" title="Convert to client"><i class="fas fa-user-plus"></i></button>
+        <button class="btn btn-sm btn-outline" onclick="deleteLead(${i})" title="Delete"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>`).join('') : `<tr><td colspan="8" class="no-data"><i class="fas fa-inbox"></i><br>No leads yet. They appear here when the contact form is submitted.</td></tr>`;
+}
+
+function convertLead(i) {
+  leads = JSON.parse(localStorage.getItem('amor-leads')||'[]');
+  const l = leads[i];
+  openModal('modal-client');
+  document.getElementById('cmodal-title').textContent = 'Convert Lead to Client';
+  const parts = (l.name||'').split(' ');
+  document.getElementById('c-fname').value = parts[0]||'';
+  document.getElementById('c-lname').value = parts.slice(1).join(' ')||'';
+  document.getElementById('c-phone').value = l.phone||'';
+  document.getElementById('c-email').value = l.email||'';
+  document.getElementById('c-notes').value = `From website. Destination: ${l.destination||''}. ${l.message||''}`;
+}
+
+function deleteLead(i) {
+  if(!confirm('Delete this lead?')) return;
+  leads = JSON.parse(localStorage.getItem('amor-leads')||'[]');
+  leads.splice(i,1);
+  saveLead(leads);
+  renderLeads();
+}
+function clearLeads() {
+  if(!confirm('Clear all leads?')) return;
+  saveLead([]);
+  leads=[];
+  renderLeads();
+}
+
+// ══════════════════════════════════════════════════════
+//  CLIENTS
+// ══════════════════════════════════════════════════════
+function renderClients(filter='', statusFilter='') {
+  clients = DB.get('clients');
+  const f = filter.toLowerCase();
+  const filtered = clients.filter(c=>
+    (!f || (c.fname+' '+c.lname+c.email+c.phone).toLowerCase().includes(f)) &&
+    (!statusFilter || c.status===statusFilter));
+  const tbody = document.getElementById('clients-tbody');
+  tbody.innerHTML = filtered.length ? filtered.map(c=>{
+    const cQuotes = quotes.filter(q=>q.clientId===c.id).length;
+    const cSpent = invoices.filter(i=>i.clientId===c.id&&i.status==='Paid').reduce((s,i)=>s+(parseFloat(i.eur)||0),0);
+    return `<tr>
+      <td style="color:var(--g400);font-size:12px;">#${c.id}</td>
+      <td><strong>${esc(c.fname)} ${esc(c.lname)}</strong></td>
+      <td><a href="tel:${esc(c.phone||'')}">${esc(c.phone||'—')}</a></td>
+      <td><a href="mailto:${esc(c.email||'')}" style="color:var(--blue);">${esc(c.email||'—')}</a></td>
+      <td>${esc(c.city||'—')}</td>
+      <td><span class="badge badge-${(c.status||'active').toLowerCase()}">${c.status||'Active'}</span></td>
+      <td>${cQuotes}</td>
+      <td style="font-weight:600;">€ ${cSpent.toFixed(0)}</td>
+      <td style="display:flex;gap:4px;">
+        <button class="btn btn-icon btn-outline" onclick="editClient(${c.id})" title="Edit"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-icon btn-gold" onclick="newQuoteForClient(${c.id})" title="New Quote"><i class="fas fa-file-alt"></i></button>
+        <button class="btn btn-icon btn-danger" onclick="deleteClient(${c.id})" title="Delete"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>`;}).join('') : `<tr><td colspan="9" class="no-data"><i class="fas fa-users"></i><br>No clients yet. Add your first client!</td></tr>`;
+}
+
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+function saveClient() {
+  clients = DB.get('clients');
+  const id = parseInt(document.getElementById('c-id').value)||nextId('clients');
+  const obj = {
+    id, fname:g('c-fname'), lname:g('c-lname'),
+    phone:g('c-phone'), email:g('c-email'),
+    city:g('c-city'), status:g('c-status'), notes:g('c-notes'),
+    created: new Date().toISOString()
+  };
+  const idx = clients.findIndex(c=>c.id===id);
+  if(idx>=0) clients[idx]=obj; else clients.push(obj);
+  save('clients', clients);
+  closeModal('modal-client');
+  clearClientForm();
+  renderClients();
+}
+function clearClientForm(){
+  ['c-id','c-fname','c-lname','c-phone','c-email','c-city','c-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('c-status').value='Active';
+  document.getElementById('cmodal-title').textContent='New Client';
+}
+function editClient(id){
+  clients = DB.get('clients');
+  const c = clients.find(x=>x.id===id); if(!c) return;
+  document.getElementById('c-id').value=c.id;
+  document.getElementById('c-fname').value=c.fname||'';
+  document.getElementById('c-lname').value=c.lname||'';
+  document.getElementById('c-phone').value=c.phone||'';
+  document.getElementById('c-email').value=c.email||'';
+  document.getElementById('c-city').value=c.city||'';
+  document.getElementById('c-status').value=c.status||'Active';
+  document.getElementById('c-notes').value=c.notes||'';
+  document.getElementById('cmodal-title').textContent='Edit Client';
+  openModal('modal-client');
+}
+function deleteClient(id){
+  if(!confirm('Delete this client?')) return;
+  clients = DB.get('clients');
+  save('clients', clients.filter(c=>c.id!==id));
+  renderClients();
+}
+function getClientName(id){
+  const c = DB.get('clients').find(x=>x.id===id);
+  return c ? c.fname+' '+c.lname : '—';
+}
+
+// ══════════════════════════════════════════════════════
+//  QUOTES
+// ══════════════════════════════════════════════════════
+let quoteItems = [];
+function addQuoteItem(desc='',qty=1,price=0){
+  quoteItems.push({desc,qty,price});
+  renderQuoteItems();
+}
+function removeQuoteItem(i){ quoteItems.splice(i,1); renderQuoteItems(); }
+function renderQuoteItems(){
+  const list = document.getElementById('quote-items-list');
+  list.innerHTML = quoteItems.map((item,i)=>`
+    <div class="quote-item-row">
+      <input class="quote-item-input" value="${esc(item.desc)}" oninput="quoteItems[${i}].desc=this.value" placeholder="Description"/>
+      <input class="quote-item-input" type="number" value="${item.qty}" min="1" oninput="quoteItems[${i}].qty=+this.value;calcQTotal()" style="width:60px;"/>
+      <input class="quote-item-input" type="number" value="${item.price}" min="0" step="0.01" oninput="quoteItems[${i}].price=+this.value;calcQTotal()" style="width:90px;"/>
+      <button class="btn btn-danger btn-icon" onclick="removeQuoteItem(${i})"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+  calcQTotal();
+}
+function calcQTotal(){
+  const total = quoteItems.reduce((s,it)=>s+(it.qty*it.price),0);
+  document.getElementById('q-total-eur').textContent = '€ '+total.toFixed(2);
+  document.getElementById('q-total-mkd').textContent = Math.round(total*EUR_MKD).toLocaleString()+' МКД';
+  return total;
+}
+
+function populateClientDropdown(selId, selectedId=null){
+  clients = DB.get('clients');
+  const sel = document.getElementById(selId);
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— Select Client —</option>' +
+    clients.map(c=>`<option value="${c.id}" ${c.id===selectedId?'selected':''}>${esc(c.fname+' '+c.lname)}</option>`).join('');
+  if(current) sel.value=current;
+}
+function populateQuoteDropdown(selId){
+  quotes = DB.get('quotes');
+  document.getElementById(selId).innerHTML = '<option value="">— Link Quote (optional) —</option>' +
+    quotes.map(q=>`<option value="${q.id}">#Q${q.id} ${esc(q.destination||'')} — ${getClientName(q.clientId)}</option>`).join('');
+}
+
+function openQuoteModal(){
+  quoteItems=[];
+  renderQuoteItems();
+  addQuoteItem('',1,0);
+  populateClientDropdown('q-client');
+  document.getElementById('q-id').value='';
+  document.getElementById('qmodal-title').textContent='New Quote';
+  document.getElementById('q-dep').value='';
+  document.getElementById('q-ret').value='';
+  document.getElementById('q-notes').value='';
+  document.getElementById('q-pax').value=2;
+  document.getElementById('q-status').value='Draft';
+  document.getElementById('q-dest').value='';
+  openModal('modal-quote');
+}
+function newQuoteForClient(clientId){
+  openQuoteModal();
+  document.getElementById('q-client').value=clientId;
+}
+
+function saveQuote(){
+  quotes = DB.get('quotes');
+  const id = parseInt(document.getElementById('q-id').value)||nextId('quotes');
+  const total = calcQTotal();
+  const obj = {
+    id, clientId:parseInt(document.getElementById('q-client').value)||null,
+    destination:g('q-dest'), departure:g('q-dep'), returnDate:g('q-ret'),
+    pax:+g('q-pax'), status:g('q-status'), items:[...quoteItems],
+    total, totalMkd:Math.round(total*EUR_MKD),
+    pipeline: 'Proposal',
+    notes:g('q-notes'), created: new Date().toISOString()
+  };
+  const idx = quotes.findIndex(q=>q.id===id);
+  if(idx>=0) quotes[idx]=obj; else quotes.push(obj);
+  save('quotes', quotes);
+  closeModal('modal-quote');
+  renderQuotes();
+}
+
+function renderQuotes(filter='', statusFilter=''){
+  quotes = DB.get('quotes');
+  const f = filter.toLowerCase();
+  const filtered = quotes.filter(q=>
+    (!f || (getClientName(q.clientId)+q.destination).toLowerCase().includes(f)) &&
+    (!statusFilter || q.status===statusFilter));
+  const tbody = document.getElementById('quotes-tbody');
+  tbody.innerHTML = filtered.length ? filtered.reverse().map(q=>`<tr>
+    <td style="font-weight:600;color:var(--navy);">#Q${q.id}</td>
+    <td>${esc(getClientName(q.clientId))}</td>
+    <td>📍 ${esc(q.destination||'—')}</td>
+    <td style="font-size:13px;color:var(--g600);">${q.departure||'—'} → ${q.returnDate||'—'}</td>
+    <td style="font-weight:700;">€ ${(q.total||0).toFixed(0)}</td>
+    <td style="color:var(--g400);">${(q.totalMkd||0).toLocaleString()} МКД</td>
+    <td><span class="badge badge-${(q.status||'draft').toLowerCase()}">${q.status||'Draft'}</span></td>
+    <td style="display:flex;gap:4px;">
+      <button class="btn btn-icon btn-outline" onclick="editQuote(${q.id})" title="Edit"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-icon btn-outline" onclick="printQuoteDirect(${q.id})" title="Print/PDF"><i class="fas fa-print"></i></button>
+      <button class="btn btn-icon btn-gold" onclick="quoteToInvoice(${q.id})" title="Create Invoice"><i class="fas fa-file-invoice-dollar"></i></button>
+      <button class="btn btn-icon btn-danger" onclick="deleteQuote(${q.id})" title="Delete"><i class="fas fa-trash"></i></button>
+    </td>
+  </tr>`).join('') : `<tr><td colspan="8" class="no-data"><i class="fas fa-file-alt"></i><br>No quotes yet.</td></tr>`;
+}
+
+function editQuote(id){
+  quotes = DB.get('quotes');
+  const q = quotes.find(x=>x.id===id); if(!q) return;
+  populateClientDropdown('q-client', q.clientId);
+  document.getElementById('q-id').value=q.id;
+  document.getElementById('q-dest').value=q.destination||'';
+  document.getElementById('q-dep').value=q.departure||'';
+  document.getElementById('q-ret').value=q.returnDate||'';
+  document.getElementById('q-pax').value=q.pax||2;
+  document.getElementById('q-status').value=q.status||'Draft';
+  document.getElementById('q-notes').value=q.notes||'';
+  quoteItems = (q.items||[]).map(it=>({...it}));
+  if(!quoteItems.length) quoteItems.push({desc:'',qty:1,price:0});
+  renderQuoteItems();
+  document.getElementById('qmodal-title').textContent='Edit Quote #Q'+q.id;
+  openModal('modal-quote');
+}
+function deleteQuote(id){
+  if(!confirm('Delete quote?')) return;
+  quotes = DB.get('quotes');
+  save('quotes', quotes.filter(q=>q.id!==id));
+  renderQuotes();
+}
+function quoteToInvoice(id){
+  quotes = DB.get('quotes');
+  const q = quotes.find(x=>x.id===id); if(!q) return;
+  populateClientDropdown('i-client', q.clientId);
+  populateQuoteDropdown('i-quote');
+  document.getElementById('i-id').value='';
+  document.getElementById('i-desc').value=q.destination||'';
+  document.getElementById('i-eur').value=(q.total||0).toFixed(2);
+  document.getElementById('i-mkd').value=q.totalMkd||0;
+  document.getElementById('i-quote').value=q.id;
+  document.getElementById('i-issue').value=new Date().toISOString().split('T')[0];
+  const due = new Date(); due.setDate(due.getDate()+14);
+  document.getElementById('i-due').value=due.toISOString().split('T')[0];
+  document.getElementById('i-status').value='Sent';
+  document.getElementById('imodal-title').textContent='Invoice from Quote #Q'+q.id;
+  openModal('modal-invoice');
+  nav('invoices');
+}
+
+function printQuote(){
+  quotes = DB.get('quotes');
+  const id = parseInt(document.getElementById('q-id').value);
+  if(id) { printQuoteDirect(id); return; }
+  // Print current form
+  window.print();
+}
+function printQuoteDirect(id){
+  quotes = DB.get('quotes');
+  const q = quotes.find(x=>x.id===id); if(!q) return;
+  const clientName = getClientName(q.clientId);
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>Quote #Q${id}</title>
+  <style>body{font-family:Inter,sans-serif;padding:40px;color:#212529;}
+  h1{color:#1A2B4A;margin-bottom:4px;}
+  .gold{color:#C9A84C;}table{width:100%;border-collapse:collapse;margin-top:20px;}
+  th{background:#f1f3f5;padding:10px;text-align:left;font-size:13px;}
+  td{padding:10px;border-bottom:1px solid #e9ecef;}
+  .total{text-align:right;padding:12px;font-weight:700;font-size:16px;background:#f8f9fa;}
+  .header{display:flex;justify-content:space-between;margin-bottom:32px;}
+  .meta{color:#495057;font-size:14px;line-height:1.8;}
+  @media print{button{display:none!important;}}</style></head><body>
+  <div class="header">
+    <div><h1>AMOR TRAVEL</h1><div class="gold" style="font-size:13px;letter-spacing:1px;">TRAVEL AGENCY</div></div>
+    <div style="text-align:right;"><h2 class="gold">QUOTE #Q${id}</h2><div style="font-size:14px;color:#868e96;">Date: ${new Date(q.created||Date.now()).toLocaleDateString()}</div></div>
+  </div>
+  <div class="meta">
+    <strong>Client:</strong> ${esc(clientName)}<br>
+    <strong>Destination:</strong> ${esc(q.destination||'')}<br>
+    <strong>Travel Dates:</strong> ${q.departure||'—'} → ${q.returnDate||'—'}<br>
+    <strong>Travelers:</strong> ${q.pax||1}<br>
+    <strong>Status:</strong> ${q.status||'Draft'}
+  </div>
+  <table><thead><tr><th>Description</th><th>Qty</th><th>Unit Price (EUR)</th><th>Total (EUR)</th></tr></thead>
+  <tbody>${(q.items||[]).map(it=>`<tr><td>${esc(it.desc||'')}</td><td>${it.qty}</td><td>€ ${parseFloat(it.price||0).toFixed(2)}</td><td>€ ${(it.qty*it.price).toFixed(2)}</td></tr>`).join('')}
+  </tbody></table>
+  <div class="total">Total: € ${(q.total||0).toFixed(2)} &nbsp;≈&nbsp; ${(q.totalMkd||0).toLocaleString()} МКД</div>
+  ${q.notes?`<div style="margin-top:24px;font-size:13px;color:#495057;"><strong>Notes:</strong><br>${esc(q.notes)}</div>`:''}
+  <div style="margin-top:40px;font-size:12px;color:#868e96;">Amor Travel • info@amortravel.net • amortravel.net</div>
+  <button onclick="window.print()" style="margin-top:20px;padding:10px 20px;background:#C9A84C;border:none;border-radius:6px;cursor:pointer;font-weight:600;">🖨️ Print / Save as PDF</button>
+  </body></html>`);
+}
+
+// ══════════════════════════════════════════════════════
+//  INVOICES
+// ══════════════════════════════════════════════════════
+function updateInvMKD(){
+  const eur = parseFloat(document.getElementById('i-eur').value)||0;
+  document.getElementById('i-mkd').value = Math.round(eur*EUR_MKD);
+}
+function updateExpMKD(){
+  const eur = parseFloat(document.getElementById('ex-eur').value)||0;
+  document.getElementById('ex-mkd').value = Math.round(eur*EUR_MKD);
+}
+
+function saveInvoice(){
+  invoices = DB.get('invoices');
+  const id = parseInt(document.getElementById('i-id').value)||nextId('invoices');
+  const eur = parseFloat(document.getElementById('i-eur').value)||0;
+  const obj = {
+    id, clientId:parseInt(document.getElementById('i-client').value)||null,
+    quoteId:document.getElementById('i-quote').value||null,
+    desc:g('i-desc'), eur, mkd:Math.round(eur*EUR_MKD),
+    issue:g('i-issue'), due:g('i-due'), status:g('i-status'), notes:g('i-notes'),
+    created:new Date().toISOString()
+  };
+  const idx = invoices.findIndex(i=>i.id===id);
+  if(idx>=0) invoices[idx]=obj; else invoices.push(obj);
+  save('invoices', invoices);
+  closeModal('modal-invoice');
+  renderInvoices();
+}
+
+function renderInvoices(filter='', statusFilter=''){
+  invoices = DB.get('invoices');
+  const f = filter.toLowerCase();
+  const filtered = invoices.filter(i=>
+    (!f || (getClientName(i.clientId)+i.desc).toLowerCase().includes(f)) &&
+    (!statusFilter || i.status===statusFilter));
+  const tbody = document.getElementById('invoices-tbody');
+  tbody.innerHTML = filtered.length ? filtered.reverse().map(i=>`<tr>
+    <td style="font-weight:700;color:var(--navy);">#INV${i.id}</td>
+    <td>${esc(getClientName(i.clientId))}</td>
+    <td>${esc(i.desc||'—')}</td>
+    <td style="font-size:13px;">${i.issue||'—'}</td>
+    <td style="font-size:13px;color:${i.status==='Overdue'?'var(--red)':'inherit'};">${i.due||'—'}</td>
+    <td style="font-weight:700;">€ ${(i.eur||0).toFixed(0)}</td>
+    <td style="color:var(--g400);">${(i.mkd||0).toLocaleString()}</td>
+    <td><span class="badge badge-${(i.status||'sent').toLowerCase()}">${i.status||'Sent'}</span></td>
+    <td style="display:flex;gap:4px;">
+      <button class="btn btn-icon btn-outline" onclick="editInvoice(${i.id})" title="Edit"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-icon btn-outline" onclick="printInvoiceDirect(${i.id})" title="Print PDF"><i class="fas fa-print"></i></button>
+      <button class="btn btn-icon btn-danger" onclick="deleteInvoice(${i.id})" title="Delete"><i class="fas fa-trash"></i></button>
+    </td>
+  </tr>`).join('') : `<tr><td colspan="9" class="no-data"><i class="fas fa-file-invoice-dollar"></i><br>No invoices yet.</td></tr>`;
+}
+function editInvoice(id){
+  invoices = DB.get('invoices');
+  const inv = invoices.find(x=>x.id===id); if(!inv) return;
+  populateClientDropdown('i-client', inv.clientId);
+  populateQuoteDropdown('i-quote');
+  document.getElementById('i-id').value=inv.id;
+  document.getElementById('i-desc').value=inv.desc||'';
+  document.getElementById('i-eur').value=inv.eur||0;
+  document.getElementById('i-mkd').value=inv.mkd||0;
+  document.getElementById('i-issue').value=inv.issue||'';
+  document.getElementById('i-due').value=inv.due||'';
+  document.getElementById('i-status').value=inv.status||'Sent';
+  document.getElementById('i-notes').value=inv.notes||'';
+  document.getElementById('imodal-title').textContent='Edit Invoice #INV'+inv.id;
+  openModal('modal-invoice');
+}
+function deleteInvoice(id){
+  if(!confirm('Delete invoice?')) return;
+  invoices = DB.get('invoices');
+  save('invoices', invoices.filter(i=>i.id!==id));
+  renderInvoices();
+}
+function printInvoice(){ window.print(); }
+function printInvoiceDirect(id){
+  invoices = DB.get('invoices');
+  const inv = invoices.find(x=>x.id===id); if(!inv) return;
+  const clientName = getClientName(inv.clientId);
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>Invoice #INV${id}</title>
+  <style>body{font-family:Inter,sans-serif;padding:40px;color:#212529;}
+  .gold{color:#C9A84C;}.navy{color:#1A2B4A;}
+  .header{display:flex;justify-content:space-between;margin-bottom:40px;border-bottom:3px solid #C9A84C;padding-bottom:20px;}
+  table{width:100%;border-collapse:collapse;margin:24px 0;}
+  th{background:#1A2B4A;color:white;padding:12px;text-align:left;font-size:13px;}
+  td{padding:12px;border-bottom:1px solid #e9ecef;font-size:14px;}
+  .total-row{background:#f8f9fa;font-weight:700;font-size:16px;}
+  .status-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+  @media print{button{display:none!important;}}</style></head><body>
+  <div class="header">
+    <div><div style="font-size:28px;font-weight:800;color:#1A2B4A;">AMOR TRAVEL</div>
+    <div class="gold" style="letter-spacing:2px;font-size:12px;margin-top:2px;">TRAVEL AGENCY</div>
+    <div style="margin-top:12px;font-size:13px;color:#495057;">info@amortravel.net<br>amortravel.net<br>Skopje, North Macedonia</div></div>
+    <div style="text-align:right;">
+      <div class="gold" style="font-size:24px;font-weight:700;">INVOICE</div>
+      <div style="font-size:22px;font-weight:800;color:#1A2B4A;">#INV${id}</div>
+      <div style="margin-top:8px;font-size:13px;color:#495057;">Issue: ${inv.issue||'—'}<br>Due: ${inv.due||'—'}</div>
+    </div>
+  </div>
+  <div style="margin-bottom:24px;"><strong style="font-size:12px;color:#868e96;letter-spacing:1px;">BILLED TO</strong>
+  <div style="font-size:16px;font-weight:700;margin-top:4px;">${esc(clientName)}</div></div>
+  <table><thead><tr><th>Description</th><th>Amount (EUR)</th><th>Amount (MKD)</th></tr></thead>
+  <tbody>
+    <tr><td>${esc(inv.desc||'Travel Services')}</td><td>€ ${(inv.eur||0).toFixed(2)}</td><td>${(inv.mkd||0).toLocaleString()} МКД</td></tr>
+    <tr class="total-row"><td><strong>TOTAL</strong></td><td><strong>€ ${(inv.eur||0).toFixed(2)}</strong></td><td><strong>${(inv.mkd||0).toLocaleString()} МКД</strong></td></tr>
+  </tbody></table>
+  <div>Status: <span class="status-badge" style="background:${inv.status==='Paid'?'#D8F3DC':inv.status==='Overdue'?'#FDECEA':'#E8EAF6'};color:${inv.status==='Paid'?'#2D6A4F':inv.status==='Overdue'?'#C0392B':'#3949AB'};">${inv.status||'Sent'}</span></div>
+  ${inv.notes?`<div style="margin-top:20px;font-size:13px;color:#495057;border-top:1px solid #e9ecef;padding-top:16px;"><strong>Notes:</strong><br>${esc(inv.notes)}</div>`:''}
+  <div style="margin-top:40px;font-size:12px;color:#868e96;">Exchange rate: 1 EUR = ${EUR_MKD} МКД (approximate)</div>
+  <button onclick="window.print()" style="margin-top:20px;padding:10px 20px;background:#C9A84C;border:none;border-radius:6px;cursor:pointer;font-weight:600;">🖨️ Print / Save as PDF</button>
+  </body></html>`);
+}
+
+// ══════════════════════════════════════════════════════
+//  EXPENSES
+// ══════════════════════════════════════════════════════
+function saveExpense(){
+  expenses = DB.get('expenses');
+  const id = parseInt(document.getElementById('ex-id').value)||nextId('expenses');
+  const eur = parseFloat(document.getElementById('ex-eur').value)||0;
+  const obj = {
+    id, desc:g('ex-desc'), category:g('ex-cat'),
+    date:g('ex-date'), eur, mkd:Math.round(eur*EUR_MKD),
+    ref:g('ex-ref'), created:new Date().toISOString()
+  };
+  const idx = expenses.findIndex(e=>e.id===id);
+  if(idx>=0) expenses[idx]=obj; else expenses.push(obj);
+  save('expenses', expenses);
+  closeModal('modal-expense');
+  clearExpForm();
+  renderExpenses();
+}
+function clearExpForm(){
+  ['ex-id','ex-desc','ex-eur','ex-mkd','ex-ref'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('ex-date').value=new Date().toISOString().split('T')[0];
+}
+function renderExpenses(filter=''){
+  expenses = DB.get('expenses');
+  const f = filter.toLowerCase();
+  const catF = document.getElementById('exp-cat-filter')?.value||'';
+  const filtered = expenses.filter(e=>
+    (!f || (e.desc+e.ref).toLowerCase().includes(f)) &&
+    (!catF || e.category===catF));
+  const tbody = document.getElementById('expenses-tbody');
+  tbody.innerHTML = filtered.length ? filtered.reverse().map(e=>`<tr>
+    <td style="font-size:13px;">${e.date||'—'}</td>
+    <td><strong>${esc(e.desc||'')}</strong></td>
+    <td><span class="badge badge-sent">${esc(e.category||'Other')}</span></td>
+    <td style="font-weight:600;">€ ${(e.eur||0).toFixed(2)}</td>
+    <td style="color:var(--g400);">${(e.mkd||0).toLocaleString()}</td>
+    <td style="font-size:13px;color:var(--g600);">${esc(e.ref||'—')}</td>
+    <td><button class="btn btn-icon btn-danger" onclick="deleteExpense(${e.id})"><i class="fas fa-trash"></i></button></td>
+  </tr>`).join('') : `<tr><td colspan="7" class="no-data"><i class="fas fa-receipt"></i><br>No expenses yet.</td></tr>`;
+
+  const totEur = filtered.reduce((s,e)=>s+(e.eur||0),0);
+  const totMkd = filtered.reduce((s,e)=>s+(e.mkd||0),0);
+  document.getElementById('exp-total-eur').textContent = '€ '+totEur.toFixed(2);
+  document.getElementById('exp-total-mkd').textContent = totMkd.toLocaleString()+' МКД';
+}
+function deleteExpense(id){
+  if(!confirm('Delete expense?')) return;
+  expenses = DB.get('expenses');
+  save('expenses', expenses.filter(e=>e.id!==id));
+  renderExpenses();
+}
+
+// ══════════════════════════════════════════════════════
+//  FLIGHTS → QUOTE
+// ══════════════════════════════════════════════════════
+function saveFlightToQuote(){
+  const from = document.getElementById('fl-from').value;
+  const to = document.getElementById('fl-to').value;
+  const airline = document.getElementById('fl-airline').value;
+  const price = parseFloat(document.getElementById('fl-price').value)||0;
+  const pax = parseInt(document.getElementById('fl-pax').value)||1;
+  const notes = document.getElementById('fl-notes').value;
+  const dep = document.getElementById('fl-dep').value;
+  const ret = document.getElementById('fl-ret').value;
+  // Pre-fill quote modal
+  openQuoteModal();
+  document.getElementById('q-dest').value = to;
+  document.getElementById('q-dep').value = dep;
+  document.getElementById('q-ret').value = ret;
+  document.getElementById('q-pax').value = pax;
+  document.getElementById('q-notes').value = `Flight: ${from} → ${to} via ${airline}. ${notes}`;
+  quoteItems = [{desc:`Flight ${from}→${to} (${airline}) x${pax}`, qty:pax, price}];
+  if(notes) quoteItems.push({desc:'Notes: '+notes, qty:1, price:0});
+  renderQuoteItems();
+  document.getElementById('qmodal-title').textContent = 'New Quote — Flight';
+  nav('quotes');
+}
+
+// ══════════════════════════════════════════════════════
+//  GLOBAL SEARCH
+// ══════════════════════════════════════════════════════
+function globalSearch(val){
+  if(!val) return;
+  const f = val.toLowerCase();
+  clients = DB.get('clients');
+  const found = clients.find(c=>(c.fname+' '+c.lname+c.email+c.phone).toLowerCase().includes(f));
+  if(found){ nav('clients'); return; }
+  const q = DB.get('quotes').find(x=>(getClientName(x.clientId)+x.destination).toLowerCase().includes(f));
+  if(q){ nav('quotes'); }
+}
+
+// ══════════════════════════════════════════════════════
+//  EXPORT
+// ══════════════════════════════════════════════════════
+function exportCSV(type){
+  const data = DB.get(type);
+  if(!data.length){ alert('No data to export.'); return; }
+  const keys = Object.keys(data[0]);
+  const rows = [keys.join(','), ...data.map(r=>keys.map(k=>'"'+(r[k]||'').toString().replace(/"/g,'""')+'"').join(','))];
+  const blob = new Blob([rows.join('\n')],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `amor-${type}-${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+}
+function exportAll(){
+  ['clients','quotes','invoices','sales','vouchers','expenses'].forEach(k=>exportCSV(k));
+}
+
+// ══════════════════════════════════════════════════════
+//  UTILS
+// ══════════════════════════════════════════════════════
+function g(id){ return (document.getElementById(id)?.value||'').trim(); }
+function esc(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ══════════════════════════════════════════════════════
+//  SALES MODULE
+// ══════════════════════════════════════════════════════
+let saleItems = [];
+function addSaleItem(desc='',qty=1,sell=0,cost=0){
+  saleItems.push({desc,qty,sell,cost});
+  renderSaleItems();
+}
+function removeSaleItem(i){ saleItems.splice(i,1); renderSaleItems(); }
+function renderSaleItems(){
+  const list = document.getElementById('sale-items-list');
+  if(!list) return;
+  list.innerHTML = saleItems.map((it,i)=>`
+    <div class="quote-item-row" style="grid-template-columns:3fr 1fr 1fr 1fr auto;">
+      <input class="quote-item-input" value="${esc(it.desc)}" oninput="saleItems[${i}].desc=this.value" placeholder="Description"/>
+      <input class="quote-item-input" type="number" value="${it.qty}" min="1" oninput="saleItems[${i}].qty=+this.value;calcSaleTotals()" style="width:60px;"/>
+      <input class="quote-item-input" type="number" value="${it.sell}" min="0" step="0.01" oninput="saleItems[${i}].sell=+this.value;calcSaleTotals()" style="width:80px;"/>
+      <input class="quote-item-input" type="number" value="${it.cost}" min="0" step="0.01" oninput="saleItems[${i}].cost=+this.value;calcSaleTotals()" style="width:80px;"/>
+      <button class="btn btn-danger btn-icon" onclick="removeSaleItem(${i})"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+  calcSaleTotals();
+}
+function calcSaleTotals(){
+  const rev = saleItems.reduce((s,it)=>s+(it.qty*it.sell),0);
+  const cost = saleItems.reduce((s,it)=>s+(it.qty*it.cost),0);
+  const profit = rev-cost;
+  const el = id=>document.getElementById(id);
+  if(el('s-total-rev-live')) el('s-total-rev-live').textContent='€ '+rev.toFixed(2);
+  if(el('s-total-cost-live')) el('s-total-cost-live').textContent='€ '+cost.toFixed(2);
+  if(el('s-total-profit-live')){ el('s-total-profit-live').textContent='€ '+profit.toFixed(2); el('s-total-profit-live').style.color=profit>=0?'var(--green)':'var(--red)'; }
+  return {rev,cost,profit};
+}
+function openSaleModal(){
+  saleItems=[];
+  addSaleItem('',1,0,0);
+  populateClientDropdown('s-client');
+  document.getElementById('s-id').value='';
+  document.getElementById('s-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('s-dest').value='';
+  document.getElementById('s-dep').value='';
+  document.getElementById('s-ret').value='';
+  document.getElementById('s-notes').value='';
+  document.getElementById('s-voucher').value='';
+  document.getElementById('s-status').value='Completed';
+  document.getElementById('s-pay').value='Cash';
+  document.getElementById('smodal-title').textContent='New Sale';
+  openModal('modal-sale');
+}
+function saveSale(){
+  let sales = DB.get('sales');
+  const id = parseInt(document.getElementById('s-id').value)||nextId('sales');
+  const {rev,cost,profit} = calcSaleTotals();
+  const obj = {
+    id,
+    clientId: parseInt(document.getElementById('s-client').value)||null,
+    date: g('s-date'), dest: g('s-dest'), dep: g('s-dep'), ret: g('s-ret'),
+    payment: g('s-pay'), status: g('s-status'),
+    items: [...saleItems],
+    revenue: rev, supplierCost: cost, profit,
+    revenueMkd: Math.round(rev*EUR_MKD), profitMkd: Math.round(profit*EUR_MKD),
+    voucherCode: g('s-voucher'), notes: g('s-notes'),
+    created: new Date().toISOString()
+  };
+  // Apply voucher
+  if(obj.voucherCode){
+    const vs = DB.get('vouchers');
+    const vi = vs.findIndex(v=>v.code===obj.voucherCode&&v.status==='Active');
+    if(vi>=0){
+      const v = vs[vi];
+      if(v.type==='percent') obj.discount = obj.revenue*(v.value/100);
+      else if(v.type==='fixed') obj.discount = parseFloat(v.value)||0;
+      else obj.discount = obj.revenue;
+      obj.revenue -= obj.discount;
+      obj.profit -= obj.discount;
+      if(v.usesLeft===1){ vs[vi].status='Used'; vs[vi].usesLeft=0; }
+      else if(v.usesLeft>1) vs[vi].usesLeft--;
+      save('vouchers', vs);
+    }
+  }
+  const idx = sales.findIndex(s=>s.id===id);
+  if(idx>=0) sales[idx]=obj; else sales.push(obj);
+  save('sales', sales);
+  // Auto-invoice
+  if(document.getElementById('s-auto-invoice')?.checked){
+    let invoices = DB.get('invoices');
+    const invId = nextId('invoices');
+    invoices.push({
+      id:invId, clientId:obj.clientId, desc:obj.dest||'Travel Services',
+      eur:obj.revenue, mkd:Math.round(obj.revenue*EUR_MKD),
+      issue:obj.date, due:obj.date, status:'Sent',
+      notes:`Auto from Sale #S${id}`, created:new Date().toISOString()
+    });
+    save('invoices', invoices);
+  }
+  closeModal('modal-sale');
+  renderSales();
+}
+function renderSales(filter='', statusFilter='', payFilter=''){
+  const sales = DB.get('sales');
+  const f = filter.toLowerCase();
+  const filtered = sales.filter(s=>
+    (!f||(getClientName(s.clientId)+s.dest).toLowerCase().includes(f))&&
+    (!statusFilter||s.status===statusFilter)&&
+    (!payFilter||s.payment===payFilter));
+  const tbody = document.getElementById('sales-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = filtered.length ? filtered.slice().reverse().map(s=>`<tr>
+    <td style="font-weight:700;color:var(--navy);">#S${s.id}</td>
+    <td style="font-size:13px;">${s.date||'—'}</td>
+    <td>${esc(getClientName(s.clientId))}</td>
+    <td>📍 ${esc(s.dest||'—')}</td>
+    <td><span class="badge badge-sent">${s.payment||'—'}</span></td>
+    <td style="font-weight:700;">€ ${(s.revenue||0).toFixed(0)}</td>
+    <td style="color:var(--red);">€ ${(s.supplierCost||0).toFixed(0)}</td>
+    <td style="font-weight:700;color:${(s.profit||0)>=0?'var(--green)':'var(--red)'};">€ ${(s.profit||0).toFixed(0)}</td>
+    <td><span class="badge badge-${(s.status||'completed').toLowerCase()}">${s.status||'Completed'}</span></td>
+    <td style="display:flex;gap:4px;">
+      <button class="btn btn-icon btn-outline" onclick="printSaleInvoice(${s.id},'mk')" title="Print MK"><i class="fas fa-file-pdf"></i>МК</button>
+      <button class="btn btn-icon btn-outline" onclick="printSaleInvoice(${s.id},'en')" title="Print EN"><i class="fas fa-file-pdf"></i>EN</button>
+      <button class="btn btn-icon btn-danger" onclick="deleteSale(${s.id})"><i class="fas fa-trash"></i></button>
+    </td>
+  </tr>`).join('') : `<tr><td colspan="10" class="no-data"><i class="fas fa-cash-register"></i><br>No sales yet. Add your first sale!</td></tr>`;
+  const totRev = filtered.reduce((s,x)=>s+(x.revenue||0),0);
+  const totCost = filtered.reduce((s,x)=>s+(x.supplierCost||0),0);
+  const totProfit = totRev-totCost;
+  document.getElementById('s-total-rev').textContent='€ '+totRev.toFixed(0);
+  document.getElementById('s-total-cost').textContent='€ '+totCost.toFixed(0);
+  document.getElementById('s-total-profit').textContent='€ '+totProfit.toFixed(0);
+  document.getElementById('s-total-profit').style.color=totProfit>=0?'var(--green)':'var(--red)';
+}
+function deleteSale(id){
+  if(!confirm('Delete sale?')) return;
+  save('sales', DB.get('sales').filter(s=>s.id!==id));
+  renderSales();
+}
+function printSaleInvoice(id, lang='mk'){
+  const sales = DB.get('sales');
+  const s = sales.find(x=>x.id===id); if(!s) return;
+  const cn = getClientName(s.clientId);
+  const isMk = lang==='mk';
+  const T = {
+    invoice: isMk?'ФАКТУРА':'INVOICE',
+    client: isMk?'КЛИЕНТ':'CLIENT',
+    desc: isMk?'ОПИС':'DESCRIPTION',
+    qty: isMk?'КОЛ.':'QTY',
+    sell: isMk?'ЦЕНА':'PRICE',
+    total: isMk?'ВКУПНО':'TOTAL',
+    costs: isMk?'Добавувачки трошоци':'Supplier Cost',
+    profit: isMk?'Профит':'Profit',
+    payment: isMk?'Начин на плаќање':'Payment Type',
+    dest: isMk?'Дестинација':'Destination',
+    travel: isMk?'Датуми':'Dates',
+    cancel: isMk?'ОТКАЖУВАЊЕ: 72h пред поаѓање — целосен повраток. По тоа — без повраток.':'CANCELLATION: 72h before departure — full refund. After that — no refund.',
+    thanks: isMk?'Ви благодариме за довербата!':'Thank you for choosing Amor Travel!'
+  };
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>${T.invoice} #S${id}</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Inter,sans-serif;padding:40px;color:#212529;background:#fff;}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:20px;border-bottom:3px solid #C9A84C;margin-bottom:28px;}
+  .brand-name{font-size:30px;font-weight:800;color:#1A2B4A;letter-spacing:-0.5px;}
+  .brand-sub{color:#C9A84C;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+  .brand-contact{font-size:12px;color:#868e96;margin-top:8px;line-height:1.7;}
+  .inv-title{font-size:24px;font-weight:700;color:#C9A84C;text-align:right;}
+  .inv-num{font-size:28px;font-weight:800;color:#1A2B4A;}
+  .inv-meta{font-size:12px;color:#868e96;text-align:right;margin-top:6px;line-height:1.8;}
+  .client-box{background:#F8F9FA;border-radius:8px;padding:16px;margin-bottom:24px;}
+  .section-label{font-size:10px;font-weight:700;letter-spacing:1.5px;color:#868e96;text-transform:uppercase;margin-bottom:4px;}
+  .client-name{font-size:17px;font-weight:700;color:#1A2B4A;}
+  .details{display:flex;gap:32px;margin-bottom:20px;}
+  .detail{font-size:13px;color:#495057;}<br>
+  table{width:100%;border-collapse:collapse;margin:20px 0;}
+  thead th{background:#1A2B4A;color:#fff;padding:11px 14px;font-size:12px;text-align:left;letter-spacing:.5px;}
+  tbody td{padding:11px 14px;border-bottom:1px solid #E9ECEF;font-size:14px;}
+  .total-row td{font-weight:700;font-size:15px;background:#F8F9FA;}
+  .profit-row td{font-size:13px;color:#2D6A4F;}
+  .footer{margin-top:36px;font-size:12px;color:#868e96;border-top:1px solid #E9ECEF;padding-top:16px;line-height:1.8;}
+  .cancel{background:#FDECEA;color:#C0392B;border-radius:6px;padding:10px 14px;font-size:12px;margin-top:16px;}
+  @media print{button{display:none!important;}.no-print{display:none!important;}}
+  </style></head><body>
+  <div class="header">
+    <div><div class="brand-name">AMOR TRAVEL</div><div class="brand-sub">Travel Agency</div>
+    <div class="brand-contact">info@amortravel.net &nbsp;|&nbsp; amortravel.net<br>Skopje, North Macedonia</div></div>
+    <div><div class="inv-title">${T.invoice}</div><div class="inv-num">#S${id}</div>
+    <div class="inv-meta">${isMk?'Датум':'Date'}: ${s.date||new Date().toLocaleDateString()}<br>${T.payment}: ${s.payment||'—'}</div></div>
+  </div>
+  <div class="client-box">
+    <div class="section-label">${T.client}</div>
+    <div class="client-name">${esc(cn)}</div>
+  </div>
+  <div class="details">
+    <div class="detail"><strong>${T.dest}:</strong> ${esc(s.dest||'—')}</div>
+    <div class="detail"><strong>${T.travel}:</strong> ${s.dep||'—'} → ${s.ret||'—'}</div>
+  </div>
+  <table>
+    <thead><tr><th>${T.desc}</th><th>${T.qty}</th><th>${T.sell} (EUR)</th><th>${T.total} (EUR)</th><th>${T.total} (MKD)</th></tr></thead>
+    <tbody>
+      ${(s.items||[]).map(it=>`<tr><td>${esc(it.desc||'')}</td><td>${it.qty}</td><td>€ ${parseFloat(it.sell||0).toFixed(2)}</td><td>€ ${(it.qty*it.sell).toFixed(2)}</td><td>${Math.round(it.qty*it.sell*EUR_MKD).toLocaleString()} МКД</td></tr>`).join('')}
+      <tr class="total-row"><td colspan="3"><strong>${T.total}</strong></td><td><strong>€ ${(s.revenue||0).toFixed(2)}</strong></td><td><strong>${(s.revenueMkd||0).toLocaleString()} МКД</strong></td></tr>
+    </tbody>
+  </table>
+  ${s.voucherCode?`<div style="font-size:13px;color:var(--green);margin-bottom:12px;">🎟️ ${isMk?'Ваучер':'Voucher'}: ${esc(s.voucherCode)}</div>`:''}
+  <div class="cancel">${T.cancel}</div>
+  <div class="footer">${T.thanks}<br>${isMk?'Курс':'Rate'}: 1 EUR = ${EUR_MKD} МКД</div>
+  <div class="no-print" style="margin-top:24px;">
+    <button onclick="window.print()" style="padding:10px 20px;background:#C9A84C;border:none;border-radius:6px;cursor:pointer;font-weight:600;">🖨️ ${isMk?'Печати / PDF':'Print / PDF'}</button>
+    <button onclick="window.close()" style="padding:10px 20px;background:#f1f3f5;border:none;border-radius:6px;cursor:pointer;margin-left:8px;">${isMk?'Затвори':'Close'}</button>
+  </div>
+  </body></html>`);
+}
+
+// ══════════════════════════════════════════════════════
+//  GIFT VOUCHERS MODULE
+// ══════════════════════════════════════════════════════
+function genCode(){
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const code='AMOR'+Array.from({length:6},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
+  document.getElementById('v-code').value=code;
+}
+function updateVoucherTypeLabel(){
+  const type = document.getElementById('v-type').value;
+  const labels = {percent:'Discount (%)', fixed:'Amount (EUR)', free:'Tour/Description'};
+  document.getElementById('v-value-label').textContent = labels[type]||'Value';
+}
+function saveVoucher(){
+  const vs = DB.get('vouchers');
+  const id = parseInt(document.getElementById('v-id').value)||nextId('vouchers');
+  const usesLimit = parseInt(document.getElementById('v-uses').value)||1;
+  const obj = {
+    id, code:g('v-code').toUpperCase(), type:g('v-type'), value:g('v-value'),
+    clientId:parseInt(document.getElementById('v-client').value)||null,
+    expiry:g('v-expiry'), usesLimit, usesLeft:usesLimit||999,
+    desc:g('v-desc'), status:'Active', created:new Date().toISOString()
+  };
+  if(!obj.code){ alert('Enter a voucher code.'); return; }
+  const idx=vs.findIndex(v=>v.id===id);
+  if(idx>=0) vs[idx]=obj; else vs.push(obj);
+  save('vouchers',vs);
+  closeModal('modal-voucher');
+  renderVouchers();
+}
+function renderVouchers(filter='',statusFilter=''){
+  const vs=DB.get('vouchers');
+  const f=filter.toLowerCase();
+  const filtered=vs.filter(v=>(!f||(v.code+v.desc).toLowerCase().includes(f))&&(!statusFilter||v.status===statusFilter));
+  const tbody=document.getElementById('vouchers-tbody');
+  if(!tbody) return;
+  const typeLabel={percent:'% Discount',fixed:'Fixed EUR',free:'Free Trip'};
+  tbody.innerHTML=filtered.length?filtered.slice().reverse().map(v=>`<tr>
+    <td style="font-weight:700;font-size:15px;letter-spacing:1px;color:var(--gold);">${esc(v.code)}</td>
+    <td><span class="badge badge-sent">${typeLabel[v.type]||v.type}</span></td>
+    <td style="font-weight:600;">${v.type==='percent'?v.value+'%':v.type==='fixed'?'€ '+v.value:esc(v.desc)}</td>
+    <td>${v.clientId?esc(getClientName(v.clientId)):'<em style="color:var(--g400);">Any client</em>'}</td>
+    <td style="font-size:13px;">${v.expiry||'No expiry'}</td>
+    <td style="font-size:13px;">${v.usesLeft===999?'∞':v.usesLeft+' / '+v.usesLimit}</td>
+    <td><span class="badge badge-${(v.status||'active').toLowerCase()}">${v.status||'Active'}</span></td>
+    <td style="display:flex;gap:4px;">
+      <button class="btn btn-icon btn-outline" onclick="printVoucherById(${v.id},'mk')" title="Print MK"><i class="fas fa-print"></i>МК</button>
+      <button class="btn btn-icon btn-outline" onclick="printVoucherById(${v.id},'en')" title="Print EN"><i class="fas fa-print"></i>EN</button>
+      <button class="btn btn-icon btn-danger" onclick="deleteVoucher(${v.id})"><i class="fas fa-trash"></i></button>
+    </td>
+  </tr>`).join(''):`<tr><td colspan="8" class="no-data"><i class="fas fa-gift"></i><br>No vouchers yet.</td></tr>`;
+}
+function deleteVoucher(id){
+  if(!confirm('Delete voucher?')) return;
+  save('vouchers',DB.get('vouchers').filter(v=>v.id!==id));
+  renderVouchers();
+}
+function printVoucher(){
+  const id=parseInt(document.getElementById('v-id').value)||0;
+  const langMk=document.getElementById('v-lang-mk')?.checked;
+  const langEn=document.getElementById('v-lang-en')?.checked;
+  if(langMk) printVoucherByData({
+    code:g('v-code').toUpperCase(),type:g('v-type'),value:g('v-value'),
+    desc:g('v-desc'),expiry:g('v-expiry'),clientId:null
+  },'mk');
+  if(langEn) printVoucherByData({
+    code:g('v-code').toUpperCase(),type:g('v-type'),value:g('v-value'),
+    desc:g('v-desc'),expiry:g('v-expiry'),clientId:null
+  },'en');
+}
+function printVoucherById(id,lang='mk'){
+  const v=DB.get('vouchers').find(x=>x.id===id); if(!v) return;
+  printVoucherByData(v,lang);
+}
+function printVoucherByData(v,lang='mk'){
+  const isMk=lang==='mk';
+  const typeLabel={percent:isMk?'% Попуст':'% Discount',fixed:isMk?'Фиксен попуст':'Fixed Discount',free:isMk?'Бесплатна тура':'Free Trip'};
+  const valueDisplay=v.type==='percent'?v.value+'%':v.type==='fixed'?'€ '+v.value:(isMk?'Бесплатна тура':'Free Trip');
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>${isMk?'Ваучер':'Gift Voucher'} ${esc(v.code)}</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Inter,sans-serif;background:#f0f0f0;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
+  .card{width:520px;background:linear-gradient(135deg,#1A2B4A 0%,#243659 60%,#1A2B4A 100%);border-radius:20px;padding:40px;color:#fff;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+  .card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(201,168,76,.15);}
+  .card::after{content:'';position:absolute;bottom:-40px;left:-40px;width:140px;height:140px;border-radius:50%;background:rgba(201,168,76,.08);}
+  .brand{font-size:13px;font-weight:700;letter-spacing:3px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:6px;}
+  .brand-name{font-size:26px;font-weight:800;color:#fff;margin-bottom:28px;}
+  .voucher-label{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:8px;}
+  .voucher-value{font-size:54px;font-weight:800;color:#C9A84C;line-height:1;margin-bottom:6px;}
+  .voucher-type{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:28px;}
+  .code-box{background:rgba(255,255,255,.1);border:2px dashed rgba(201,168,76,.6);border-radius:12px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
+  .code-label{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;}
+  .code-value{font-size:24px;font-weight:800;letter-spacing:4px;color:#C9A84C;}
+  .meta{font-size:12px;color:rgba(255,255,255,.55);line-height:1.8;}
+  .footer-brand{margin-top:28px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;}
+  .footer-brand span{font-size:12px;color:rgba(255,255,255,.4);}
+  @media print{body{background:none;}button{display:none!important;}}
+  </style></head><body>
+  <div>
+  <div class="card">
+    <div class="brand">AMOR TRAVEL</div>
+    <div class="brand-name">${isMk?'Подарок Ваучер':'Gift Voucher'}</div>
+    <div class="voucher-label">${typeLabel[v.type]||v.type}</div>
+    <div class="voucher-value">${esc(valueDisplay)}</div>
+    <div class="voucher-type">${esc(v.desc||'')}</div>
+    <div class="code-box">
+      <div><div class="code-label">${isMk?'Код на ваучер':'Voucher Code'}</div><div class="code-value">${esc(v.code)}</div></div>
+      <div style="text-align:right;"><div class="code-label">${isMk?'Важи до':'Valid Until'}</div><div style="font-size:14px;font-weight:600;color:#fff;">${v.expiry||'—'}</div></div>
+    </div>
+    <div class="meta">
+      ${isMk?'• Презентирај го ваучерот при резервација':'• Present this voucher at booking'}<br>
+      ${isMk?'• Не може да се комбинира со друга промоција':'• Cannot be combined with other offers'}<br>
+      ${isMk?'• Amt Travel го задржува правото на толкување':'• Amor Travel reserves the right of interpretation'}
+    </div>
+    <div class="footer-brand"><span>amortravel.net</span><span>info@amortravel.net</span></div>
+  </div>
+  <div style="text-align:center;margin-top:20px;">
+    <button onclick="window.print()" style="padding:10px 24px;background:#C9A84C;color:#1A2B4A;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px;">🖨️ ${isMk?'Печати / PDF':'Print / PDF'}</button>
+  </div>
+  </div>
+  </body></html>`);
+}
+
+// ══════════════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════════════
+// Override openModal for quote to pre-setup form
+const _openModal = openModal;
+document.querySelectorAll('[onclick*="openModal(\'modal-quote\')"]').forEach(el=>{
+  el.addEventListener('click', e=>{ e.stopPropagation(); openQuoteModal(); });
+});
+
+// Set today's date on expense form
+document.getElementById('ex-date').value = new Date().toISOString().split('T')[0];
+
+// Wire up invoice client dropdown
+document.getElementById('modal-invoice').addEventListener('click', ()=>{
+  populateClientDropdown('i-client');
+  populateQuoteDropdown('i-quote');
+});
+
+// Render dashboard on load
+renderDashboard();
+
+// Handle quote button properly
+document.querySelectorAll('.nav-item').forEach(n=>{
+  if(n.textContent.includes('Quotes')) n.addEventListener('click',()=>{ populateClientDropdown('q-client'); });
+});
+</script>
+</body>
+</html>

@@ -21,26 +21,80 @@ export function TripCard({
   imageAlt = "",
 }: TripCardProps) {
   return (
-    <article className="card flex h-full flex-col overflow-hidden p-0">
+    <article
+      className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1"
+      style={{
+        boxShadow: "0 4px 24px rgba(23,70,152,0.08), 0 1px 4px rgba(0,0,0,0.06)",
+      }}
+    >
       {imageSrc ? (
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-amor-sidebar">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-amor-sidebar">
           <Image
             src={imageSrc}
             alt={imageAlt || title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          <div
+            className="absolute bottom-3 right-3 rounded-full px-3 py-1 text-sm font-bold text-white"
+            style={{
+              background: "linear-gradient(135deg, var(--amor-gold), #a8883a)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+            }}
+          >
+            {price}
+          </div>
         </div>
       ) : null}
-      <div className="flex flex-1 flex-col p-4 sm:p-6">
-        <h3 className="text-amor-blue">{title}</h3>
-        <p className="mt-3 break-words text-lg font-semibold leading-snug text-amor-red sm:text-xl">
-          {price}
+
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3
+          className="font-bold leading-snug"
+          style={{ color: "var(--amor-blue)", fontSize: "1.05rem" }}
+        >
+          {title}
+        </h3>
+
+        {!imageSrc && (
+          <p className="mt-2 text-lg font-bold" style={{ color: "var(--amor-gold)" }}>
+            {price}
+          </p>
+        )}
+
+        <p className="mt-3 flex-1 text-base leading-relaxed text-amor-text">
+          {description}
         </p>
-        <p className="mt-3 flex-1 text-base leading-relaxed text-amor-text">{description}</p>
-        <Link href={href} className="btn-secondary mt-6 w-full sm:w-auto">
+
+        <div
+          className="my-4 h-px w-12"
+          style={{
+            background: "linear-gradient(90deg, var(--amor-gold), transparent)",
+          }}
+        />
+
+        <Link
+          href={href}
+          className="inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
+          style={{
+            background: "linear-gradient(135deg, var(--amor-blue), #0f2d5e)",
+          }}
+        >
           {ctaLabel}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
         </Link>
       </div>
     </article>

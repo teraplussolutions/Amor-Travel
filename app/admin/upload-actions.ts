@@ -99,8 +99,6 @@ export async function uploadSiteAssetAction(
     }
 
     revalidatePath("/admin/panel");
-    revalidatePath("/admin/panel/settings");
-    revalidatePath("/admin/panel/trips");
 
     return {
       publicUrl: asset.publicUrl,

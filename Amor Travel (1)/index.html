@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="mk" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amor Travel</title>
+  <meta name="description" content="Amor Travel - Вашата туристичка агенција | Your travel agency" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --navy: #1A2B4A;
+      --navy-light: #243659;
+      --white: #FFFFFF;
+      --gray-50: #F8F9FA;
+      --gray-100: #F1F3F5;
+      --gray-200: #E9ECEF;
+      --gray-400: #868E96;
+      --gray-600: #495057;
+      --gray-800: #212529;
+      --radius: 8px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background: var(--white);
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--navy);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 54px;
+      height: 54px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--navy);
+      font-weight: 800;
+      letter-spacing: -1px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(201,168,76,0.4);
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text span:first-child {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .logo-text span:last-child {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    nav { display: flex; align-items: center; gap: 6px; }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { color: var(--gold); background: rgba(255,255,255,0.07); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .social-links { display: flex; gap: 8px; }
+    .social-links a {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .social-links a:hover { background: var(--gold); color: var(--navy); }
+
+    .lang-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .lang-toggle button.active { background: var(--gold); color: var(--navy); }
+
+    .crm-btn {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .crm-btn:hover { background: var(--gold-light); }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ── HERO SLIDESHOW ── */
+    .hero {
+      margin-top: 72px;
+      position: relative;
+      height: 560px;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .slide.active { opacity: 1; }
+    .slide-bg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      background: var(--navy-light);
+    }
+    .slide-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,43,74,0.75) 0%, rgba(26,43,74,0.35) 60%, rgba(0,0,0,0.2) 100%);
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      color: white;
+    }
+    .hero-badge {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .hero-subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      opacity: 0.92;
+      margin-bottom: 32px;
+      max-width: 560px;
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.7);
+      padding: 11px 28px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .slide-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .slide-dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--navy);
+      padding: 20px 0;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 8px 16px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 0; }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--gray-600);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── TOURS GRID ── */
+    .tours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .tour-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid var(--gray-200);
+    }
+    .tour-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .tour-img {
+      height: 200px;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tour-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .tour-body { padding: 20px; }
+    .tour-dest {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .tour-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .tour-desc {
+      font-size: 14px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .tour-meta {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .tour-meta span {
+      font-size: 13px;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .tour-meta i { color: var(--gold); }
+    .tour-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .tour-price { line-height: 1.2; }
+    .tour-price-from {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+    .tour-price-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .tour-price-mkd {
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+    .btn-book {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .btn-book:hover { background: var(--navy-light); }
+
+    /* ── DESTINATIONS ── */
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .dest-card {
+      position: relative;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dest-card:hover { transform: scale(1.02); }
+    .dest-bg {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+    }
+    .dest-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(26,43,74,0.85) 0%, rgba(0,0,0,0.1) 60%);
+    }
+    .dest-label {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      color: white;
+    }
+    .dest-label strong { display: block; font-size: 15px; font-weight: 700; }
+    .dest-label span { font-size: 12px; opacity: 0.8; }
+
+    /* ── WHY US ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+      transition: var(--transition);
+    }
+    .why-card:hover { border-color: var(--gold); background: white; box-shadow: var(--shadow); }
+    .why-icon {
+      width: 56px; height: 56px;
+      background: rgba(201,168,76,0.12);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      color: var(--gold);
+      margin: 0 auto 16px;
+    }
+    .why-title { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .why-desc { font-size: 14px; color: var(--gray-600); line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--gray-50); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+    .contact-info p { font-size: 15px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.6; }
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+      align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 40px; height: 40px;
+      background: rgba(201,168,76,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .contact-item-text strong { display: block; font-size: 13px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .contact-item-text span { font-size: 15px; color: var(--gray-800); font-weight: 500; }
+    .social-row { display: flex; gap: 10px; margin-top: 24px; }
+    .social-row a {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .social-row a:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── FORM ── */
+    .contact-form { background: white; border-radius: 12px; padding: 32px; box-shadow: var(--shadow); border: 1px solid var(--gray-200); }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--gray-800);
+      background: var(--gray-50);
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); background: white; box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-submit:hover { background: var(--gold); color: var(--navy); }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      color: #2d6a4f;
+      background: #d8f3dc;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 56px 0 24px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo-wrap { margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 8px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-social a:hover { background: var(--gold); color: var(--navy); }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-divider { border-color: rgba(255,255,255,0.1); margin-bottom: 20px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-bottom-links a:hover { color: var(--gold); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--navy-light);
+      padding: 16px 24px;
+      gap: 4px;
+    }
+    .mobile-nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav.open { display: flex; }
+
+    /* ── UTILS ── */
+    .bg-light { background: var(--gray-50); }
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: 32px; }
+    [data-lang] { display: none; }
+    html[lang="mk"] [data-lang="mk"],
+    html[lang="en"] [data-lang="en"] { display: inherit; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 580px) {
+      .hero { height: 480px; }
+      .header-inner { height: 62px; }
+      .hero { margin-top: 62px; }
+      .logo-text span:first-child { font-size: 17px; }
+      .logo-icon { width: 44px; height: 44px; font-size: 18px; }
+      .social-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo-wrap">
+      <div class="logo-icon">AT</div>
+      <div class="logo-text">
+        <span>Amor Travel</span>
+        <span data-lang="mk">Туристичка Агенција</span>
+        <span data-lang="en">Travel Agency</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#hero" data-lang="mk">Почетна</a>
+      <a href="#hero" data-lang="en">Home</a>
+      <a href="#tours" data-lang="mk">Тури</a>
+      <a href="#tours" data-lang="en">Tours</a>
+      <a href="#destinations" data-lang="mk">Дестинации</a>
+      <a href="#destinations" data-lang="en">Destinations</a>
+      <a href="#about" data-lang="mk">За нас</a>
+      <a href="#about" data-lang="en">About</a>
+      <a href="#contact" data-lang="mk">Контакт</a>
+      <a href="#contact" data-lang="en">Contact</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="social-links">
+        <a href="https://facebook.com/amortravel" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/amortravel" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/38971000000" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="viber://chat?number=38971000000" aria-label="Viber"><i class="fab fa-viber"></i></a>
+      </div>
+      <div class="lang-toggle">
+        <button onclick="setLang('mk')" id="btn-mk" class="active">МК</button>
+        <button onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <a href="crm.html" class="crm-btn"><i class="fas fa-th-large"></i> CRM</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#hero" onclick="closeMobileMenu()" data-lang="mk">🏠 Почетна</a>
+    <a href="#hero" onclick="closeMobileMenu()" data-lang="en">🏠 Home</a>
+    <a href="#tours" onclick="closeMobileMenu()" data-lang="mk">✈️ Тури</a>
+    <a href="#tours" onclick="closeMobileMenu()" data-lang="en">✈️ Tours</a>
+    <a href="#destinations" onclick="closeMobileMenu()" data-lang="mk">🗺️ Дестинации</a>
+    <a href="#destinations" onclick="closeMobileMenu()" data-lang="en">🗺️ Destinations</a>
+    <a href="#about" onclick="closeMobileMenu()" data-lang="mk">ℹ️ За нас</a>
+    <a href="#about" onclick="closeMobileMenu()" data-lang="en">ℹ️ About</a>
+    <a href="#contact" onclick="closeMobileMenu()" data-lang="mk">📞 Контакт</a>
+    <a href="#contact" onclick="closeMobileMenu()" data-lang="en">📞 Contact</a>
+    <a href="crm.html" data-lang="mk">🗂️ CRM Систем</a>
+    <a href="crm.html" data-lang="en">🗂️ CRM System</a>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section id="hero" style="padding:0;">
+  <div class="hero">
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide-0">
+      <div class="slide-placeholder" style="background: linear-gradient(135deg,#1A2B4A,#2C4A7C);">🏝️</div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide" id="slide-1">
+      <div class="slide-placeholder" style="background: linear-gradient(135deg,#2C4A7C,#1E3A5F);">🗼</div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide" id="slide-2">
+      <div class="slide-placeholder" style="background: linear-gradient(135deg,#1E3A5F,#C9A84C33,#1A2B4A);">🏔️</div>
+    </div>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span data-lang="mk">✈ Amor Travel — Вашата Агенција</span>
+        <span data-lang="en">✈ Amor Travel — Your Agency</span>
+      </div>
+      <h1 class="hero-title">
+        <span data-lang="mk">Откријте го светот<br>со нас</span>
+        <span data-lang="en">Discover the World<br>with Us</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span data-lang="mk">Персонализирани патувања, незаборавни искуства. Оставете нè да ја планираме вашата совршена авантура.</span>
+        <span data-lang="en">Personalized journeys, unforgettable experiences. Let us plan your perfect adventure.</span>
+      </p>
+      <div class="hero-actions">
+        <a href="#tours" class="btn-primary">
+          <i class="fas fa-compass"></i>
+          <span data-lang="mk">Разгледај тури</span>
+          <span data-lang="en">Explore Tours</span>
+        </a>
+        <a href="#contact" class="btn-outline">
+          <i class="fas fa-phone"></i>
+          <span data-lang="mk">Контактирај нè</span>
+          <span data-lang="en">Contact Us</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="slide-dots">
+      <button class="slide-dot active" onclick="goToSlide(0)"></button>
+      <button class="slide-dot" onclick="goToSlide(1)"></button>
+      <button class="slide-dot" onclick="goToSlide(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-number">500+</span>
+      <span class="stat-label" data-lang="mk">Задоволни клиенти</span>
+      <span class="stat-label" data-lang="en">Happy Clients</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">50+</span>
+      <span class="stat-label" data-lang="mk">Дестинации</span>
+      <span class="stat-label" data-lang="en">Destinations</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">10+</span>
+      <span class="stat-label" data-lang="mk">Години искуство</span>
+      <span class="stat-label" data-lang="en">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">EUR/MKD</span>
+      <span class="stat-label" data-lang="mk">Двојна валута</span>
+      <span class="stat-label" data-lang="en">Dual Currency</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOURS ══ -->
+<section id="tours">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag" data-lang="mk">Понуди</div>
+      <div class="section-tag" data-lang="en">Offers</div>
+      <h2 class="section-title" data-lang="mk">Популарни тури</h2>
+      <h2 class="section-title" data-lang="en">Popular Tours</h2>
+      <p class="section-desc" data-lang="mk">Изберете од нашите внимателно подготвени патувачки пакети за сите буџети.</p>
+      <p class="section-desc" data-lang="en">Choose from our carefully crafted travel packages for every budget.</p>
+    </div>
+
+    <div class="tours-grid">
+      <!-- Tour 1 -->
+      <div class="tour-card">
+        <div class="tour-img" style="background:linear-gradient(135deg,#1565C0,#0D47A1);">
+          🇬🇷
+          <div class="tour-badge" data-lang="mk">Популарно</div>
+          <div class="tour-badge" data-lang="en">Popular</div>
+        </div>
+        <div class="tour-body">
+          <div class="tour-dest"><i class="fas fa-map-marker-alt"></i> <span data-lang="mk">Грција</span><span data-lang="en">Greece</span></div>
+          <div class="tour-name" data-lang="mk">Крит — Сонот на Медитеранот</div>
+          <div class="tour-name" data-lang="en">Crete — Mediterranean Dream</div>
+          <div class="tour-desc" data-lang="mk">Бели плажи, кристално море и автентична грчка кујна.</div>
+          <div class="tour-desc" data-lang="en">White beaches, crystal sea and authentic Greek cuisine.</div>
+          <div class="tour-meta">
+            <span><i class="far fa-calendar"></i> 7 <span data-lang="mk">ноќи</span><span data-lang="en">nights</span></span>
+            <span><i class="fas fa-users"></i> <span data-lang="mk">Групно</span><span data-lang="en">Group</span></span>
+            <span><i class="fas fa-hotel"></i> 4★</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <div class="tour-price-from" data-lang="mk">Од</div>
+              <div class="tour-price-from" data-lang="en">From</div>
+              <div class="tour-price-value">€ 649</div>
+              <div class="tour-price-mkd">≈ 39.900 МКД</div>
+            </div>
+            <a href="#contact" class="btn-book" data-lang="mk"><i class="fas fa-arrow-right"></i> Резервирај</a>
+            <a href="#contact" class="btn-book" data-lang="en"><i class="fas fa-arrow-right"></i> Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 2 -->
+      <div class="tour-card">
+        <div class="tour-img" style="background:linear-gradient(135deg,#4A148C,#7B1FA2);">
+          🇹🇷
+          <div class="tour-badge" data-lang="mk">Ново</div>
+          <div class="tour-badge" data-lang="en">New</div>
+        </div>
+        <div class="tour-body">
+          <div class="tour-dest"><i class="fas fa-map-marker-alt"></i> <span data-lang="mk">Турција</span><span data-lang="en">Turkey</span></div>
+          <div class="tour-name" data-lang="mk">Истанбул и Кападокија</div>
+          <div class="tour-name" data-lang="en">Istanbul & Cappadocia</div>
+          <div class="tour-desc" data-lang="mk">Историја, мистика и балони над чудесните пејзажи.</div>
+          <div class="tour-desc" data-lang="en">History, mystique and hot air balloons over magical landscapes.</div>
+          <div class="tour-meta">
+            <span><i class="far fa-calendar"></i> 8 <span data-lang="mk">ноќи</span><span data-lang="en">nights</span></span>
+            <span><i class="fas fa-user"></i> <span data-lang="mk">Индивидуално</span><span data-lang="en">Individual</span></span>
+            <span><i class="fas fa-hotel"></i> 5★</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <div class="tour-price-from" data-lang="mk">Од</div>
+              <div class="tour-price-from" data-lang="en">From</div>
+              <div class="tour-price-value">€ 899</div>
+              <div class="tour-price-mkd">≈ 55.200 МКД</div>
+            </div>
+            <a href="#contact" class="btn-book" data-lang="mk"><i class="fas fa-arrow-right"></i> Резервирај</a>
+            <a href="#contact" class="btn-book" data-lang="en"><i class="fas fa-arrow-right"></i> Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tour 3 -->
+      <div class="tour-card">
+        <div class="tour-img" style="background:linear-gradient(135deg,#BF360C,#E64A19);">
+          🇮🇹
+        </div>
+        <div class="tour-body">
+          <div class="tour-dest"><i class="fas fa-map-marker-alt"></i> <span data-lang="mk">Италија</span><span data-lang="en">Italy</span></div>
+          <div class="tour-name" data-lang="mk">Романтична Италија — Рим, Фиренца, Венеција</div>
+          <div class="tour-name" data-lang="en">Romantic Italy — Rome, Florence, Venice</div>
+          <div class="tour-desc" data-lang="mk">Класична тура низ уметноста, историјата и кујната на Италија.</div>
+          <div class="tour-desc" data-lang="en">Classic tour through Italy's art, history and cuisine.</div>
+          <div class="tour-meta">
+            <span><i class="far fa-calendar"></i> 10 <span data-lang="mk">ноќи</span><span data-lang="en">nights</span></span>
+            <span><i class="fas fa-bus"></i> <span data-lang="mk">Автобус</span><span data-lang="en">Bus</span></span>
+            <span><i class="fas fa-hotel"></i> 4★</span>
+          </div>
+          <div class="tour-footer">
+            <div class="tour-price">
+              <div class="tour-price-from" data-lang="mk">Од</div>
+              <div class="tour-price-from" data-lang="en">From</div>
+              <div class="tour-price-value">€ 799</div>
+              <div class="tour-price-mkd">≈ 49.100 МКД</div>
+            </div>
+            <a href="#contact" class="btn-book" data-lang="mk"><i class="fas fa-arrow-right"></i> Резервирај</a>
+            <a href="#contact" class="btn-book" data-lang="en"><i class="fas fa-arrow-right"></i> Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="#contact" class="btn-primary" style="display:inline-flex;">
+        <i class="fas fa-globe"></i>
+        <span data-lang="mk">Побарај персонализирана понуда</span>
+        <span data-lang="en">Request a Custom Quote</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESTINATIONS ══ -->
+<section id="destinations" class="bg-light">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag" data-lang="mk">Дестинации</div>
+      <div class="section-tag" data-lang="en">Destinations</div>
+      <h2 class="section-title" data-lang="mk">Истражувајте по регион</h2>
+      <h2 class="section-title" data-lang="en">Explore by Region</h2>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card">
+        <div class="dest-bg" style="background:linear-gradient(135deg,#1565C0,#42A5F5);">🏖️</div>
+        <div class="dest-overlay"></div>
+        <div class="dest-label"><strong data-lang="mk">Средоземје</strong><strong data-lang="en">Mediterranean</strong><span data-lang="mk">12 тури</span><span data-lang="en">12 tours</span></div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-bg" style="background:linear-gradient(135deg,#1B5E20,#43A047);">🏙️</div>
+        <div class="dest-overlay"></div>
+        <div class="dest-label"><strong data-lang="mk">Западна Европа</strong><strong data-lang="en">Western Europe</strong><span data-lang="mk">8 тури</span><span data-lang="en">8 tours</span></div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-bg" style="background:linear-gradient(135deg,#4A148C,#9C27B0);">🕌</div>
+        <div class="dest-overlay"></div>
+        <div class="dest-label"><strong data-lang="mk">Блискиот Исток</strong><strong data-lang="en">Middle East</strong><span data-lang="mk">6 тури</span><span data-lang="en">6 tours</span></div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-bg" style="background:linear-gradient(135deg,#BF360C,#FF7043);">🏔️</div>
+        <div class="dest-overlay"></div>
+        <div class="dest-label"><strong data-lang="mk">Балкан</strong><strong data-lang="en">Balkans</strong><span data-lang="mk">10 тури</span><span data-lang="en">10 tours</span></div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-bg" style="background:linear-gradient(135deg,#00695C,#4DB6AC);">🌴</div>
+        <div class="dest-overlay"></div>
+        <div class="dest-label"><strong data-lang="mk">Егзотика</strong><strong data-lang="en">Exotic</strong><span data-lang="mk">5 тури</span><span data-lang="en">5 tours</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY US ══ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag" data-lang="mk">Зошто Amor Travel</div>
+      <div class="section-tag" data-lang="en">Why Amor Travel</div>
+      <h2 class="section-title" data-lang="mk">Вашиот доверлив патнички партнер</h2>
+      <h2 class="section-title" data-lang="en">Your Trusted Travel Partner</h2>
+      <p class="section-desc" data-lang="mk">Повеќе од 10 години носиме радост и незаборавни спомени на нашите клиенти.</p>
+      <p class="section-desc" data-lang="en">Over 10 years of bringing joy and unforgettable memories to our clients.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-star"></i></div>
+        <div class="why-title" data-lang="mk">Premium сервис</div>
+        <div class="why-title" data-lang="en">Premium Service</div>
+        <div class="why-desc" data-lang="mk">Персонализиран пристап за секој клиент, од почеток до крај.</div>
+        <div class="why-desc" data-lang="en">Personalized approach for every client, from start to finish.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-euro-sign"></i></div>
+        <div class="why-title" data-lang="mk">EUR + MKD цени</div>
+        <div class="why-title" data-lang="en">EUR + MKD Prices</div>
+        <div class="why-desc" data-lang="mk">Транспарентни цени во двете валути со курс на НБРМ.</div>
+        <div class="why-desc" data-lang="en">Transparent prices in both currencies at NBRM exchange rate.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-headset"></i></div>
+        <div class="why-title" data-lang="mk">Поддршка 24/7</div>
+        <div class="why-title" data-lang="en">24/7 Support</div>
+        <div class="why-desc" data-lang="mk">Секогаш на располагање — Viber, WhatsApp и телефон.</div>
+        <div class="why-desc" data-lang="en">Always available — Viber, WhatsApp and phone.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="why-title" data-lang="mk">Сигурност</div>
+        <div class="why-title" data-lang="en">Safety & Trust</div>
+        <div class="why-desc" data-lang="mk">Лиценцирана агенција со целосно осигурување на патувањата.</div>
+        <div class="why-desc" data-lang="en">Licensed agency with full travel insurance coverage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag" data-lang="mk">Контакт</div>
+      <div class="section-tag" data-lang="en">Contact</div>
+      <h2 class="section-title" data-lang="mk">Стапи во контакт</h2>
+      <h2 class="section-title" data-lang="en">Get in Touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 data-lang="mk">Ние сме тука за вас</h3>
+        <h3 data-lang="en">We're Here for You</h3>
+        <p data-lang="mk">Испратете ни порака или јавете се — ќе ви одговориме во рок од еден час.</p>
+        <p data-lang="en">Send us a message or call us — we'll respond within one hour.</p>
+
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-item-text">
+            <strong data-lang="mk">Телефон</strong>
+            <strong data-lang="en">Phone</strong>
+            <span>+389 71 000 000</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-item-text">
+            <strong data-lang="mk">Е-пошта</strong>
+            <strong data-lang="en">Email</strong>
+            <span>info@amortravel.net</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-item-text">
+            <strong data-lang="mk">Адреса</strong>
+            <strong data-lang="en">Address</strong>
+            <span data-lang="mk">Скопје, Република Македонија</span>
+            <span data-lang="en">Skopje, North Macedonia</span>
+          </div>
+        </div>
+
+        <div class="social-row">
+          <a href="https://facebook.com/amortravel" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/amortravel" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/38971000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="viber://chat?number=38971000000" title="Viber"><i class="fab fa-viber"></i></a>
+          <a href="https://tiktok.com/@amortravel" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://youtube.com/@amortravel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-lang="mk">Ime и презиме *</label>
+              <label data-lang="en">Full Name *</label>
+              <input type="text" name="name" required placeholder="Иван Петров / Ivan Petrov" />
+            </div>
+            <div class="form-group">
+              <label data-lang="mk">Телефон</label>
+              <label data-lang="en">Phone</label>
+              <input type="tel" name="phone" placeholder="+389 7X XXX XXX" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-lang="mk">Е-пошта *</label>
+            <label data-lang="en">Email *</label>
+            <input type="email" name="email" required placeholder="email@example.com" />
+          </div>
+          <div class="form-group">
+            <label data-lang="mk">Дестинација / Тура</label>
+            <label data-lang="en">Destination / Tour</label>
+            <select name="destination">
+              <option value="" data-lang="mk">— Изберете —</option>
+              <option value="" data-lang="en">— Select —</option>
+              <option data-lang="mk">Грција — Крит</option>
+              <option data-lang="en">Greece — Crete</option>
+              <option data-lang="mk">Турција — Истанбул/Кападокија</option>
+              <option data-lang="en">Turkey — Istanbul/Cappadocia</option>
+              <option data-lang="mk">Италија — Рим/Фиренца/Венеција</option>
+              <option data-lang="en">Italy — Rome/Florence/Venice</option>
+              <option data-lang="mk">Друго / По барање</option>
+              <option data-lang="en">Other / Custom Request</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-lang="mk">Порака</label>
+            <label data-lang="en">Message</label>
+            <textarea name="message" data-lang-placeholder-mk="Дополнителни информации, датум на патување, број на патници..." data-lang-placeholder-en="Additional info, travel dates, number of travelers..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i>
+            <span data-lang="mk">Испрати барање</span>
+            <span data-lang="en">Send Request</span>
+          </button>
+        </form>
+        <div class="form-success" id="form-success">
+          <i class="fas fa-check-circle" style="font-size:32px;margin-bottom:8px;display:block;"></i>
+          <strong data-lang="mk">Благодариме! Ќе ве контактираме наскоро.</strong>
+          <strong data-lang="en">Thank you! We'll contact you shortly.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo-wrap" style="margin-bottom:14px;display:inline-flex;">
+          <div class="logo-icon" style="width:48px;height:48px;font-size:18px;">AT</div>
+          <div class="logo-text">
+            <span>Amor Travel</span>
+            <span data-lang="mk">Туристичка Агенција</span>
+            <span data-lang="en">Travel Agency</span>
+          </div>
+        </a>
+        <p data-lang="mk">Вашиот доверлив партнер за незаборавни патувања низ светот. Персонализирани понуди, двојна валута, professional сервис.</p>
+        <p data-lang="en">Your trusted partner for unforgettable journeys around the world. Personalized offers, dual currency, professional service.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com/amortravel" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/amortravel" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/38971000000" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="viber://chat?number=38971000000" title="Viber"><i class="fab fa-viber"></i></a>
+          <a href="https://tiktok.com/@amortravel" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://youtube.com/@amortravel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-lang="mk">Тури</h4>
+        <h4 data-lang="en">Tours</h4>
+        <ul>
+          <li><a href="#tours"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">Грција</span><span data-lang="en">Greece</span></a></li>
+          <li><a href="#tours"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">Турција</span><span data-lang="en">Turkey</span></a></li>
+          <li><a href="#tours"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">Италија</span><span data-lang="en">Italy</span></a></li>
+          <li><a href="#destinations"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">Сите дестинации</span><span data-lang="en">All Destinations</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-lang="mk">Агенција</h4>
+        <h4 data-lang="en">Agency</h4>
+        <ul>
+          <li><a href="#about"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">За нас</span><span data-lang="en">About Us</span></a></li>
+          <li><a href="crm.html"><i class="fas fa-chevron-right" style="font-size:10px;"></i> CRM</a></li>
+          <li><a href="#contact"><i class="fas fa-chevron-right" style="font-size:10px;"></i> <span data-lang="mk">Контакт</span><span data-lang="en">Contact</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-lang="mk">Контакт</h4>
+        <h4 data-lang="en">Contact</h4>
+        <ul>
+          <li><a href="tel:+38971000000"><i class="fas fa-phone"></i> +389 71 000 000</a></li>
+          <li><a href="mailto:info@amortravel.net"><i class="fas fa-envelope"></i> info@amortravel.net</a></li>
+          <li><a href="https://wa.me/38971000000" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+          <li><a href="viber://chat?number=38971000000"><i class="fab fa-viber"></i> Viber</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <p>© 2024 Amor Travel. <span data-lang="mk">Сите права задржани.</span><span data-lang="en">All rights reserved.</span></p>
+      <div class="footer-bottom-links">
+        <a href="#" data-lang="mk">Приватност</a>
+        <a href="#" data-lang="en">Privacy</a>
+        <a href="#" data-lang="mk">Услови</a>
+        <a href="#" data-lang="en">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── LANGUAGE ──
+  let currentLang = localStorage.getItem('amor-lang') || 'mk';
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('html-root').lang = lang;
+    document.getElementById('btn-mk').classList.toggle('active', lang === 'mk');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    localStorage.setItem('amor-lang', lang);
+    // update textarea placeholder
+    const ta = document.querySelector('textarea[name="message"]');
+    if (ta) {
+      ta.placeholder = lang === 'mk'
+        ? ta.dataset.langPlaceholderMk
+        : ta.dataset.langPlaceholderEn;
+    }
+  }
+  // init
+  setLang(currentLang);
+
+  // ── HERO SLIDESHOW ──
+  let currentSlide = 0;
+  const totalSlides = 3;
+  function goToSlide(n) {
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === n));
+    document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+    currentSlide = n;
+  }
+  setInterval(() => goToSlide((currentSlide + 1) % totalSlides), 5000);
+
+  // ── MOBILE MENU ──
+  function toggleMobileMenu() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-nav').classList.remove('open');
+  }
+
+  // ── CONTACT FORM ──
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const data = Object.fromEntries(new FormData(form));
+    // Save lead to localStorage for CRM pickup
+    const leads = JSON.parse(localStorage.getItem('amor-leads') || '[]');
+    leads.unshift({ ...data, date: new Date().toISOString(), status: 'New' });
+    localStorage.setItem('amor-leads', JSON.stringify(leads));
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // ── SCROLL ACTIVE NAV ──
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 10) header.style.background = 'rgba(26,43,74,0.98)';
+    else header.style.background = 'var(--navy)';
+  });
+</script>
+</body>
+</html>

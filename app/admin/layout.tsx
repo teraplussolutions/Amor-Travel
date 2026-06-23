@@ -1,10 +1,7 @@
 import { StaffShell } from "@/components/StaffShell";
 
 const navItems = [
-  { href: "/admin", label: "Dashboard", bottomNav: true },
-  { href: "/admin/panel", label: "Website CMS", bottomNav: true },
-  { href: "/admin/panel/trips", label: "Trips", bottomNav: true },
-  { href: "/admin/panel/settings", label: "Settings", bottomNav: true },
+  { href: "/admin/panel", label: "Admin Panel", bottomNav: true },
 ];
 
 export default function AdminLayout({

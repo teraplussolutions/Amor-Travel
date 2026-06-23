@@ -35,11 +35,14 @@ export function HeroSlideshow({
   const activeSlide = slides[activeIndex] ?? slides[0];
 
   return (
-    <section className="relative isolate min-h-[420px] w-full overflow-hidden bg-amor-white sm:min-h-[480px] lg:min-h-[520px]">
+    <section
+      className="relative isolate w-full overflow-hidden"
+      style={{ minHeight: "88vh" }}
+    >
       {slides.map((slide, index) => (
         <div
           key={slide.src}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
+          className={`absolute inset-0 transition-opacity duration-[1400ms] ease-in-out ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={index !== activeIndex}
@@ -50,58 +53,118 @@ export function HeroSlideshow({
             fill
             priority={index === 0}
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-center"
           />
         </div>
       ))}
 
-      {/* Light red/blue gradient overlay — no dark full bleed */}
+      {/* Luxury gradient overlay — deep blue left, transparent right, no black */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-amor-red/35 via-amor-white/55 to-amor-blue/35"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(15,45,94,0.86) 0%, rgba(23,70,152,0.68) 38%, rgba(23,70,152,0.22) 68%, rgba(201,168,76,0.06) 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(245,245,245,0.25) 0%, transparent 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute top-0 left-0 right-0 h-1"
+        style={{
+          background:
+            "linear-gradient(90deg, var(--amor-gold), var(--amor-red), var(--amor-gold))",
+        }}
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[420px] max-w-6xl flex-col justify-center px-4 py-14 sm:min-h-[480px] sm:px-6 sm:py-16 lg:min-h-[520px]">
-        {activeSlide?.destination ? (
-          <p className="mb-3 text-lg font-medium text-amor-blue sm:text-xl">
-            {activeSlide.destination}
-          </p>
-        ) : null}
-        <h1 className="max-w-3xl text-amor-blue">{title}</h1>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed sm:mt-6 sm:text-xl">
-          {subtitle}
-        </p>
-        {children ? (
-          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
-            {children}
-          </div>
-        ) : null}
+      <div
+        className="relative z-10 mx-auto flex max-w-7xl flex-col justify-center px-6 py-28 sm:px-10 lg:px-20"
+        style={{ minHeight: "88vh" }}
+      >
+        <div className="max-w-2xl">
+          {activeSlide?.destination && (
+            <div className="mb-6 inline-flex items-center gap-3">
+              <span className="h-px w-8" style={{ background: "var(--amor-gold)" }} />
+              <span
+                className="text-sm font-bold uppercase tracking-[0.2em]"
+                style={{ color: "var(--amor-gold)" }}
+              >
+                {activeSlide.destination}
+              </span>
+              <span className="h-px w-8" style={{ background: "var(--amor-gold)" }} />
+            </div>
+          )}
 
-        {slides.length > 1 ? (
-          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
+          <h1
+            className="font-extrabold leading-[1.1] text-white"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.75rem)",
+              textShadow: "0 2px 24px rgba(0,0,0,0.18)",
+            }}
+          >
+            {title}
+          </h1>
+
+          <div
+            className="mt-5 h-1 w-24 rounded-full"
+            style={{
+              background: "linear-gradient(90deg, var(--amor-gold), var(--amor-red))",
+            }}
+          />
+
+          <p
+            className="mt-6 leading-relaxed text-white/90"
+            style={{
+              fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
+              textShadow: "0 1px 8px rgba(0,0,0,0.12)",
+            }}
+          >
+            {subtitle}
+          </p>
+
+          {children && (
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              {children}
+            </div>
+          )}
+        </div>
+
+        {slides.length > 1 && (
+          <div className="mt-16 flex items-center gap-3">
             {slides.map((slide, index) => (
               <button
                 key={slide.src}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 transition-colors ${
-                  index === activeIndex
-                    ? "bg-amor-red/15"
-                    : "bg-transparent hover:bg-amor-soft"
-                }`}
-                aria-label={`Show slide ${index + 1}: ${slide.destination ?? imageAlt(slide, locale)}`}
+                aria-label={`Slide ${index + 1}`}
+                className="group flex items-center justify-center p-1 transition-all"
               >
                 <span
-                  className={`block h-3 w-3 rounded-full border-2 ${
-                    index === activeIndex
-                      ? "border-amor-red bg-amor-red"
-                      : "border-amor-blue/50 bg-amor-white/80"
-                  }`}
+                  className="block rounded-full transition-all duration-300"
+                  style={{
+                    width: index === activeIndex ? "2rem" : "0.5rem",
+                    height: "0.5rem",
+                    background:
+                      index === activeIndex
+                        ? "var(--amor-gold)"
+                        : "rgba(255,255,255,0.45)",
+                    boxShadow:
+                      index === activeIndex
+                        ? "0 0 8px var(--amor-gold)"
+                        : "none",
+                  }}
                 />
               </button>
             ))}
           </div>
-        ) : null}
+        )}
       </div>
     </section>
   );
