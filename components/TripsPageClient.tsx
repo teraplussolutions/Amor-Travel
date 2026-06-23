@@ -28,7 +28,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
   const destinations = useMemo(() => {
     const set = new Set<string>();
     trips.forEach((t) => {
-      const d = isEn ? t.destination_en : t.destination_mk;
+      const d = isEn ? (t.destination_en || t.destination_mk) : t.destination_mk;
       if (d) set.add(d);
     });
     return Array.from(set).sort();
@@ -41,8 +41,8 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter((t) => {
-        const title = (isEn ? t.title_en : t.title_mk) ?? "";
-        const dest = (isEn ? t.destination_en : t.destination_mk) ?? "";
+        const title = (isEn ? (t.title_en || t.title_mk) : t.title_mk) ?? "";
+        const dest = (isEn ? (t.destination_en || t.destination_mk) : t.destination_mk) ?? "";
         return title.toLowerCase().includes(q) || dest.toLowerCase().includes(q);
       });
     }
@@ -50,7 +50,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
     // Destination filter
     if (destination) {
       list = list.filter((t) => {
-        const dest = isEn ? t.destination_en : t.destination_mk;
+        const dest = isEn ? (t.destination_en || t.destination_mk) : t.destination_mk;
         return dest === destination;
       });
     }
@@ -254,8 +254,8 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
               trip.price_early_eur != null
                 ? formatDualCurrency(convertEurMkd(trip.price_early_eur, "EUR"), { locale })
                 : null;
-            const title = (isEn ? trip.title_en : trip.title_mk) ?? trip.slug;
-            const dest = (isEn ? trip.destination_en : trip.destination_mk) ?? "";
+            const title = (isEn ? (trip.title_en || trip.title_mk) : trip.title_mk) ?? trip.slug;
+            const dest = (isEn ? (trip.destination_en || trip.destination_mk) : trip.destination_mk) ?? "";
 
             return (
               <li

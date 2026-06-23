@@ -665,9 +665,13 @@ a {
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
+.footer-social__link {
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
 .footer-social__link:hover {
-  background: rgba(201,168,76,0.25);
-  border-color: var(--amor-gold);
-  color: var(--amor-gold);
+  background: rgba(255,29,29,0.15);
+  border-color: var(--amor-red);
+  color: var(--amor-red);
   transform: translateY(-2px);
 }

@@ -74,8 +74,8 @@ export function PublicHeaderNav() {
             height={180}
             priority
             style={{
-              width: "clamp(80px, 12vw, 140px)",
-              height: "clamp(80px, 12vw, 140px)",
+              width: "clamp(90px, 14vw, 180px)",
+              height: "clamp(90px, 14vw, 180px)",
               objectFit: "contain",
               flexShrink: 0,
               transition: "transform 0.25s ease",

@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: TripDetailPageProps): Promise
   }
 
   const isEn = locale === "en";
-  const title = isEn ? trip.title_en : trip.title_mk;
-  const destination = isEn ? trip.destination_en : trip.destination_mk;
+  const title = isEn ? (trip.title_en || trip.title_mk) : trip.title_mk;
+  const destination = isEn ? (trip.destination_en || trip.destination_mk) : trip.destination_mk;
   const description = destination || siteDescription(isEn ? "en" : "mk");
   const pagePath = localePath(locale, `/trips/${slug}`);
   const ogImagePath = trip.hero_image ?? "/og-default.png";
@@ -68,8 +68,8 @@ export default async function TripDetailPage({ params }: TripDetailPageProps) {
     notFound();
   }
 
-  const title = locale === "en" ? trip.title_en : trip.title_mk;
-  const destination = locale === "en" ? trip.destination_en : trip.destination_mk;
+  const title = locale === "en" ? (trip.title_en || trip.title_mk) : trip.title_mk;
+  const destination = locale === "en" ? (trip.destination_en || trip.destination_mk) : trip.destination_mk;
   const backHref = "/patuvanja";
 
   const earlyPrice =
