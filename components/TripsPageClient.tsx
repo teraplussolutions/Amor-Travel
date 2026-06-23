@@ -264,7 +264,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                 style={{ boxShadow: "0 4px 24px rgba(23,70,152,0.08)" }}
               >
                 {trip.hero_image ? (
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-amor-soft">
+                  <Link href={`/trips/${trip.slug}`} className="relative block aspect-[4/3] w-full overflow-hidden bg-amor-soft">
                     <Image
                       src={trip.hero_image}
                       alt={title}
@@ -272,6 +272,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
+                    <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
                     {price && (
                       <div
                         className="absolute bottom-3 right-3 rounded-full px-3 py-1 text-sm font-bold text-white"
@@ -280,7 +281,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                         {price}
                       </div>
                     )}
-                  </div>
+                  </Link>
                 ) : (
                   <div className="flex aspect-[4/3] items-center justify-center bg-amor-soft px-4 text-center text-base font-medium text-amor-blue">
                     {dest}
@@ -312,8 +313,8 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
                   <div className="my-4 h-px w-12" style={{ background: "linear-gradient(90deg, var(--amor-gold), transparent)" }} />
                   <Link
                     href={`/trips/${trip.slug}`}
-                    className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-                    style={{ background: "linear-gradient(135deg, var(--amor-blue), #0f2d5e)" }}
+                    className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold transition-all duration-200 hover:opacity-90 active:scale-95"
+                    style={{ background: "linear-gradient(135deg, var(--amor-blue), #0f2d5e)", color: "#ffffff" }}
                   >
                     {detailsLabel}
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

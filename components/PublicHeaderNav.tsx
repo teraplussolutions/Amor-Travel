@@ -41,61 +41,41 @@ export function PublicHeaderNav() {
 
   return (
     <div className="header-main">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
+
         {/* Brand */}
         <Link href="/" className="header-brand group flex items-center gap-3">
-          {/* Logo — larger, circular crop */}
-          <div
+          {/* Logo — large, no border/circle */}
+          <Image
+            src={BRAND_LOGO.src}
+            alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
+            width={110}
+            height={110}
+            priority
             style={{
-              width: 80, height: 80,
-              borderRadius: "50%",
-              overflow: "hidden",
+              width: 110,
+              height: 110,
+              objectFit: "contain",
               flexShrink: 0,
-              border: "2px solid rgba(201,168,76,0.35)",
-              boxShadow: "0 4px 18px rgba(23,70,152,0.15)",
-              background: "#fff",
+              transition: "transform 0.25s ease",
+            }}
+            className="group-hover:scale-105"
+          />
+
+          {/* Site name — all red, Playfair, large */}
+          <span
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)",
+              fontWeight: 900,
+              fontStyle: "italic",
+              letterSpacing: "-0.01em",
+              color: "var(--amor-red)",
+              lineHeight: 1.1,
             }}
           >
-            <Image
-              src={BRAND_LOGO.src}
-              alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
-              width={80}
-              height={80}
-              priority
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
-          </div>
-
-          {/* Luxury brand name */}
-          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-            <span
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(1.4rem, 3vw, 2rem)",
-                fontWeight: 900,
-                fontStyle: "italic",
-                letterSpacing: "-0.01em",
-                background: "linear-gradient(135deg, var(--amor-blue) 0%, #0f2d5e 50%, var(--amor-red) 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Amor
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-playfair), Georgia, serif",
-                fontSize: "clamp(0.65rem, 1.2vw, 0.8rem)",
-                fontWeight: 700,
-                letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                color: "var(--amor-gold)",
-              }}
-            >
-              Travel
-            </span>
-          </div>
+            {SITE.companyName}
+          </span>
         </Link>
 
         {/* Desktop nav */}
