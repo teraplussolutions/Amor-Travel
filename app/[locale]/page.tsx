@@ -99,15 +99,15 @@ export default async function HomePage({ params }: HomePageProps) {
       <HeroSlideshow slides={HERO_SLIDES} title={t("heroTitle")} subtitle={t("heroSubtitle")} locale={loc}>
         <Link
           href={contactPath}
-          className="inline-flex items-center justify-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:opacity-90 active:scale-95"
-          style={{ background: "linear-gradient(135deg, var(--amor-red), #c21515)", boxShadow: "0 4px 16px rgba(255,29,29,0.35)" }}
+          className="inline-flex items-center justify-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold transition-all duration-200 hover:opacity-90 active:scale-95"
+          style={{ background: "linear-gradient(135deg, var(--amor-red), #c21515)", boxShadow: "0 4px 16px rgba(255,29,29,0.35)", color: "#ffffff" }}
         >
           {t("ctaRequestQuote")}
         </Link>
         <Link
           href={tripsPath}
           className="inline-flex items-center justify-center gap-2 rounded-lg border-2 px-7 py-3.5 text-sm font-bold backdrop-blur-sm transition-all duration-200 hover:bg-white/10"
-          style={{ borderColor: "rgba(255,255,255,0.85)", color: "#ffffff", textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+          style={{ borderColor: "rgba(255,255,255,0.85)", color: "#ffffff !important", textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
         >
           {t("ctaViewTrips")}
         </Link>
