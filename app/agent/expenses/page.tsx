@@ -6,12 +6,9 @@ import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Expense } from "@/lib/crm/types";
 import { EXPENSE_CATEGORIES, MKD_RATE, fmtEur } from "@/lib/crm/types";
-import { useStaffLang } from "@/components/StaffLangContext";
 
 const supabase = createClient();
 
-  const { lang } = useStaffLang();
-  const mk = lang === "mk";
 const CAT_COLORS: Record<string, string> = {
   Office: "#174698", Marketing: "#FF1D1D", Travel: "#C9A84C",
   Supplier: "#7c3aed", Software: "#0891b2", Salary: "#15803d",
@@ -212,7 +209,7 @@ export default function ExpensesPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
-                  {["Code", "Date", mk ? "Опис" : "Description", mk ? "Категорија" : "Category", mk ? "Износ" : "Amount", "Payment", ""].map((h) => (
+                  {["Code", "Date", "Опис", "Категорија", "Износ", "Payment", ""].map((h) => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>

@@ -6,12 +6,9 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { Quote, QuoteItem, Client, QuoteStatus, PipelineStage } from "@/lib/crm/types";
 import { MKD_RATE, fmtEur, fmtMkd } from "@/lib/crm/types";
-import { useStaffLang } from "@/components/StaffLangContext";
 
 const supabase = createClient();
 
-  const { lang } = useStaffLang();
-  const mk = lang === "mk";
 const STATUS_COLORS: Record<QuoteStatus, string> = {
   Draft: "#64748b", Sent: "#174698", Confirmed: "#15803d", Cancelled: "#FF1D1D", Expired: "#b45309",
 };
@@ -229,7 +226,7 @@ function PdfPreview({ quote, client, onClose }: { quote: Quote; client?: Client;
           {/* Trip Info */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 24 }}>
             {[
-              [isMk ? "Дестинација" : mk ? "Дестинација" : "Destination", quote.destination],
+              [isMk ? "Дестинација" : "Дестинација", quote.destination],
               [isMk ? "Поаѓање" : "Departure", quote.departure_date ?? "—"],
               [isMk ? "Враќање" : "Return", quote.return_date ?? "—"],
               [isMk ? "Патници" : "Travelers", String(quote.travelers)],
@@ -357,7 +354,7 @@ export default function QuotesPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
-                  {["Code", "Client", mk ? "Дестинација" : "Destination", "Dates", "Total", mk ? "Статус" : "Status", "Pipeline", ""].map((h) => (
+                  {["Code", "Client", "Дестинација", "Dates", "Total", "Статус", "Pipeline", ""].map((h) => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left", fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                   ))}
                 </tr>

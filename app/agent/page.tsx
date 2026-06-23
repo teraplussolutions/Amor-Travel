@@ -5,16 +5,13 @@ export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { useStaffLang } from "@/components/StaffLangContext";
 
 interface Stats { clients: number; quotes: number; sales: number; revenue: number; profit: number; expenses: number; }
 
 export default function AgentDashboard() {
   const [stats, setStats] = useState<Stats | null>(null);
   const supabase = createClient();
-  const { lang } = useStaffLang();
 
-  const mk = lang === "mk";
 
   const modules = [
     { href: "/agent/clients",  icon: "👥", titleMk: "Клиенти",          titleEn: "Clients",       descMk: "Управувај со клиенти, пасоши, историја",       descEn: "Manage client profiles, passports, history",   color: "#174698" },
@@ -60,10 +57,10 @@ export default function AgentDashboard() {
     <div>
       <div className="mb-8">
         <h1 style={{ color: "var(--amor-blue)", fontSize: "1.6rem", fontWeight: 800 }}>
-          {mk ? "Почетна — CRM" : "Agent Dashboard"}
+          {"Почетна — CRM"}
         </h1>
         <p style={{ color: "var(--amor-text)", marginTop: 4, fontSize: 15 }}>
-          {mk ? "Добредојдовте во Amor Travel CRM — вашето работно место" : "Welcome to Amor Travel CRM — your daily workspace"}
+          {"Добредојдовте во Amor Travel CRM — вашето работно место"}
         </p>
         <div style={{ height: 3, width: 48, borderRadius: 8, marginTop: 10, background: "linear-gradient(90deg,#174698,#FF1D1D)" }} />
       </div>
@@ -74,16 +71,16 @@ export default function AgentDashboard() {
             <div key={s.labelEn} style={{ background: "#fff", borderRadius: 16, padding: "18px 20px", boxShadow: "0 2px 16px rgba(23,70,152,0.07)", borderTop: `3px solid ${s.color}` }}>
               <div style={{ fontSize: 22, marginBottom: 6 }}>{s.icon}</div>
               <div style={{ fontSize: "1.35rem", fontWeight: 800, color: s.color }}>{s.value}</div>
-              <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>{mk ? s.labelMk : s.labelEn}</div>
+              <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>{s.labelMk}</div>
             </div>
           ))}
         </div>
       ) : (
-        <div style={{ color: "#94a3b8", marginBottom: 40, fontSize: 14 }}>{mk ? "Се вчитува..." : "Loading…"}</div>
+        <div style={{ color: "#94a3b8", marginBottom: 40, fontSize: 14 }}>{"Се вчитува..."}</div>
       )}
 
       <h2 style={{ fontSize: "1rem", fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>
-        {mk ? "Модули" : "Modules"}
+        {"Модули"}
       </h2>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 16 }}>
         {modules.map((m) => (
@@ -94,8 +91,8 @@ export default function AgentDashboard() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 16px rgba(23,70,152,0.07)"; }}
             >
               <div style={{ fontSize: 28, marginBottom: 10 }}>{m.icon}</div>
-              <div style={{ fontWeight: 700, color: m.color, fontSize: "1rem", marginBottom: 6 }}>{mk ? m.titleMk : m.titleEn}</div>
-              <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>{mk ? m.descMk : m.descEn}</div>
+              <div style={{ fontWeight: 700, color: m.color, fontSize: "1rem", marginBottom: 6 }}>{m.titleMk}</div>
+              <div style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>{m.descMk}</div>
             </div>
           </Link>
         ))}

@@ -9,11 +9,13 @@ type StaffLangCtx = {
   toggle: () => void;
 };
 
-const Ctx = createContext<StaffLangCtx>({
+const defaultCtx: StaffLangCtx = {
   lang: "mk",
   setLang: () => {},
   toggle: () => {},
-});
+};
+
+const Ctx = createContext<StaffLangCtx>(defaultCtx);
 
 export function StaffLangProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<StaffLang>("mk");
@@ -21,4 +23,12 @@ export function StaffLangProvider({ children }: { children: ReactNode }) {
   return <Ctx.Provider value={{ lang, setLang, toggle }}>{children}</Ctx.Provider>;
 }
 
-export function useStaffLang() { return useContext(Ctx); }
+// Safe hook — returns default MK when called outside provider (e.g. during SSR)
+export function useStaffLang(): StaffLangCtx {
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return useContext(Ctx);
+  } catch {
+    return defaultCtx;
+  }
+}
