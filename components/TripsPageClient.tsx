@@ -111,6 +111,7 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
         className="mb-10 rounded-2xl p-6"
         style={{ background: "var(--amor-soft)", boxShadow: "0 2px 16px rgba(23,70,152,0.06)" }}
       >
+        {/* Toggle button */}
         <button
           type="button"
           onClick={() => setFiltersOpen((v) => !v)}
@@ -120,9 +121,9 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--amor-blue)" }} aria-hidden>
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
             </svg>
-            <h2 className="text-base font-bold" style={{ color: "var(--amor-blue)" }}>
+            <span className="text-base font-bold" style={{ color: "var(--amor-blue)" }}>
               {isEn ? "Search & Filter" : "Пребарување и Филтер"}
-            </h2>
+            </span>
             {hasFilters && !filtersOpen && (
               <span className="rounded-full px-2 py-0.5 text-xs font-bold" style={{ background: "var(--amor-red)", color: "#fff" }}>
                 {isEn ? "active" : "активен"}
@@ -145,76 +146,58 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
           </div>
         </button>
 
-        {filtersOpen && (<>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 pt-4">
-          {/* Search */}
-          <div className="lg:col-span-1">
-            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
-              {isEn ? "Search" : "Пребарај"}
-            </label>
-            <div className="relative">
-              <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-amor-blue/40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-              </svg>
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder={isEn ? "Destination or trip name…" : "Дестинација или наслов…"}
-                className={inputClass + " pl-9"}
-                style={inputStyle}
-              />
+        {/* Collapsible: search + destination + dates */}
+        {filtersOpen && (
+          <div className="grid gap-4 pt-4 pb-2 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="lg:col-span-1">
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
+                {isEn ? "Search" : "Пребарај"}
+              </label>
+              <div className="relative">
+                <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-amor-blue/40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder={isEn ? "Destination or trip name…" : "Дестинација или наслов…"}
+                  className={inputClass + " pl-9"}
+                  style={inputStyle}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
+                {isEn ? "Destination" : "Дестинација"}
+              </label>
+              <select value={destination} onChange={(e) => setDestination(e.target.value)} className={inputClass} style={inputStyle}>
+                <option value="">{isEn ? "All destinations" : "Сите дестинации"}</option>
+                {destinations.map((d) => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
+                {isEn ? "Departure from" : "Поаѓање од"}
+              </label>
+              <input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className={inputClass} style={inputStyle} />
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
+                {isEn ? "Return by" : "Враќање до"}
+              </label>
+              <input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className={inputClass} style={inputStyle} />
             </div>
           </div>
+        )}
 
-          {/* Destination */}
-          <div>
-            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
-              {isEn ? "Destination" : "Дестинација"}
-            </label>
-            <select
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              className={inputClass}
-              style={inputStyle}
-            >
-              <option value="">{isEn ? "All destinations" : "Сите дестинации"}</option>
-              {destinations.map((d) => (
-                <option key={d} value={d}>{d}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Date range */}
-          <div>
-            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
-              {isEn ? "Departure from" : "Поаѓање од"}
-            </label>
-            <input
-              type="date"
-              value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
-              className={inputClass}
-              style={inputStyle}
-            />
-          </div>
-
-          <div>
-            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-gold)" }}>
-              {isEn ? "Return by" : "Враќање до"}
-            </label>
-            <input
-              type="date"
-              value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
-              className={inputClass}
-              style={inputStyle}
-            />
-          </div>
-        </div>
-
-        {/* Sort row */}
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        {/* Sort — always visible */}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--amor-blue)" }}>
             {isEn ? "Sort:" : "Сортирај:"}
           </span>
@@ -233,30 +216,20 @@ export function TripsPageClient({ trips, locale, emptyLabel, detailsLabel }: Tri
               className="rounded-full px-4 py-1.5 text-xs font-bold transition-all duration-200"
               style={
                 sort === opt.key
-                  ? {
-                      background: "var(--amor-blue)",
-                      color: "white",
-                      boxShadow: "0 2px 8px rgba(23,70,152,0.25)",
-                    }
-                  : {
-                      background: "white",
-                      color: "var(--amor-blue)",
-                      border: "1px solid rgba(23,70,152,0.2)",
-                    }
+                  ? { background: "var(--amor-blue)", color: "white", boxShadow: "0 2px 8px rgba(23,70,152,0.25)" }
+                  : { background: "white", color: "var(--amor-blue)", border: "1px solid rgba(23,70,152,0.2)" }
               }
             >
               {isEn ? opt.labelEn : opt.labelMk}
             </button>
           ))}
-
           <span className="ml-auto text-xs text-amor-text/50">
             {filtered.length} {isEn ? "trips" : "патувања"}
           </span>
         </div>
-        </>)}
       </div>
 
-      {/* Results */}
+            {/* Results */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mb-4 text-amor-blue/30" aria-hidden>

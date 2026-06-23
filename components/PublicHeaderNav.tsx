@@ -81,12 +81,12 @@ export function PublicHeaderNav() {
       {/* ── MOBILE: [logo + name centered] [hamburger right] ── */}
       <div className="flex items-center px-3 lg:hidden" style={{ minHeight: 76 }}>
         {/* Logo + Name together — centered */}
-        <Link href="/" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, textDecoration: "none" }}>
+        <Link href="/" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: 24, gap: 10, textDecoration: "none" }}>
           <Image
             src={BRAND_LOGO.src}
             alt={locale === "mk" ? BRAND_LOGO.altMk : BRAND_LOGO.altEn}
-            width={70} height={70} priority
-            style={{ width: 70, height: 70, objectFit: "contain", flexShrink: 0 }}
+            width={140} height={140} priority
+            style={{ width: 140, height: 140, objectFit: "contain", flexShrink: 0 }}
           />
           <span style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontSize: "clamp(1.2rem, 5.5vw, 1.5rem)", fontWeight: 900, fontStyle: "italic", color: "var(--amor-red)", lineHeight: 1.1 }}>
             {SITE.companyName}
