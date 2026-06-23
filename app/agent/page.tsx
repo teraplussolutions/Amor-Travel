@@ -14,12 +14,12 @@ export default function AgentDashboard() {
 
 
   const modules = [
-    { href: "/agent/clients",  icon: "👥", titleMk: "Клиенти",          titleEn: "Clients",       descMk: "Управувај со клиенти, пасоши, историја",       descEn: "Manage client profiles, passports, history",   color: "#174698" },
-    { href: "/agent/quotes",   icon: "📋", titleMk: "Понуди",            titleEn: "Quotes",         descMk: "Изгради понуди, прати PDF, следи pipeline",    descEn: "Build offers, send PDFs, track pipeline",      color: "#C9A84C" },
-    { href: "/agent/sales",    icon: "💰", titleMk: "Продажби",          titleEn: "Sales",          descMk: "Евидентирај резервации, следи добивка",        descEn: "Record bookings, track profit",                color: "#15803d" },
-    { href: "/agent/expenses", icon: "🧾", titleMk: "Трошоци",           titleEn: "Expenses",       descMk: "Следи трошоци по категорија",                   descEn: "Track costs by category",                      color: "#b45309" },
-    { href: "/agent/vouchers", icon: "🎫", titleMk: "Ваучери",           titleEn: "Vouchers",       descMk: "Креирај брендирани патнички ваучери",           descEn: "Create branded travel vouchers",               color: "#7c3aed" },
-    { href: "/agent/search",   icon: "✈️", titleMk: "Пребарај летови",  titleEn: "Search Flights", descMk: "Најди летови преку Aviasales",                  descEn: "Find flights via Aviasales",                   color: "#FF1D1D" },
+    { href: "/agent/clients",  icon: "👥", titleMk: "Клиенти",          titleEn: "Клиенти",       descMk: "Управувај со клиенти, пасоши, историја",       descEn: "Управувај со клиенти, пасоши, историја",   color: "#174698" },
+    { href: "/agent/quotes",   icon: "📋", titleMk: "Понуди",            titleEn: "Понуди",         descMk: "Изгради понуди, прати PDF, следи pipeline",    descEn: "Изгради понуди, прати PDF, следи pipeline",      color: "#C9A84C" },
+    { href: "/agent/sales",    icon: "💰", titleMk: "Продажби",          titleEn: "Продажби",          descMk: "Евидентирај резервации, следи добивка",        descEn: "Евидентирај резервации, следи добивка",                color: "#15803d" },
+    { href: "/agent/expenses", icon: "🧾", titleMk: "Трошоци",           titleEn: "Трошоци",       descMk: "Следи трошоци по категорија",                   descEn: "Следи трошоци по категорија",                      color: "#b45309" },
+    { href: "/agent/vouchers", icon: "🎫", titleMk: "Ваучери",           titleEn: "Ваучери",       descMk: "Креирај брендирани патнички ваучери",           descEn: "Креирај брендирани ваучери",               color: "#7c3aed" },
+    { href: "/agent/search",   icon: "✈️", titleMk: "Пребарај летови",  titleEn: "Пребарај летови", descMk: "Најди летови преку Aviasales",                  descEn: "Најди летови преку Aviasales",                   color: "#FF1D1D" },
   ];
 
   useEffect(() => {
@@ -45,12 +45,12 @@ export default function AgentDashboard() {
   }, []);
 
   const statCards = stats ? [
-    { labelMk: "Клиенти",   labelEn: "Clients",   value: stats.clients.toString(),     icon: "👥", color: "#174698" },
-    { labelMk: "Понуди",    labelEn: "Quotes",    value: stats.quotes.toString(),      icon: "📋", color: "#C9A84C" },
-    { labelMk: "Продажби",  labelEn: "Sales",     value: stats.sales.toString(),       icon: "💰", color: "#15803d" },
-    { labelMk: "Приход",    labelEn: "Revenue",   value: `€${stats.revenue.toFixed(0)}`, icon: "📈", color: "#174698" },
-    { labelMk: "Добивка",   labelEn: "Profit",    value: `€${stats.profit.toFixed(0)}`,  icon: "✅", color: "#15803d" },
-    { labelMk: "Трошоци",   labelEn: "Expenses",  value: `€${stats.expenses.toFixed(0)}`, icon: "🧾", color: "#FF1D1D" },
+    { labelMk: "Клиенти",   labelEn: "Клиенти",   value: stats.clients.toString(),     icon: "👥", color: "#174698" },
+    { labelMk: "Понуди",    labelEn: "Понуди",    value: stats.quotes.toString(),      icon: "📋", color: "#C9A84C" },
+    { labelMk: "Продажби",  labelEn: "Продажби",     value: stats.sales.toString(),       icon: "💰", color: "#15803d" },
+    { labelMk: "Приход",    labelEn: "Приход",   value: `€${stats.revenue.toFixed(0)}`, icon: "📈", color: "#174698" },
+    { labelMk: "Добивка",   labelEn: "Добивка",    value: `€${stats.profit.toFixed(0)}`,  icon: "✅", color: "#15803d" },
+    { labelMk: "Трошоци",   labelEn: "Трошоци",  value: `€${stats.expenses.toFixed(0)}`, icon: "🧾", color: "#FF1D1D" },
   ] : null;
 
   return (
