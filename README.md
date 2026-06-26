@@ -63,6 +63,21 @@ npm run build
 
 **CLI / psql from this PC:** direct `db.*.supabase.co` often fails (IPv6). Use pooler **`aws-1-eu-central-1.pooler.supabase.com`** (not `aws-0`). Session mode port `5432`, transaction mode `6543`. Set `SUPABASE_DB_PASSWORD` in `.env.local`, URL-encode `@` and `$` in the password when building a connection string.
 
+### Keepalive (prevent project pause)
+
+Supabase free projects pause after ~7 days without activity. Two layers keep the Amor project warm:
+
+| Layer | What runs | Schedule |
+| ----- | --------- | -------- |
+| **Primary** | Vercel Cron → `GET /api/keepalive` → lightweight `agencies` query via service role | Daily **08:00 UTC** (`vercel.json`) |
+| **Secondary** | `pg_cron` job `amor-keepalive` → `select count(*) from public.agencies` | Daily **08:00 UTC** (migration `20260623120000_keepalive_cron.sql`) |
+
+**Verify manually:** open [https://amortravel.net/api/keepalive](https://amortravel.net/api/keepalive) (or `http://localhost:3000/api/keepalive` in dev). Expect `{"ok":true,"ts":"..."}`.
+
+**Vercel Cron note:** Cron jobs require a Vercel plan that supports them (Pro on some accounts). If crons are unavailable on Hobby, the `pg_cron` job alone may suffice; you can also hit `/api/keepalive` from any external uptime monitor.
+
+**Apply pg_cron migration:** `supabase db push --linked --include-all`, or run `supabase/migrations/20260623120000_keepalive_cron.sql` in the SQL editor. If `create extension pg_cron` fails, enable **pg_cron** under Database → Extensions in the dashboard, then re-run.
+
 ## Apply migration manually
 
 If Supabase CLI link fails (wrong org token), apply Phase 2 in the [SQL editor](https://supabase.com/dashboard/project/ekdeizmxgucpvcrmoftz/sql/new) or via psql on the **aws-1** pooler above:
